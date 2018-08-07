@@ -1,10 +1,10 @@
 package com.jk.model;
 
 public class GouMaiBiao {
-    private String goumaiid;
-    private String kechengid;
-    private String yonghuid;
-    private String goumaishuliang;
+    private String goumaiid;//主键id
+    private String kechengid;//课程id
+    private String yonghuid;//用户id
+    private String goumaishuliang;//购买数量
 
     public String getGoumaiid() {
         return goumaiid;

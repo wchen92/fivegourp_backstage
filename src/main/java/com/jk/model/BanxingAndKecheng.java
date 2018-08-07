@@ -1,9 +1,9 @@
 package com.jk.model;
 
 public class BanxingAndKecheng {
-    private String banxingandkechengid;
-    private String banxingid;
-    private String kechengid;
+    private String banxingandkechengid;//主键id
+    private String banxingid;//班型id
+    private String kechengid;//课程id
 
     public String getBanxingandkechengid() {
         return banxingandkechengid;

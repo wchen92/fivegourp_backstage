@@ -1,8 +1,8 @@
 package com.jk.model;
 
 public class BanXing {
-    private String banxingid ;
-    private String  banxingname;
+    private String banxingid ;//班型id
+    private String  banxingname;//班型名称
 
     public String getBanxingid() {
         return banxingid;
