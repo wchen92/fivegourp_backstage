@@ -8,9 +8,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/quanxian?characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.1.123/wu?characterEncoding=UTF-8
     username: root
-    password: admin
+    password: root
 
   mvc:
     view:
@@ -19,7 +19,7 @@ spring:
 
 
   redis:
-    host: localhost
+    host: 192.168.1.123
     port: 6379
     jedis:
       pool:
@@ -28,7 +28,7 @@ spring:
         max-wait: 300
   data:
     mongodb:
-      host: h
+      host: 192.168.1.123
       port: 27017
       database: 1712a
 
