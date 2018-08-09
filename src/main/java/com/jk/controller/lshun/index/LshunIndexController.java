@@ -15,7 +15,15 @@ import javax.annotation.Resource;
 @RequestMapping("linshuiindex")
 public class LshunIndexController {
     @RequestMapping("goto")
+
     public String gotowww(){
-        return "lshun/test";
+
+        return "lshun/login";
     }
+    //返回主页面
+    @RequestMapping("fivelogin")
+    public  String fivelogin(){
+        return "wjyi/showzhu";
+    }
+
 }

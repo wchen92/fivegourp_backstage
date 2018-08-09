@@ -9,6 +9,8 @@ public class User {
 
           private String   password            ;//    密码
 
+         private  Integer userstatus;  //状态   1.已审核 2.未审核
+
     public String getUserid() {
         return userid;
     }
@@ -39,6 +41,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getUserstatus() {
+        return userstatus;
+    }
+
+    public void setUserstatus(Integer userstatus) {
+        this.userstatus = userstatus;
     }
 
     @Override
