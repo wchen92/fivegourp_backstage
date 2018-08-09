@@ -7,6 +7,8 @@ public class Power {
 
          private String     pid    ;//    pid
 
+        private String url;//进方法路径
+
     public String getId() {
         return id;
     }
@@ -31,12 +33,21 @@ public class Power {
         this.pid = pid;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "Power{" +
                 "id='" + id + '\'' +
                 ", text='" + text + '\'' +
                 ", pid='" + pid + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

@@ -12,4 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("wjyiiindex")
 public class WjyiIndexController {
+
+    /**
+     * 进入主页面
+     * @return
+     */
+    @RequestMapping("comezhu")
+    public String queryTree(){
+        return "wjyi/showzhu";
+    }
+
 }
