@@ -19,7 +19,7 @@ public class WjyiIndexController {
      */
     @RequestMapping("comezhu")
     public String queryTree(){
-        return "wjyi/showzhu";
+        return "Wjyi/showzhu";
     }
 
 }

@@ -30,5 +30,12 @@ spring:
     mongodb:
       host: 192.168.1.104
       port: 27017
-      database: 1712a
+      database: 1801a
+  application:
+    name: fivegourp_backstage
+  rabbitmq:
+    host: 192.168.1.126
+    port: 5672
+    username: wchen92
+    password: wchen92
 
