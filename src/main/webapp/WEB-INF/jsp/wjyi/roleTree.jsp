@@ -32,7 +32,9 @@
         });
     }
 
+
     function addRole(userid){
+        var userids="";
         var roleidarr =$('#queryRolestree').tree('getChecked');
         var role= "" ;
         for (var i = 0; i < roleidarr.length; i++) {
@@ -50,7 +52,6 @@
             }
         })
     }
-
 </script>
 </body>
 </html>

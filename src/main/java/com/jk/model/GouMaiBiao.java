@@ -5,6 +5,15 @@ public class GouMaiBiao {
     private String kechengid;//课程id
     private String yonghuid;//用户id
     private String goumaishuliang;//购买数量
+    private String goumaidate;//购买时间
+
+    public String getGoumaidate() {
+        return goumaidate;
+    }
+
+    public void setGoumaidate(String goumaidate) {
+        this.goumaidate = goumaidate;
+    }
 
     public String getGoumaiid() {
         return goumaiid;
@@ -45,6 +54,7 @@ public class GouMaiBiao {
                 ", kechengid='" + kechengid + '\'' +
                 ", yonghuid='" + yonghuid + '\'' +
                 ", goumaishuliang='" + goumaishuliang + '\'' +
+                ", goumaidate='" + goumaidate + '\'' +
                 '}';
     }
 }

@@ -1,8 +1,6 @@
 package com.jk.controller.wjyi;
 
-import com.jk.model.Power;
-import com.jk.model.Role;
-import com.jk.model.User;
+import com.jk.model.*;
 import com.jk.service.wjyi.IWjyiService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,10 +38,11 @@ public class WjyiController {
 
     //用户查询
     @RequestMapping("queryuser")
-    public  List<User> queryuser(int page,int rows,User user){
-        List<User> userList = WjyiService.queryuser(page,rows,user);
+    public  Map<String,Object> queryuser(int page,int rows,User user){
+      Map<String,Object>  userList = WjyiService.queryuser(page,rows,user);
         return userList;
     }
+
 
     //用户新增
     @RequestMapping("adduser")
@@ -84,17 +83,129 @@ public class WjyiController {
     //用户赋角色
     @RequestMapping("addRoleAndUserid")
     public String addRoleAndUserid(String userids, String roleids) {
-        List<Map<String, String>> arrayList = new ArrayList<Map<String, String>>();
-        String[] split = roleids.split(",");
-        for (String roles : split) {
-            Map<String, String> hashMap = new HashMap<>();
-            hashMap.put("userids", userids);
-            hashMap.put("roleids", roles);
-            arrayList.add(hashMap);
-        }
-        WjyiService.addRoleAndUserid(userids, arrayList);
+        WjyiService.addRoleAndUserid(userids, roleids);
         return "1";
     }
 
+    //角色查询
+    @RequestMapping("queryRole")
+    public  Map<String,Object> queryRole(int page,int rows,Role role){
+        Map<String,Object>  roleList = WjyiService.queryRole(page,rows,role);
+        return roleList;
+    }
+
+    //角色新增
+    @RequestMapping("addRole")
+    public String addRole(Role role){
+        WjyiService.addRole(role);
+        return "1";
+    }
+
+    //角色修改
+    @RequestMapping("updateRole")
+    public String updateRole(Role role){
+        WjyiService.updateRole(role);
+        return "1";
+    }
+
+    //角色删除
+    @RequestMapping("deleteRole")
+    public String deleteRole(String roleid){
+        WjyiService.deleteRole(roleid);
+        return "1";
+    }
+
+    //权限查询
+    @RequestMapping("queryPower")
+    public  Map<String,Object> queryPower(int page,int rows,Power power){
+        Map<String,Object>  powerList = WjyiService.queryPower(page,rows,power);
+        return powerList;
+    }
+
+    //权限新增
+    @RequestMapping("addPower")
+    public String addPower(Power power){
+        WjyiService.addPower(power);
+        return "1";
+    }
+
+    //权限修改
+    @RequestMapping("updatePower")
+    public String updatePower(Power power){
+        WjyiService.updatePower(power);
+        return "1";
+    }
+
+    //权限删除
+    @RequestMapping("deletePower")
+    public String deletePower(String id){
+        WjyiService.deletePower(id);
+        return "1";
+    }
+
+    //根据用户角色id展示用户拥有的权限
+    @RequestMapping("queryRoleAndPower")
+    public List<Power> querypower(String roleid, String userid) {
+        List<Power> Powerlist = WjyiService.queryPowerAll();
+        List<Power> querypowerbyrole = WjyiService.queryRoleAndPower(roleid, userid);
+        for (Power power : Powerlist) {
+            for (Power power1 : querypowerbyrole) {
+                if (power.getId().equals(power1.getId())) {
+                    power.setChecked(true);
+                }
+            }
+        }
+        return Powerlist;
+    }
+
+    //赋权限
+    @RequestMapping("addPowerAndRoleid")
+    public String addPowerAndRoleid(String roleids, String quanids) {
+        WjyiService.addPowerAndRoleid(roleids, quanids);
+        return "1";
+    }
+
+    //系统人员状态未审核的查询
+    @RequestMapping("shenheuser")
+    public  Map<String,Object> shenheuser(int page,int rows,User user){
+        Map<String,Object>  shenheuserList = WjyiService.shenheuser(page,rows,user);
+        return shenheuserList;
+    }
+
+    //批量审核系统人员
+    @RequestMapping("piliangquerenuserid")
+    public String piliangquerenuserid(String userid){
+        WjyiService.piliangquerenuserid(userid);
+        return "1";
+    }
+
+    //课程状态为未审核的查询
+    @RequestMapping("querywjyKeCheng")
+    public  Map<String,Object> querywjyKeCheng(int page,int rows,KeCheng keCheng){
+        Map<String,Object>  kecehngList = WjyiService.querywjyKeCheng(page,rows,keCheng);
+        return kecehngList;
+    }
+
+    //批量审核课程
+    @RequestMapping("piliangQuerenKecheng")
+    public String piliangQuerenKecheng(String kechengid){
+        WjyiService.piliangQuerenKecheng(kechengid);
+        return "1";
+    }
+
+
+    //广告状态为未审核的查询
+    @RequestMapping("querywjyGuang")
+    public  Map<String,Object> querywjyGuang(int page,int rows,GuangGaoBiao guangGaoBiao){
+        Map<String,Object>  guanggaoList = WjyiService.querywjyGuang(page,rows,guangGaoBiao);
+        return guanggaoList;
+    }
+
+    //批量审核广告
+    @RequestMapping("piliangQuerenGuanggao")
+    public String piliangQuerenGuanggao(String guanggaoid){
+        WjyiService.piliangQuerenGuanggao(guanggaoid);
+        return "1";
+    }
 
 }
