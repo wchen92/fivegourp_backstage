@@ -46,5 +46,8 @@ public interface IZqshunService {
 
     String uploadImg(MultipartFile imgs) throws IOException;
 
-    Map<String,Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangjie);
+    List queryzhangjie();
+
+
+    //Map<String,Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie);
 }

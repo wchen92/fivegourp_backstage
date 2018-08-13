@@ -4,6 +4,7 @@ import com.jk.mapper.zqshun.IZqshunMapper;
 import com.jk.model.BanXing;
 import com.jk.model.KeCheng;
 import com.jk.model.ZhangJie;
+import com.jk.uitl.OSSClientUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -116,11 +117,20 @@ public class ZqshunServiceImpl implements IZqshunService{
     }
 
     @Override
-    public Map<String, Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangjie) {
-
-
-        return null;
+    public List queryzhangjie() {
+        return ZqshunMapper.queryzhangjie();
     }
+
+   /* @Override
+    public Map<String, Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie) {
+        HashMap<String, Object> stirngObjectHashMap = new HashMap<String, Object>();
+        int start = (page-1)*rows;
+        List<ZhangJie> userlist = ZqshunMapper.queryzhangjie(page,rows,zhangJie);
+        stirngObjectHashMap.put("rows",userlist);
+        long total = ZqshunMapper.totalzhangjie(zhangJie);
+        stirngObjectHashMap.put("total",total);
+        return stirngObjectHashMap;
+    }*/
 
 
 }

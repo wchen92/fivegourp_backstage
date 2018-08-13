@@ -29,44 +29,13 @@
             pageNumber:1,//初始化页码
             pageSize:3,//每页条数
             pageList:[3,5,8,12],//每页条数的下拉选项
-            toolbar: [{
-                iconCls: 'icon-remove',
-                handler: function(){
-                    var arr = $("#dgbanxing").datagrid('getChecked');
-                    console.info(arr);
-                    var	id="";
-                    for(var i=0; i<arr.length;i++){
-                        id+=","+arr[i].banxingid;
-                    }
-                    ids=id.substr(1);
-                    if(arr.length>0){
-                        var ss="确定要删除"+arr.length+"条数据";
-                        if(confirm(ss)){
-
-                            $.ajax({
-                                url:"<%=request.getContextPath()%>/zqshun/deletebanxing",
-                                type:"post",
-                                data:{ids:ids},
-                                dataType:"json",
-                                success:function(result){
-                                    if(result==1){
-                                        alert("批删成功");
-                                        $('#dgbanxing').datagrid('reload');
-                                    }
-                                },
-                                error:function(){
-                                    alert("批量删除失败");
-                                }
-                            });
-                        }
-                    }
-                }
-            }],
             columns:[[
                 //field :对应实体类中的属性名（尽量），必须保证唯一性
                 {field:'che',width:100,checkbox:true},
-                {field:'banxingid',title:'班型号',width:100},
-                {field:'banxingname',title:'班型名称',width:100},
+                {field:'zhangjieid',title:'章节号',width:100},
+                {field:'zhangjiename',title:'章节名称',width:100},
+                {field:'shipin',title:'视频',width:100},
+                {field:'shoufeistatus',title:'收费状态',width:100},
 
                 {field:'act',title:'操作',width:100,
                     formatter: function(value,row,index){

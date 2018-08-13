@@ -63,13 +63,11 @@ public class ZqsIndexController {
         }
 
     //返回章节管理
-        @RequestMapping("queryzj")
-        public String queryzj(){
-            return "zqshun/zhangjie";
-        }
-
-
-
+    //返回课程页面zqshun/zhangjie
+    @RequestMapping("zhangjie")
+    public String zhangjie(){
+        return "zqshun/zhangjie";
+    }
 
 
 

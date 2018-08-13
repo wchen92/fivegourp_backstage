@@ -2,6 +2,7 @@ package com.jk.mapper.zqshun;
 
 import com.jk.model.BanXing;
 import com.jk.model.KeCheng;
+import com.jk.model.ZhangJie;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -54,4 +55,13 @@ public interface IZqshunMapper {
     //课程管理修改
     @Update(" update kecheng set kechengname=#{keCheng.kechengname},kechengprice=#{keCheng.kechengprice},keshishu=#{keCheng.keshishu},kechengjieshao=#{keCheng.kechengjieshao},huiyuanstatus=#{keCheng.huiyuanstatus},shenhestatus=#{keCheng.shenhestatus},kechengphoto=#{keCheng.kechengphoto} where kechengid=#{keCheng.kechengid} ")
     void updatekecheng(@Param("keCheng")KeCheng keCheng);
+
+    @Select(" select * from zhangjie ")
+    List queryzhangjie();
+
+   /* @Select(" select z.zhangjieid,z.zhangjiename,z.shipin,z.shoufeistatus from zhangjie z ")
+    List<ZhangJie> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie);
+*/
+   /* @Select(" select count(*) from zhangjie ")
+    long totalzhangjie(ZhangJie zhangJie);*/
 }

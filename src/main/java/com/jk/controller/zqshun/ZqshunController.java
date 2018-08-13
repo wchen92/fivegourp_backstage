@@ -124,16 +124,17 @@ public class ZqshunController {
         ZqshunService.updatekecheng(keCheng);
         return "1";
     }
-
     //章节管理查询
     @RequestMapping("queryzhangjie")
-    public Map<String,Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangjie){
-        Map<String,Object> list = ZqshunService.queryzhangjie(page,rows,zhangjie);
+    public List queryzhangjie(){
+        List list = ZqshunService.queryzhangjie();
         return list;
     }
-
-
-
+   /* @RequestMapping("queryzhangjie")
+    public Map<String,Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie){
+        Map<String,Object> list = ZqshunService.queryzhangjie(page,rows,zhangJie);
+        return list;
+    }*/
 
 
 
