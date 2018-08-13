@@ -59,7 +59,7 @@
             url:'<%=request.getContextPath()%>/wjyi/queryTree',
             parentField:'pid',
             onClick: function(node){
-               // alert(node.url)
+                alert(node.url)
                 if(node.url != null && node.url != ''){
                     addtabs(node.text,node.url);
                 }

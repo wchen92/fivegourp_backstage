@@ -7,6 +7,16 @@ public class Role {
 
       private String       pid      ;//    pid
 
+     private   Boolean   checked;  //
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
     public String getRoleid() {
         return roleid;
     }
@@ -37,6 +47,7 @@ public class Role {
                 "roleid='" + roleid + '\'' +
                 ", text='" + text + '\'' +
                 ", pid='" + pid + '\'' +
+                ", checked=" + checked +
                 '}';
     }
 }

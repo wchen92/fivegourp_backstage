@@ -9,6 +9,16 @@ public class Power {
 
         private String url;//进方法路径
 
+    private   Boolean   checked;  //
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
     public String getId() {
         return id;
     }
