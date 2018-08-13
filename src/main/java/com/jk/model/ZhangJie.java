@@ -3,7 +3,7 @@ package com.jk.model;
 public class ZhangJie {
           private String  zhangjieid             ;//章节id
 
-          private String  banxingid              ;//    班型id
+          private String  zhangjiename              ;//    章节名称
 
           private String  shipin                 ;//   视频
 
@@ -17,12 +17,12 @@ public class ZhangJie {
         this.zhangjieid = zhangjieid;
     }
 
-    public String getBanxingid() {
-        return banxingid;
+    public String getZhangjiename() {
+        return zhangjiename;
     }
 
-    public void setBanxingid(String banxingid) {
-        this.banxingid = banxingid;
+    public void setZhangjiename(String zhangjiename) {
+        this.zhangjiename = zhangjiename;
     }
 
     public String getShipin() {
@@ -37,17 +37,17 @@ public class ZhangJie {
         return shoufeistatus;
     }
 
+    public void setShoufeistatus(String shoufeistatus) {
+        this.shoufeistatus = shoufeistatus;
+    }
+
     @Override
     public String toString() {
         return "ZhangJie{" +
                 "zhangjieid='" + zhangjieid + '\'' +
-                ", banxingid='" + banxingid + '\'' +
+                ", zhangjiename='" + zhangjiename + '\'' +
                 ", shipin='" + shipin + '\'' +
                 ", shoufeistatus='" + shoufeistatus + '\'' +
                 '}';
-    }
-
-    public void setShoufeistatus(String shoufeistatus) {
-        this.shoufeistatus = shoufeistatus;
     }
 }
