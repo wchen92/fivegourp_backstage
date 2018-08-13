@@ -159,24 +159,7 @@ public class TyshengController {
     }
 
 
-    /**
-     * controller
-     * uploadify--oss--图片上传
-     * @param imgs
-     * @param request
-     * @param response
-     * @return
-     * @throws IOException  抛异常
-     */
-    @RequestMapping("uploadImg")
-    @ResponseBody
-    public  String uploadImg(MultipartFile imgs,
-                             HttpServletRequest request,HttpServletResponse response) throws IOException{
-        String uploadImg = TyshengService.uploadImg(imgs);
-        System.out.println(uploadImg);
 
-        return uploadImg ;
-    }
 
 
 

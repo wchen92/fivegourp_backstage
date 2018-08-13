@@ -168,26 +168,7 @@ public class TyshengServiceImpl implements ITyshengService{
     public void updatesection(ZhangJie zj) {
         TyshengMapper.updatesection(zj);
     }
-/**
-　　* @Description: 视频上传
-　　* @param ${tags}
-　　* @return ${return_type}
-　　* @throws
-　　* @author 谭永生
-　　* @date 2018/8/13 9:36
-　　*/
-    @Override
-    public String uploadImg(MultipartFile file) throws IOException {
-        if (file == null || file.getSize() <= 0) {
-            throw new IOException("file不能为空");
-        }
-        OSSClientUtil ossClient=new OSSClientUtil();
-        String name = ossClient.uploadImg2Oss(file);
-        String imgUrl = ossClient.getImgUrl(name);
-        String[] split = imgUrl.split("\\?");
 
-        return split[0];
-    }
 
 
 }
