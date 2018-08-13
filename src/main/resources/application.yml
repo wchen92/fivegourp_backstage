@@ -17,7 +17,6 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
 
-
   redis:
     host: 192.168.1.106
     port: 6379
@@ -30,12 +29,9 @@ spring:
     mongodb:
       host: 192.168.1.106
       port: 27017
-      database: 1801a
-  application:
-    name: fivegourp_backstage
+      database: 1712a
   rabbitmq:
-    host: 192.168.1.126
-    port: 5672
+    host: 192.168.1.122
     username: wchen92
+    port: 5672
     password: wchen92
-

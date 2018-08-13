@@ -1,5 +1,7 @@
 package com.jk.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class GuangGaoBiao {
@@ -7,6 +9,7 @@ public class GuangGaoBiao {
     private String guanggaoid; //广告id
     private String guanggaophoto;//广告图片
     private Integer money;//广告钱
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date guanggaodate;//广告时间
     private Integer  zhanshistatus;//展示状态
     private String  chuliren;//处理人
@@ -40,8 +43,9 @@ public class GuangGaoBiao {
         return guanggaodate;
     }
 
-    public void setGuanggaodate(Date guanggaodate) {
+    public Date setGuanggaodate(Date guanggaodate) {
         this.guanggaodate = guanggaodate;
+        return guanggaodate;
     }
 
     public Integer getZhanshistatus() {
