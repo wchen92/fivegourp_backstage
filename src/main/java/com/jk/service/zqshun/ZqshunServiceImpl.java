@@ -4,7 +4,6 @@ import com.jk.mapper.zqshun.IZqshunMapper;
 import com.jk.model.BanXing;
 import com.jk.model.KeCheng;
 import com.jk.model.ZhangJie;
-import com.jk.uitl.OSSClientUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
