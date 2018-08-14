@@ -8,6 +8,7 @@ public class GuangGaoBiao {
 
     private String guanggaoid; //广告id
     private String guanggaophoto;//广告图片
+    private  String  guanggaoname;  //广告名称
     private Integer money;//广告钱
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date guanggaodate;//广告时间
@@ -64,14 +65,23 @@ public class GuangGaoBiao {
         this.chuliren = chuliren;
     }
 
+    public String getGuanggaoname() {
+        return guanggaoname;
+    }
+
+    public void setGuanggaoname(String guanggaoname) {
+        this.guanggaoname = guanggaoname;
+    }
+
     @Override
     public String toString() {
         return "GuangGaoBiao{" +
                 "guanggaoid='" + guanggaoid + '\'' +
                 ", guanggaophoto='" + guanggaophoto + '\'' +
-                ", money='" + money + '\'' +
-                ", guanggaodate='" + guanggaodate + '\'' +
-                ", zhanshistatus='" + zhanshistatus + '\'' +
+                ", guanggaoname='" + guanggaoname + '\'' +
+                ", money=" + money +
+                ", guanggaodate=" + guanggaodate +
+                ", zhanshistatus=" + zhanshistatus +
                 ", chuliren='" + chuliren + '\'' +
                 '}';
     }

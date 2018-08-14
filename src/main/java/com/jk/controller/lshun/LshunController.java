@@ -72,8 +72,9 @@ public class LshunController {
     }
     //修改
     @RequestMapping("UpdateAdvertisement")
-    public String UpdateAdvertisement(GuangGaoBiao gaoBiao){
-        LshunService.UpdateAdvertisement(gaoBiao);
+    public String UpdateAdvertisement(GuangGaoBiao gaoBiao,HttpServletRequest request){
+
+        LshunService.UpdateAdvertisement(gaoBiao,request);
 
         return "1";
     }
