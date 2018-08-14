@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface IWjyiMapper {
-    //权限树查询
-    @Select("select id,text,pid,url from t_power")
-    List<Power> queryTree();
+
+    //权限树查询  不同用户登录展示不同权限
+    @Select("select t3.id,t3.text,t3.pid,t3.url from  t_user_role t1, t_role_power t2,t_power t3 where t1.roleid = t2.roleid and t2.id = t3.id and t1.userid = #{userid2} GROUP BY  t3.text")
+    List<Power> queryTree(@Param("userid2") String userid2);
 
     //用户总数量查询
     @Select("select count(*) from t_user")
@@ -21,7 +22,7 @@ public interface IWjyiMapper {
     List<User> queryuser(@Param("start")int start, @Param("rows")int rows,@Param("user") User user);
 
     //用户新增
-    @Insert("insert into t_user values(#{userid},#{text},#{pid},#{password},#{userstatus})")
+    @Insert("insert into t_user(userid,text,password,userstatus) values(#{userid},#{text},#{password},#{userstatus})")
     void adduser(User user);
 
     //用户删除
@@ -33,11 +34,11 @@ public interface IWjyiMapper {
     User queryById(@Param("userid") String userid);
 
     //用户修改
-    @Update("update t_user set userid=#{userid},text=#{text},pid=#{pid},password=#{password},userstatus=2 where userid=#{userid}")
+    @Update("update t_user set userid=#{userid},text=#{text},password=#{password},userstatus=2 where userid=#{userid}")
     void updateuser(User user);
 
     //所有角色查询
-    @Select("select   *  from   t_role")
+    @Select("select * from t_role")
     List<Role> queryrole();
 
     //根据用户id查询拥有角色
@@ -61,7 +62,7 @@ public interface IWjyiMapper {
     long countRole(Role role);
 
     //角色新增
-    @Insert("insert into t_role values(#{roleid},#{pid},#{text})")
+    @Insert("insert into t_role(roleid,text) values(#{roleid},#{text})")
     void addRole(Role role);
 
     //角色修改回显
@@ -104,8 +105,8 @@ public interface IWjyiMapper {
     @Select("select * from t_power")
     List<Power> queryPowerAll();
 
-    //******根据用户展示权限  目前用户假数据
-    @Select("select * from t_power t1,t_role_power t2,t_user_role t3  where t1.id=t2.id and t3.roleid=t2.roleid and t3.userid=1 and t2.roleid=#{roleid}")
+    //没用到的方法（根据用户展示权限）
+    @Select("select * from t_power t1,t_role_power t2,t_user_role t3  where t1.id=t2.id and t3.roleid=t2.roleid and t3.userid=#{userid} and t2.roleid=#{roleid}")
     List<Power> queryRoleAndPower(@Param("roleid")String roleid,@Param("userid") String userid);
 
     //赋权限时先删除所拥有权限
@@ -152,5 +153,11 @@ public interface IWjyiMapper {
     @Update("update guanggaobiao set zhanshistatus=1 where guanggaoid = #{guanggaoid}")
     void piliangQuerenGuanggao(@Param("guanggaoid") String guanggaoid);
 
+    //下拉树
+    @Select("select id,text,pid from t_power")
+    List<Power> queryComboPower();
 
+    //根据角色id查询权限
+    @Select("select * from t_role_power t1,t_power t2 where t1.id=t2.id and roleid=#{roleid}")
+    List<Power> queryRoleAndPowers(@Param("roleid") String roleid);
 }

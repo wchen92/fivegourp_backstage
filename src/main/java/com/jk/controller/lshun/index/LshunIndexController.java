@@ -51,10 +51,16 @@ public class LshunIndexController {
         return  "lshun/updateAdvertisement";
     }
 
+    @RequestMapping("TestYeMian")
+    public  String TestYeMian(){
 
+        return  "lshun/test2";
+    }
 
+    @RequestMapping("Jump1")
+    public  String Jump1(){
 
-
-
+        return  "lshun/Jump1";
+    }
 
 }

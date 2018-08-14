@@ -20,10 +20,6 @@
                 <td> <input type="text" name="text" class="easyui-textbox" style="width:200px"></td>
             </tr>
             <tr>
-                <td> pid：</td>
-                <td> <input type="text" name="pid" class="easyui-textbox" style="width:200px"></td>
-            </tr>
-            <tr>
                 <td>  密码：</td>
                 <td> <input type="text" name="password" class="easyui-textbox" style="width:200px"></td>
             </tr>

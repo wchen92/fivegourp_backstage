@@ -29,7 +29,7 @@ public class WjyiIndexController {
      */
     @RequestMapping("comezhu")
     public String queryTree(){
-        return "Wjyi/showzhu";
+        return "wjyi/showzhu";
     }
 
     /**

@@ -4,8 +4,10 @@ public class GouMaiBiao {
     private String goumaiid;//主键id
     private String kechengid;//课程id
     private String yonghuid;//用户id
-    private String goumaishuliang;//购买数量
+    private Integer goumaishuliang;//购买数量
     private String goumaidate;//购买时间
+    private  String xlist;
+    private  String ylist;
 
     public String getGoumaidate() {
         return goumaidate;
@@ -39,22 +41,40 @@ public class GouMaiBiao {
         this.yonghuid = yonghuid;
     }
 
-    public String getGoumaishuliang() {
-        return goumaishuliang;
-    }
-
-    public void setGoumaishuliang(String goumaishuliang) {
-        this.goumaishuliang = goumaishuliang;
-    }
-
     @Override
     public String toString() {
         return "GouMaiBiao{" +
                 "goumaiid='" + goumaiid + '\'' +
                 ", kechengid='" + kechengid + '\'' +
                 ", yonghuid='" + yonghuid + '\'' +
-                ", goumaishuliang='" + goumaishuliang + '\'' +
+                ", goumaishuliang=" + goumaishuliang +
                 ", goumaidate='" + goumaidate + '\'' +
+                ", xlist='" + xlist + '\'' +
+                ", ylist='" + ylist + '\'' +
                 '}';
+    }
+
+    public void setGoumaishuliang(Integer goumaishuliang) {
+        this.goumaishuliang = goumaishuliang;
+    }
+
+    public void setXlist(String xlist) {
+        this.xlist = xlist;
+    }
+
+    public void setYlist(String ylist) {
+        this.ylist = ylist;
+    }
+
+    public Integer getGoumaishuliang() {
+        return goumaishuliang;
+    }
+
+    public String getXlist() {
+        return xlist;
+    }
+
+    public String getYlist() {
+        return ylist;
     }
 }
