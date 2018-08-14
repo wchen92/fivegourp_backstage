@@ -5,8 +5,6 @@ import com.jk.model.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 public interface ILshunService {
@@ -23,5 +21,5 @@ public interface ILshunService {
     //回显
     GuangGaoBiao queryAdvertisementById(String id);
 
-    void UpdateAdvertisement(GuangGaoBiao gaoBiao);
+    void UpdateAdvertisement(GuangGaoBiao gaoBiao,HttpServletRequest request);
 }

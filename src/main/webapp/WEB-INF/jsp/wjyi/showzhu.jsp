@@ -18,6 +18,18 @@
           href="<%=request.getContextPath()%>/EasyUI/themes/icon.css" type="text/css"/>
 
     <link rel="stylesheet" href="<%=request.getContextPath()%>/uploadify/uploadify.css">
+    <link
+            href="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.css"
+            rel="stylesheet">
+    <link
+            href="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.css"
+            rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/js/link/bootstrap-dialog/bootstrap-dialog.min.css" >
+
+
+    <!-- bootstrap-fileinput -->
+    <link
+            rel="stylesheet" href="<%=request.getContextPath()%>/js/link/bootstrap-fileinput/fileinput.min.css" />
 </head>
 <body>
 
@@ -34,8 +46,19 @@
         src="<%=request.getContextPath()%>/EasyUI/locale/easyui-lang-zh_CN.js"></script>
 <script src="<%=request.getContextPath()%>/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/EasyUI/util-js.js"></script>
+<script src="https://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-3d.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
 
 
+<script
+        src="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.js"></script>
+<script  src="<%=request.getContextPath()%>/js/link/bootstrap-dialog/bootstrap-dialog.js"></script>
+<script
+        type="text/javascript" src="<%=request.getContextPath()%>/js/link/bootstrap-fileinput/fileinput.min.js"></script>
+<script
+        type="text/javascript" src="<%=request.getContextPath()%>/js/link/bootstrap-fileinput/zh.js"></script>
+<style>a{TEXT-DECORATION:none}</style>
 
 <div id="wjycc" class="easyui-layout" data-options="fit:true">
     <div data-options="region:'north',title:'蚂蚁课堂',split:true" style="height:100px;">

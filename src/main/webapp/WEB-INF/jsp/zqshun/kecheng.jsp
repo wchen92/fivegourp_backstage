@@ -10,8 +10,8 @@
 <head>
     <title>课程管理</title>
 </head>
-<body>
 
+<body>
 <table id="dgkecheng"></table>
 <div id="divkecheng"></div>
 
@@ -97,7 +97,11 @@
                 //field :对应实体类中的属性名（尽量），必须保证唯一性
                 {field:'che',width:100,checkbox:true},
                 {field:'kechengid',title:'课程号',width:100},
-                {field:'kechengname',title:'课程名称',width:100},
+                {field:'kechengname',title:'课程名称',width:100,
+                    formatter: function(value,row,index){
+return  "<a href='#' style='color: black' onclick='selectzhangjie(\""+row.kechengid+"\")'>"+row.kechengname+"</a>";
+                    },
+                },
                 {field:'kechengprice',title:'课程价格',width:100},
                 {field:'keshishu',title:'课程数',width:100},
                 {field:'kechengphoto',title:'课程图片',width:100,
@@ -126,8 +130,7 @@
                 },
                 {field:'act',title:'操作',width:100,
                     formatter: function(value,row,index){
-                        //return "<a href=\"javascript:void(0)\" onclick=\"banxingupdate('+row.banxingid+')\" >修改</a>";
-                        return '<a href="#" onclick="kechengupdate(\'' +row.kechengid+ '\')">修改</a>';
+                        return '<a href="#"  style="color: black"   onclick="kechengupdate(\'' +row.kechengid+ '\')">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)"    style="color: black"   onclick="insertzhangjie(\'' +row.kechengid+ '\')" >添加章节</a>';
                     }
                 },
             ]]
@@ -171,6 +174,63 @@
 
         });
     }
+    //添加章节
+    function insertzhangjie(id){
+
+        BootstrapDialog.show({
+            type : BootstrapDialog.TYPE_SUCCESS,
+            title : '新增 ',
+            height:600,
+            message : $("<div></div>").load("<%=request.getContextPath() %>/zqshunindex/zhangjieadd"),
+            buttons : [ {// 设置关闭按钮
+                label : '关闭',
+                action : function(dialogItself) {
+                    dialogItself.close();
+                },
+            },{
+                label : '保存',
+                action : function(dialogItself) {
+                    $.ajax({
+                        url : "<%=request.getContextPath()%>/zqshun/addzhangjie",
+                        type : "post",
+                        dataType : "json",
+                        data:$("#zhangjieformadd").serialize(),
+                        success : function() {
+                            alert("添加成功")
+                            dialogItself.close();
+                        },
+                        error:function(){
+                            alert("系统错误")
+                        }
+
+                    });
+                }
+            }
+            ]
+        });
+
+    }
+
+
+
+
+
+
+
+    //查询章节
+    function selectzhangjie(ids){
+        alert(ids)
+        $('#divkecheng').dialog({
+            title: '课程下所属章节',
+            width: 400,
+            height: 400,
+            closed: false,
+            cache: false,
+            href: "<%=request.getContextPath() %>/zqshunindex/selectzhangjie?ids="+ids,
+            modal: false,
+        });
+    }
+
 
 
 </script>

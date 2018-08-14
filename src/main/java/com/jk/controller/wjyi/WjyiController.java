@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +32,10 @@ public class WjyiController {
      * @return
      */
     @RequestMapping("queryTree")
-    public  List<Power> queryTree(){
-        List<Power> treelist = WjyiService.queryTree();
+    public  List<Power> queryTree(HttpServletRequest request){
+        User userid = (User) request.getSession().getAttribute("loginUser");
+        String userid2 = userid.getUserid();
+        List<Power> treelist = WjyiService.queryTree(userid2);
         return treelist;
     }
 
@@ -143,11 +146,26 @@ public class WjyiController {
         return "1";
     }
 
-    //根据用户角色id展示用户拥有的权限
+    // 没用到的方法（根据用户角色id展示用户拥有的权限）
     @RequestMapping("queryRoleAndPower")
     public List<Power> querypower(String roleid, String userid) {
         List<Power> Powerlist = WjyiService.queryPowerAll();
         List<Power> querypowerbyrole = WjyiService.queryRoleAndPower(roleid, userid);
+        for (Power power : Powerlist) {
+            for (Power power1 : querypowerbyrole) {
+                if (power.getId().equals(power1.getId())) {
+                    power.setChecked(true);
+                }
+            }
+        }
+        return Powerlist;
+    }
+
+    //查询角色拥有的权限
+    @RequestMapping("queryRoleAndPowers")
+    public List<Power> querypowers(String roleid) {
+        List<Power> Powerlist = WjyiService.queryPowerAll();
+        List<Power> querypowerbyrole = WjyiService.queryRoleAndPowers(roleid);
         for (Power power : Powerlist) {
             for (Power power1 : querypowerbyrole) {
                 if (power.getId().equals(power1.getId())) {
@@ -206,6 +224,12 @@ public class WjyiController {
     public String piliangQuerenGuanggao(String guanggaoid){
         WjyiService.piliangQuerenGuanggao(guanggaoid);
         return "1";
+    }
+
+    @RequestMapping("queryComboPower")
+    public  List<Power> queryComboPower(){
+        List<Power> comBoTreelist = WjyiService.queryComboPower();
+        return comBoTreelist;
     }
 
 }
