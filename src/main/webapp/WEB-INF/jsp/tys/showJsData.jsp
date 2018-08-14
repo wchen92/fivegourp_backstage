@@ -32,7 +32,6 @@
             pageSize:3,//每页条数
             pageList:[3,5,8],//每页条数的下拉选项
             queryParams: {
-
             },
             toolbar: [{
                 iconCls: 'icon-add',
