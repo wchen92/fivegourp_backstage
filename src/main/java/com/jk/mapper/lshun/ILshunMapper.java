@@ -14,10 +14,10 @@ public interface ILshunMapper {
     @Select("select count(*) from guanggaobiao")
     Long queryAdvertisementCount(GuangGaoBiao guanggao);
     //查询分页
-    @Select("select * from guanggaobiao limit #{start},#{end}")
-    List<GuangGaoBiao> queryAdvertisementList(@Param("start") int start, @Param("end")int end, GuangGaoBiao guanggao);
+    @Select("select * from guanggaobiao  where 1=1 and guanggaoname like '%${guanggao.guanggaoname}%' limit #{start},#{end}")
+    List<GuangGaoBiao> queryAdvertisementList(@Param("start") int start, @Param("end")int end, @Param("guanggao") GuangGaoBiao guanggao);
     //新增
-    @Insert("insert into guanggaobiao values (#{guanggaoid},#{money},#{guanggaodate},#{zhanshistatus},#{chuliren},#{guanggaophoto})")
+    @Insert("insert into guanggaobiao  values (#{guanggaoid},#{money},#{guanggaoname},#{guanggaodate},#{zhanshistatus},#{chuliren},#{guanggaophoto})")
     void InsertAdvertisementList(GuangGaoBiao guanggao);
     //删除
     @Delete( "delete from  guanggaobiao where guanggaoid = ${ids}")
@@ -25,6 +25,6 @@ public interface ILshunMapper {
     //回显
     @Select("select * from guanggaobiao where guanggaoid = #{id}")
     GuangGaoBiao queryAdvertisementById(@Param("id") String id);
-    @Update("update guanggaobiao set money=#{gaoBiao.money},guanggaodate=#{gaoBiao.guanggaodate},chuliren=#{gaoBiao.chuliren},guanggaophoto=#{gaoBiao.guanggaophoto} where guanggaoid = #{gaoBiao.guanggaoid}")
+    @Update("update guanggaobiao set money=#{gaoBiao.money},guanggaodate=#{gaoBiao.guanggaodate},zhanshistatus=#{gaoBiao.zhanshistatus},chuliren=#{gaoBiao.chuliren},guanggaophoto=#{gaoBiao.guanggaophoto} where guanggaoid = #{gaoBiao.guanggaoid}")
     void UpdateAdvertisement(@Param("gaoBiao") GuangGaoBiao gaoBiao);
 }

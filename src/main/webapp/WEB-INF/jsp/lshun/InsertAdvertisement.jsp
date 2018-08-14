@@ -17,6 +17,7 @@
 <form id="shopforms">
 	广告价格:<input name="money" class="easyui-numberspinner" style="width:80px;"
 				required="required" data-options="min:10,max:10000,editable:true"> <br>
+	广告名称:<input name="guanggaoname" type="text" class="easyui-textbox" style="width:200px"> <br>
 	<input type="file" id="imgFileBTN" >
 	<input type="hidden" id="hidden-photo" name="guanggaophoto">
 	<div id="showImgDiv" style="width: 100px;height: 100px;border-style:solid;border-width:1px; border-color:black;">

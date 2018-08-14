@@ -19,8 +19,8 @@ public class WjyiServiceImpl implements  IWjyiService{
     private IWjyiMapper WjyiMapper;
 
     @Override
-    public List<Power> queryTree() {
-        return WjyiMapper.queryTree();
+    public List<Power> queryTree(String userid2) {
+        return WjyiMapper.queryTree(userid2);
     }
 
     @Override
@@ -37,6 +37,7 @@ public class WjyiServiceImpl implements  IWjyiService{
     @Override
     public void adduser(User user) {
         user.setUserid(UUID.randomUUID().toString());
+        user.setPid("0");
         user.setUserstatus(2);
         WjyiMapper.adduser(user);
     }
@@ -92,6 +93,7 @@ public class WjyiServiceImpl implements  IWjyiService{
     @Override
     public void addRole(Role role) {
         role.setRoleid(UUID.randomUUID().toString());
+        role.setPid("0");
         WjyiMapper.addRole(role);
     }
 
@@ -223,5 +225,15 @@ public class WjyiServiceImpl implements  IWjyiService{
         for (int i = 0; i < split.length; i++) {
             WjyiMapper.piliangQuerenGuanggao(split[i]);
         }
+    }
+
+    @Override
+    public List<Power> queryComboPower() {
+        return WjyiMapper.queryComboPower();
+    }
+
+    @Override
+    public List<Power> queryRoleAndPowers(String roleid) {
+        return WjyiMapper.queryRoleAndPowers(roleid);
     }
 }

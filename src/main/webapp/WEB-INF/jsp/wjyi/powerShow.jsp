@@ -118,12 +118,12 @@
                 {field:'check',checkbox:true},
                 {field:'id',title:'权限编号',width:100},
                 {field:'text',title:'权限名称',width:100},
-                {field:'pid',title:'pid',width:100},
-                {field:'caozuo',title:'操作',width:100,
+                {field:'pid',title:'权限父级id',width:100},
+                /*{field:'caozuo',title:'操作',width:100,
                     formatter:function(value,row,index){
                         return "<a class='icon-edit' onclick ='updatepower(\""+row.id+"\")'>&nbsp;&nbsp;&nbsp;&nbsp;</a>";
                     }
-                },
+                },*/
             ]]
         })
     }

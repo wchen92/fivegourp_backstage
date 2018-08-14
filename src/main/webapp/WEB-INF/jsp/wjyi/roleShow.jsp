@@ -121,7 +121,6 @@
                 {field:'check',checkbox:true},
                 {field:'roleid',title:'角色编号',width:100},
                 {field:'text',title:'角色名称',width:100},
-                {field:'pid',title:'pid',width:100},
                 {field:'caozuo',title:'操作',width:100,
                     formatter:function(value,row,index){
                         return "<a class='icon-edit' onclick ='updaterole(\""+row.roleid+"\")'>&nbsp;&nbsp;&nbsp;&nbsp;</a>";
@@ -129,7 +128,7 @@
                 },
                 {field:'fu',title:'操作2',width:100,
                     formatter: function(value,row,index){
-                        return "<a onclick='fupower(\""+row.roleid+"\",\""+row.userid+"\")'>角色赋权限</a>";
+                        return "<a onclick='fupower(\""+row.roleid+"\")'>角色赋权限</a>";
                     }
                 }
             ]]
@@ -171,9 +170,8 @@
         });
     }
 
-    function  fupower(roleid,userid) {
+    function  fupower(roleid) {
             $("#roleid-hiddens").val(roleid);
-            $("#userid-hiddens").val(userid);
             $('#wjyr').dialog({
                 title: '新增',
                 width: 600,

@@ -13,7 +13,9 @@
    
    广告价格:<input type="text"  value="${list.money }" class="form-control" name="money"><br>
    广告时间:<input type="text"  value="<fmt:formatDate value="${list.guanggaodate}" pattern="yyyy-MM-dd"/>" class="easyui-datetimebox" name="guanggaodate" style="width:150px" data-options="required:true,showSeconds:false"><br>
+<%--
     处理人:<input type="text"  value="${list.chuliren }" class="form-control" name="chuliren"><br>
+--%>
     <input type="file" id="imgFileBTN2" >
     <input type="hidden" id="hidden-photo2" name="guanggaophoto" value="${list.guanggaophoto}">
     <div id="showImgDiv" style="width: 200px;height: 200px;border-style:solid;border-width:1px; border-color:black;">
