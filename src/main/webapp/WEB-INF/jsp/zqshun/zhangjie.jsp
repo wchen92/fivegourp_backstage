@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
     $(function(){
-        $('#dgbanxing').datagrid({
+        $('#dgzhangjie').datagrid({
             url:'<%=request.getContextPath() %>/zqshun/queryzhangjie',
             singleSelect:true,
             checkOnSelect:false,
@@ -29,24 +29,72 @@
             pageNumber:1,//初始化页码
             pageSize:3,//每页条数
             pageList:[3,5,8,12],//每页条数的下拉选项
+            toolbar: [{
+                iconCls: 'icon-remove',
+                handler: function(){
+                    var arr = $("#dgzhangjie").datagrid('getChecked');
+                    console.info(arr);
+                    var id ="";
+                    for(var i=0; i<arr.length;i++){
+                        id+=","+arr[i].zhangjieid;
+                    }
+                    ids=id.substr(1);
+
+                    if(arr.length>0){
+                        var zjie="确定要删除"+arr.length+"条数据";
+                        if(confirm(zjie)){
+                            $.ajax({
+                                url:"<%=request.getContextPath()%>/zqshun/deletezhangcheng",
+                                type:"post",
+                                data:{ids:ids},
+                                dataType:"json",
+                                success:function(result){
+                                    if(result==1){
+                                        alert("删除成功");
+                                        $('#dgzhangjie').datagrid('reload');
+                                    }
+                                },
+                                error:function(){
+                                    alert("删除失败");
+                                }
+                            });
+                        }
+                    }
+                }
+            }],
             columns:[[
                 //field :对应实体类中的属性名（尽量），必须保证唯一性
                 {field:'che',width:100,checkbox:true},
                 {field:'zhangjieid',title:'章节号',width:100},
                 {field:'zhangjiename',title:'章节名称',width:100},
-                {field:'shipin',title:'视频',width:100},
-                {field:'shoufeistatus',title:'收费状态',width:100},
-
+                {field:'shipin',title:'视频',width:100,
+                    formatter: function(value,row,index){
+                        return  ' <embed width="100" height="100" loop="true" autostart="true"  src="'+row.shipin+'">'
+                    }
+                },
+                {field:'shoufeistatus',title:'收费状态',width:100,
+                    formatter: function(value,row,index){
+                            if(row.shoufeistatus==1){
+                                return "收费";
+                            }else if(row.shoufeistatus==2){
+                                return "免费";
+                            }
+                    }
+                },
                 {field:'act',title:'操作',width:100,
                     formatter: function(value,row,index){
-                        //return "<a href=\"javascript:void(0)\" onclick=\"banxingupdate('+row.banxingid+')\" >修改</a>";
-                        return '<a href="#" onclick="banxingupdate(\'' +row.banxingid+ '\')">修改</a>';
-
+                        return '<a href="#" onclick="zhangjieupdate(\'' +row.zhangjieid+ '\')">修改</a>';
                     }
                 },
             ]]
         });
     })
+
+    //修改章节
+    function zhangjieupdate(zjid) {
+
+        location.href = "<%=request.getContextPath() %>/zqshunindex/zhangjieupdate?zjid="+zjid;
+    }
 
 
 </script>

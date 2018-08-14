@@ -4,7 +4,6 @@ import com.jk.model.BanXing;
 import com.jk.model.KeCheng;
 import com.jk.model.ZhangJie;
 import com.jk.service.zqshun.IZqshunService;
-import net.sf.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,7 +49,7 @@ public class ZqshunController {
     }
 
 
-        //班型查询
+        //查询班型管理
     @RequestMapping("querybanxing")
     public Map<String,Object> querybanxing(Integer page,Integer rows,BanXing banxing){
         Map<String,Object> list = ZqshunService.querybanxing(page,rows,banxing);
@@ -66,7 +65,7 @@ public class ZqshunController {
     * @author 赵清顺
     * @date2018/8/10 0010 15:46 
     */
-    //班型删除
+    //删除班型管理
     @RequestMapping("deletebanxing")
     public String deletebanxing(String ids){
 
@@ -74,7 +73,7 @@ public class ZqshunController {
         return "1";
     }
 
-    //班型新增
+    //新增班型管理
     @RequestMapping("addbanxing")
     public String addbanxing(BanXing banxing){
 
@@ -103,14 +102,14 @@ public class ZqshunController {
         return list;
     }
 
-    //课程管理删除
+    //删除课程管理
     @RequestMapping("deletekecheng")
     public String deletekecheng(String ids){
         ZqshunService.deletekecheng(ids);
         return "1";
     }
 
-    //课程管理新增
+    //新增课程管理
     @RequestMapping("addkecheng")
     public String addkecheng(KeCheng keCheng){
 
@@ -118,23 +117,52 @@ public class ZqshunController {
         return "1";
     }
 
-    //课程管理修改
+    //修改课程管理
     @RequestMapping("updatekecheng")
     public String updatekecheng(KeCheng keCheng){
         ZqshunService.updatekecheng(keCheng);
         return "1";
     }
-    //章节管理查询
-    @RequestMapping("queryzhangjie")
-    public List queryzhangjie(){
-        List list = ZqshunService.queryzhangjie();
-        return list;
-    }
-   /* @RequestMapping("queryzhangjie")
+    //查询章节管理
+
+   @RequestMapping("queryzhangjie")
     public Map<String,Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie){
         Map<String,Object> list = ZqshunService.queryzhangjie(page,rows,zhangJie);
         return list;
-    }*/
+    }
+
+    //新增章节管理
+    @RequestMapping("addzhangjie")
+    public String addzhangjie(ZhangJie zhangJie){
+
+        ZqshunService.addzhangjie(zhangJie);
+        return "1";
+    }
+
+    //章节视频上传
+    @RequestMapping("headImgUpload")
+    public HashMap<String, Object> headImgUpload(@RequestParam(value = "addimg_Img", required = false) MultipartFile file,
+        HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HashMap<String, Object> uploadImg = ZqshunService.Upload(file);
+        System.out.println(uploadImg);
+        return uploadImg ;
+    }
+
+    //删除章节管理
+    @RequestMapping("deletezhangcheng")
+    public String deletezhangcheng(String ids){
+        ZqshunService.deletezhangcheng(ids);
+        return "1";
+    }
+
+    //修改章节管理
+    @RequestMapping("updatezhangjie")
+    public String updatezhangjie(ZhangJie zhangJie){
+        ZqshunService.updatezhangjie(zhangJie);
+        return "1";
+    }
+
+
 
 
 

@@ -43,11 +43,27 @@ public interface IZqshunService {
     //课程修改
     void updatekecheng(KeCheng keCheng);
 
-
+    //oss图片
     String uploadImg(MultipartFile imgs) throws IOException;
 
-    List queryzhangjie();
+    //查询章节管理
+    Map<String,Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie);
 
+    //新增章节管理
+    void addzhangjie(ZhangJie zhangJie);
 
-    //Map<String,Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie);
+    //章节视频上传
+    HashMap<String,Object> Upload(MultipartFile file) throws IOException ;
+
+    //删除章节管理
+    void deletezhangcheng(String ids);
+
+    //回显章节管理
+    ZhangJie zhangjieupdate(String zjid);
+
+    //修改章节管理
+    void updatezhangjie(ZhangJie zhangJie);
+
+    //课程下所属章节
+    List  selectzhangjie(String ids);
 }
