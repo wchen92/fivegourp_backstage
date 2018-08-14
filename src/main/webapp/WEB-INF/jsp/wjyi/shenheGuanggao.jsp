@@ -70,6 +70,7 @@
             columns:[[
                 {field:'check',checkbox:true},
                 {field:'guanggaoid',title:'广告编号',width:100},
+                {field:'guanggaoname',title:'广告名称',width:100},
                 {field:'money',title:'广告价格',width:100},
                 {field:'guanggaodate',title:'创建广告时间',width:100},
                 {field:'zhanshistatus',title:'广告展示状态',width:100,
@@ -87,6 +88,7 @@
                         return "<img width='50' height='50'  src='"+row.guanggaophoto+"' / >";
                     }
                 },
+
             ]]
         })
     }

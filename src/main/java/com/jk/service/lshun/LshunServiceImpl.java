@@ -9,10 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -104,7 +101,10 @@ public class    LshunServiceImpl implements ILshunService{
     }
 
     @Override
-    public void UpdateAdvertisement(GuangGaoBiao gaoBiao) {
+    public void UpdateAdvertisement(GuangGaoBiao gaoBiao, HttpServletRequest request) {
+        User loginUser = (User) request.getSession().getAttribute("loginUser");
+        gaoBiao.setChuliren(loginUser.getText());
+        gaoBiao.setZhanshistatus(2);
         LshunMapper.UpdateAdvertisement(gaoBiao);
     }
 }

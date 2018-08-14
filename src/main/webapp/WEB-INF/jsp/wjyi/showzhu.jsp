@@ -34,6 +34,9 @@
         src="<%=request.getContextPath()%>/EasyUI/locale/easyui-lang-zh_CN.js"></script>
 <script src="<%=request.getContextPath()%>/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/EasyUI/util-js.js"></script>
+<script src="https://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-3d.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
 
 
 

@@ -119,7 +119,6 @@
                 {field:'check',checkbox:true},
                 {field:'userid',title:'用户编号',width:100},
                 {field:'text',title:'用户名称',width:100},
-                {field:'pid',title:'pid',width:100},
                 {field:'password',title:'密码',width:100},
                 {field:'userstatus',title:'用户状态',width:100,
                     formatter:function(value,row,index){
