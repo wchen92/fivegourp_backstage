@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<%--<div id="p" class="easyui-panel" title="条件查询"
+<div id="p" class="easyui-panel" title="条件查询"
 		        data-options="iconCls:'icon-save',collapsible:true">   
 		   <center>
 		   <br>
@@ -19,7 +19,7 @@
 		     
 		   <br><br>
 		   </center> 
-		   	 </div>--%>
+		   	 </div>
 	<div id="divids"></div>	   	 
       <table id="drug"></table> 
 
@@ -30,7 +30,7 @@
     	 $('#drug').datagrid({    
      	    url:'<%=request.getContextPath()%>/liushun/queryAdvertisementList',
      	   queryParams: {
-     		  drugname:$("#orsearch").val(),
+               guanggaoname:$("#orsearch").val(),
      		},
      	    pagination:true,
      	    singleSelect:true,
@@ -112,6 +112,8 @@
               	       /* {field:'guanggaoid',title:'广告编号',width:100},*/
               	        {field:'money',title:'广告价格',width:100,
               	        },
+             	  		 {field:'guanggaoname',title:'广告名称',width:100,
+            		    },
               	        {field:'guanggaodate',title:'广告时间',width:100,
                             formatter : function(value){
                                 var date = new Date(value);
