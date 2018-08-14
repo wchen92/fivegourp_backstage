@@ -19,10 +19,24 @@
             <td> <input type="text" name="text" value="${power.text}" class="easyui-textbox" style="width:200px"></td>
         </tr>
         <tr>
-            <td> pid：</td>
-            <td> <input type="text" name="pid" value="${power.pid}" class="easyui-textbox" style="width:200px"></td>
+            <td>父级权限id：</td>
+            <td> <%--<input type="text" name="pid" value="${power.pid}" class="easyui-textbox" style="width:200px">--%>
+                <select id="wjyComboTree" name = "pid" class="easyui-combotree" style="width:200px;"  data-options="required:true" ></select>
+                <input type = "text" id = "wjyhidden">
+            </td>
         </tr>
     </table>
+    <script type="text/javascript">
+        $(function(){
+            $('#wjyComboTree').combotree({
+                url: '<%=request.getContextPath()%>/wjyi/queryComboPower',
+                parentField:"pid",
+
+            });
+        })
+
+
+    </script>
 </form>
 </body>
 </html>

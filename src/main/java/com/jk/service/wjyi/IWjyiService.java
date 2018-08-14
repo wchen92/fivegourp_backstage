@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface IWjyiService {
-    List<Power> queryTree();
+    List<Power> queryTree(String userid2);
 
     /*List<User> queryuser(int page,int rows,User user);*/
     Map<String,Object> queryuser(int page, int rows, User user);
@@ -63,4 +63,8 @@ public interface IWjyiService {
     Map<String,Object> querywjyGuang(int page, int rows, GuangGaoBiao guangGaoBiao);
 
     void piliangQuerenGuanggao(String guanggaoid);
+
+    List<Power> queryComboPower();
+
+    List<Power> queryRoleAndPowers(String roleid);
 }

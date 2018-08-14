@@ -19,10 +19,10 @@
     })
 
     function querypowertree(){
-        var userid= $("#userid-hiddens").val();
+        /*var userid= $("#userid-hiddens").val();*/
         var roleid= $("#roleid-hiddens").val();
         $('#querypowertreelist').tree({
-            url:'<%=request.getContextPath()%>/wjyi/queryRoleAndPower?roleid='+roleid + "&userid=" + userid ,
+            url:'<%=request.getContextPath()%>/wjyi/queryRoleAndPowers?roleid='+roleid ,
             parentField:'pid',
             checkbox:true,
 
