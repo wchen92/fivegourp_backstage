@@ -12,4 +12,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("wychaoindex")
 public class WychaoIndexController {
+
+    @RequestMapping("dianji")
+
+    public String queryuser(){
+
+        return "wyc/dianji";
+    }
+    @RequestMapping("goumai")
+
+    public String querygouma(){
+
+        return "wyc/goumai";
+    }
+    @RequestMapping("xianxing")
+
+    public String xianxing(){
+
+        return "wyc/xianxing";
+    }
+
+    @RequestMapping("yuanxing")
+
+    public String yuanxing(){
+
+        return "wyc/yuanxing";
+    }
+
+    @RequestMapping("sandi")
+
+    public String sandi(){
+
+        return "wyc/Dzhu";
+    }
 }
