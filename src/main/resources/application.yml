@@ -31,7 +31,7 @@ spring:
       port: 27017
       database: 1801a
   rabbitmq:
-    host: 192.168.1.122
+    host: 192.168.1.105
     username: wchen92
     port: 5672
     password: wchen92

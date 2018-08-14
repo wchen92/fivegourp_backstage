@@ -2,12 +2,14 @@ package com.jk.controller.zqshun.index;
 
 import com.jk.model.BanXing;
 import com.jk.model.KeCheng;
+import com.jk.model.ZhangJie;
 import com.jk.service.zqshun.IZqshunService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ 创建者：王晨.
@@ -62,15 +64,33 @@ public class ZqsIndexController {
             return "zqshun/keChengupdate";
         }
 
-    //返回章节管理
-        @RequestMapping("queryzj")
-        public String queryzj(){
+    //返回章节页面zqshun/zhangjie
+        @RequestMapping("zhangjie")
+        public String zhangjie(){
             return "zqshun/zhangjie";
         }
 
 
+    //返回章节新增页面
+        @RequestMapping("zhangjieadd")
+        public String zhangjieadd(){
 
-
+            return "zqshun/zhangjieadd";
+        }
+    //返回章节回显页面
+    @RequestMapping("zhangjieupdate")
+    public String zhangjieupdate(String zjid,Model model){
+        ZhangJie zhangJie = ZqshunService.zhangjieupdate(zjid);
+        model.addAttribute("zhangJie",zhangJie);
+            return "zqshun/updatezhangjie";
+    }
+  //返回课程下所属章节
+    @RequestMapping("selectzhangjie")
+    public String selectzhangjie(String ids,Model model){
+        List kecheng = ZqshunService.selectzhangjie(ids);
+        model.addAttribute("zhangJie",kecheng);
+        return "zqshun/kechengandzhangjie";
+    }
 
 
 }

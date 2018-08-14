@@ -29,7 +29,6 @@ public class FivegourpBackstageApplication {
 	}
 
 
-
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(FivegourpBackstageApplication.class);
 	}

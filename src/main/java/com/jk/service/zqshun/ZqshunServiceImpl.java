@@ -30,8 +30,8 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public Map<String,Object> querybanxing(Integer page,Integer rows,BanXing banxing) {
         HashMap<String, Object> stirngObjectHashMap = new HashMap<String, Object>();
-        int start = (page-1)*rows;
-        List<BanXing> userlist = ZqshunMapper.querybanxing(page,rows,banxing);
+        int start = (page-1) * rows;
+        List<BanXing> userlist = ZqshunMapper.querybanxing(start,rows,banxing);
 
         stirngObjectHashMap.put("rows",userlist);
         long total = ZqshunMapper.total(banxing);
@@ -68,8 +68,8 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public Map<String, Object> querykecheng(Integer page, Integer rows, KeCheng kecheng) {
         HashMap<String, Object> stirngObjectHashMap = new HashMap<String, Object>();
-        int start = (page-1)*rows;
-        List<KeCheng> userlist = ZqshunMapper.querykecheng(page,rows,kecheng);
+        int start = (page-1) * rows;
+        List<KeCheng> userlist = ZqshunMapper.querykecheng(start,rows,kecheng);
         stirngObjectHashMap.put("rows",userlist);
         long total = ZqshunMapper.totalkecheng(kecheng);
         stirngObjectHashMap.put("total",total);
@@ -103,6 +103,7 @@ public class ZqshunServiceImpl implements IZqshunService{
         ZqshunMapper.updatekecheng(keCheng);
     }
 
+    //上传图片
     @Override
     public String uploadImg(MultipartFile file) throws IOException{
         if (file == null || file.getSize() <= 0) {
@@ -116,11 +117,64 @@ public class ZqshunServiceImpl implements IZqshunService{
         return split[0];
     }
 
+    //查询章节管理
     @Override
-    public Map<String, Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangjie) {
+    public Map<String, Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie) {
+        HashMap<String, Object> stirngObjectHashMap = new HashMap<String, Object>();
+        int start = (page-1)*rows;
+        List<ZhangJie> userlist = ZqshunMapper.queryzhangjie(start,rows,zhangJie);
+        stirngObjectHashMap.put("rows",userlist);
+        long total = ZqshunMapper.totalzhangJie(zhangJie);
+        stirngObjectHashMap.put("total",total);
+        return stirngObjectHashMap;
+    }
+
+    //新增章节管理
+    @Override
+    public void addzhangjie(ZhangJie zhangJie) {
+        zhangJie.setZhangjieid(UUID.randomUUID().toString().replaceAll("-",""));
 
 
-        return null;
+        ZqshunMapper.addzhangjie(zhangJie);
+    }
+
+    //上传视频
+    @Override
+    public HashMap<String, Object> Upload(MultipartFile file) throws IOException  {
+        if (file == null || file.getSize() <= 0) {
+            throw new IOException("file不能为空");
+        }
+        OSSClientUtil ossClient=new OSSClientUtil();
+        String name = ossClient.uploadImg2Oss(file);
+        String imgUrl = ossClient.getImgUrl(name);
+        String[] split = imgUrl.split("\\?");
+        HashMap<String, Object> map=new HashMap<>();
+        map.put("imgname", split[0]);
+        return map;
+    }
+
+    //删除章节管理
+    @Override
+    public void deletezhangcheng(String ids) {
+        ZqshunMapper.deletezhangcheng(ids);
+    }
+
+    //回显章节管理
+    @Override
+    public ZhangJie zhangjieupdate(String zjid) {
+        return ZqshunMapper.zhangjieupdate(zjid);
+    }
+
+    //修改章节管理
+    @Override
+    public void updatezhangjie(ZhangJie zhangJie) {
+        ZqshunMapper.updatezhangjie(zhangJie);
+    }
+
+    //课程下所属章节
+    @Override
+    public List selectzhangjie(String ids) {
+        return ZqshunMapper.selectzhangjie(ids);
     }
 
 
