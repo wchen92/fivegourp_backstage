@@ -47,7 +47,7 @@
             data:{"userids":userid,"roleids":roleids},
             success:function(result){
                 if(result==1){
-                    alert("添加成功")
+                    alert("赋角色成功")
                 }
             }
         })

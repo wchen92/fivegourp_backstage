@@ -96,7 +96,7 @@
                             shu+=","+arr[i].userid;
                         }
                     }
-                    if(confirm("确定删除吗")){
+                    if(confirm("确定删除"+idlength+"条数据吗")){
                         $.ajax({
                             url:"<%=request.getContextPath() %>/wjyi/deleteuser?userid="+shu,
                             type:"post",
@@ -181,7 +181,7 @@
     function fujuese(userid){
         $("#userid-hiddens").val(userid);
         $('#wjyu').dialog({
-            title: "修改",
+            title: "赋角色",
             width: 400,
             height: 200,
             href: "<%=request.getContextPath()%>/wjyiiindex/queryRoleTree",
