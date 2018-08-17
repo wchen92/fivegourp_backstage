@@ -98,7 +98,7 @@
                             shu+=","+arr[i].roleid;
                         }
                     }
-                    if(confirm("确定删除吗")){
+                    if(confirm("确定删除"+idlength+"条数据吗")){
                         $.ajax({
                             url:"<%=request.getContextPath() %>/wjyi/deleteRole?roleid="+shu,
                             type:"post",
@@ -173,7 +173,7 @@
     function  fupower(roleid) {
             $("#roleid-hiddens").val(roleid);
             $('#wjyr').dialog({
-                title: '新增',
+                title: '赋权限',
                 width: 600,
                 height: 600,
                 href: '<%=request.getContextPath() %>/wjyiiindex/comeToPowerTree',

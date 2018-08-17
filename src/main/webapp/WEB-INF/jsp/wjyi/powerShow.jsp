@@ -95,7 +95,7 @@
                             shu+=","+arr[i].id;
                         }
                     }
-                    if(confirm("确定删除吗")){
+                    if(confirm("确定删除"+idlength+"条数据吗")){
                         $.ajax({
                             url:"<%=request.getContextPath() %>/wjyi/deletePower?id="+shu,
                             type:"post",

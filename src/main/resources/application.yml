@@ -8,7 +8,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.106/wu?characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.1.104/wu?characterEncoding=UTF-8
     username: root
     password: root
 
@@ -18,7 +18,7 @@ spring:
       suffix: .jsp
 
   redis:
-    host: 192.168.1.106
+    host: 192.168.1.104
     port: 6379
     jedis:
       pool:
@@ -27,11 +27,11 @@ spring:
         max-wait: 300
   data:
     mongodb:
-      host: 192.168.1.106
+      host: 192.168.1.104
       port: 27017
       database: 1801a
   rabbitmq:
-    host: 192.168.1.105
+    host: 192.168.1.107
     username: wchen92
     port: 5672
     password: wchen92
