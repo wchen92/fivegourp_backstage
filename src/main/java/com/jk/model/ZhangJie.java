@@ -9,6 +9,10 @@ public class ZhangJie {
 
           private String  shoufeistatus          ;//    收费状态
 
+          //业务字段
+          private String kecheid;
+
+
     public String getZhangjieid() {
         return zhangjieid;
     }
@@ -41,6 +45,14 @@ public class ZhangJie {
         this.shoufeistatus = shoufeistatus;
     }
 
+    public String getKecheid() {
+        return kecheid;
+    }
+
+    public void setKecheid(String kecheid) {
+        this.kecheid = kecheid;
+    }
+
     @Override
     public String toString() {
         return "ZhangJie{" +
@@ -48,6 +60,7 @@ public class ZhangJie {
                 ", zhangjiename='" + zhangjiename + '\'' +
                 ", shipin='" + shipin + '\'' +
                 ", shoufeistatus='" + shoufeistatus + '\'' +
+                ", kecheid='" + kecheid + '\'' +
                 '}';
     }
 }

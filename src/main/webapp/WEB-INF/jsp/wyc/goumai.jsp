@@ -11,6 +11,8 @@
 
 
 <body>
+
+<input class="easyui-button width_80 l-btn l-btn-small" type='button' onclick="goumai()" value="购买">
 <div id="container2" style="width: 550px; height: 400px; margin: 0 auto"></div>
 <script language="JavaScript">
 
@@ -96,6 +98,12 @@
 
             }})}
 
+    function goumai(){
+
+
+        location.href= "<%=request.getContextPath()%>/wychao/Excel"
+
+    }
 </script>
 </body>
 </html>

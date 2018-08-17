@@ -8,7 +8,25 @@ public class GouMaiBiao {
     private String goumaidate;//购买时间
     private  String xlist;
     private  String ylist;
+    private Integer page;
 
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public void setRows(Integer rows) {
+        this.rows = rows;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public Integer getRows() {
+        return rows;
+    }
+
+    private Integer rows;
     public String getGoumaidate() {
         return goumaidate;
     }

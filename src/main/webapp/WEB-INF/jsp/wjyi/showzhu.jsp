@@ -25,8 +25,6 @@
             href="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.css"
             rel="stylesheet">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/js/link/bootstrap-dialog/bootstrap-dialog.min.css" >
-
-
     <!-- bootstrap-fileinput -->
     <link
             rel="stylesheet" href="<%=request.getContextPath()%>/js/link/bootstrap-fileinput/fileinput.min.css" />

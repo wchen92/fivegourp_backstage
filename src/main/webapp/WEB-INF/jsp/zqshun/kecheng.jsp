@@ -171,17 +171,15 @@ return  "<a href='#' style='color: black' onclick='selectzhangjie(\""+row.kechen
                     $('#dgkecheng').datagrid('reload');
                 }
             }]
-
         });
     }
     //添加章节
     function insertzhangjie(id){
-
         BootstrapDialog.show({
             type : BootstrapDialog.TYPE_SUCCESS,
             title : '新增 ',
             height:600,
-            message : $("<div></div>").load("<%=request.getContextPath() %>/zqshunindex/zhangjieadd"),
+            message : $("<div></div>").load("<%=request.getContextPath() %>/zqshunindex/zhangjieadd?kechengid="+id),
             buttons : [ {// 设置关闭按钮
                 label : '关闭',
                 action : function(dialogItself) {
@@ -202,31 +200,22 @@ return  "<a href='#' style='color: black' onclick='selectzhangjie(\""+row.kechen
                         error:function(){
                             alert("系统错误")
                         }
-
                     });
                 }
             }
             ]
         });
-
     }
 
-
-
-
-
-
-
     //查询章节
-    function selectzhangjie(ids){
-        alert(ids)
+    function selectzhangjie(idzj){
         $('#divkecheng').dialog({
             title: '课程下所属章节',
-            width: 400,
+            width: 550,
             height: 400,
             closed: false,
             cache: false,
-            href: "<%=request.getContextPath() %>/zqshunindex/selectzhangjie?ids="+ids,
+            href: "<%=request.getContextPath() %>/zqshunindex/selectzhangjie?idzj="+idzj,
             modal: false,
         });
     }

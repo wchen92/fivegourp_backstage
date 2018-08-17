@@ -1,9 +1,7 @@
 package com.jk.service.zqshun;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.jk.model.BanXing;
-import com.jk.model.KeCheng;
-import com.jk.model.ZhangJie;
+import com.jk.model.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -64,6 +62,10 @@ public interface IZqshunService {
     //修改章节管理
     void updatezhangjie(ZhangJie zhangJie);
 
+
     //课程下所属章节
-    List  selectzhangjie(String ids);
+    List<ZhangJie> selectzhangjie(String idzj);
+
+    //过滤敏感词
+    void mingan(String str);
 }

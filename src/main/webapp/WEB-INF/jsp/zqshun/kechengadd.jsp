@@ -12,14 +12,11 @@
     <script type="text/javascript" src="/uploadify/jquery.uploadify.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/uploadify/uploadify.css" />
 </head>
-
-
 <body>
 <center>
             <form id="kechengadd" >
                 课程名称:<input name="kechengname" class="easyui-textbox" style="width:200px"><br><br>
                 课程价格:<input name="kechengprice" class="easyui-textbox" style="width:200px"><br><br>
-                课程数:<input name="keshishu" class="easyui-textbox" style="width:200px"><br><br>
                 课程介绍:<textarea name="kechengjieshao"></textarea><br><br>
                 会员状态:<input type="radio" name="huiyuanstatus" value="1">会员
                          <input type="radio" name="huiyuanstatus" value="2">非会员<br><br>

@@ -69,7 +69,7 @@
                 {field:'zhangjiename',title:'章节名称',width:100},
                 {field:'shipin',title:'视频',width:100,
                     formatter: function(value,row,index){
-                        return  ' <embed width="100" height="100" loop="true" autostart="true"  src="'+row.shipin+'">'
+                    return '<embed width="200" height="100" loop="true" autostart="true"  src="'+row.shipin+'">'
                     }
                 },
                 {field:'shoufeistatus',title:'收费状态',width:100,
@@ -90,11 +90,39 @@
         });
     })
 
-    //修改章节
-    function zhangjieupdate(zjid) {
-
-        location.href = "<%=request.getContextPath() %>/zqshunindex/zhangjieupdate?zjid="+zjid;
+   function zhangjieupdate(zjid){
+        BootstrapDialog.show({
+            type : BootstrapDialog.TYPE_SUCCESS,
+            title : '修改 ',
+            height:600,
+            message : $("<div></div>").load("<%=request.getContextPath() %>/zqshunindex/zhangjieupdate?zjid="+zjid),
+            buttons : [ {// 设置关闭按钮
+                label : '关闭',
+                action : function(dialogItself) {
+                    dialogItself.close();
+                },
+            },{
+                label : '保存',
+                action : function(dialogItself) {
+                    $.ajax({
+                        url : "<%=request.getContextPath()%>/zqshun/updatezhangjie",
+                        type : "post",
+                        dataType : "json",
+                        data:$("#zhangjieformaupdate").serialize(),
+                        success : function() {
+                            alert("修改成功")
+                            dialogItself.close();
+                        },
+                        error:function(){
+                            alert("系统错误")
+                        }
+                    });
+                }
+            }
+            ]
+        });
     }
+
 
 
 </script>

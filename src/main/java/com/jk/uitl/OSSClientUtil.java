@@ -11,14 +11,11 @@ import java.net.URL;
 import java.util.Date;
 import java.util.Random;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
-
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
