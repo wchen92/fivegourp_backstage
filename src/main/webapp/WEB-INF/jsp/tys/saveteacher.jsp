@@ -15,13 +15,13 @@
 <form id="tys_001">
 
 
-    <input type="text"  name="jiangshiid"   value="${js.jiangshiid}"    ><br>
+    <input type="hidden"  name="jiangshiid"   value="${js.jiangshiid}"    ><br><br>
 
-    讲师名称：<input type="text"  name="jiangshiname"  value="${js.jiangshiname}"   ><br>
+    讲师名称：<input type="text"  name="jiangshiname"  value="${js.jiangshiname}"   ><br><br>
 
-    讲师身份：<input type="text"  name="jiangshishenfen"  value="${js.jiangshishenfen}"   ><br>
+    讲师身份：<input type="text"  name="jiangshishenfen"  value="${js.jiangshishenfen}"   ><br><br>
 
-    讲师简介：<input type="text"  name="jiangshijieshao"  value="${js.jiangshijieshao}"   ><br>
+    讲师简介：<input type="text"  name="jiangshijieshao"  value="${js.jiangshijieshao}"   ><br><br>
 
 </form>
 </body>

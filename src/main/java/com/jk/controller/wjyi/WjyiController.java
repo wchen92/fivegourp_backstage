@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 /**
  * @ 创建者：王晨.
@@ -31,8 +29,10 @@ public class WjyiController {
      * @return
      */
     @RequestMapping("queryTree")
-    public  List<Power> queryTree(){
-        List<Power> treelist = WjyiService.queryTree();
+    public  List<Power> queryTree(HttpServletRequest request){
+        User userid = (User) request.getSession().getAttribute("loginUser");
+        String userid2 = userid.getUserid();
+        List<Power> treelist = WjyiService.queryTree(userid2);
         return treelist;
     }
 
@@ -143,11 +143,26 @@ public class WjyiController {
         return "1";
     }
 
-    //根据用户角色id展示用户拥有的权限
+    // 没用到的方法（根据用户角色id展示用户拥有的权限）
     @RequestMapping("queryRoleAndPower")
     public List<Power> querypower(String roleid, String userid) {
         List<Power> Powerlist = WjyiService.queryPowerAll();
         List<Power> querypowerbyrole = WjyiService.queryRoleAndPower(roleid, userid);
+        for (Power power : Powerlist) {
+            for (Power power1 : querypowerbyrole) {
+                if (power.getId().equals(power1.getId())) {
+                    power.setChecked(true);
+                }
+            }
+        }
+        return Powerlist;
+    }
+
+    //查询角色拥有的权限
+    @RequestMapping("queryRoleAndPowers")
+    public List<Power> querypowers(String roleid) {
+        List<Power> Powerlist = WjyiService.queryPowerAll();
+        List<Power> querypowerbyrole = WjyiService.queryRoleAndPowers(roleid);
         for (Power power : Powerlist) {
             for (Power power1 : querypowerbyrole) {
                 if (power.getId().equals(power1.getId())) {
@@ -208,4 +223,84 @@ public class WjyiController {
         return "1";
     }
 
+    //权限下拉树查询
+    @RequestMapping("queryComboPower")
+    public  List<Power> queryComboPower(){
+        List<Power> comBoTreelist = WjyiService.queryComboPower();
+        return comBoTreelist;
+    }
+
+    //未完成任务查询
+    @RequestMapping("queryRenwu")
+    public  Map<String,Object> queryRenwu(int page,int rows,RenWu renwu){
+        Map<String,Object>  renwuList = WjyiService.queryRenwu(page,rows,renwu);
+        return renwuList;
+    }
+
+    //指派查询
+    @RequestMapping("queryZhipai")
+    public  Map<String,Object> queryZhipai(int page,int rows,ZhiPai zhipai,HttpServletRequest re){
+        User userid = (User) re.getSession().getAttribute("loginUser");
+        String uid = userid.getUserid();
+        Map<String,Object>  zhipaiList = WjyiService.queryZhipai(page,rows,zhipai,uid);
+        return zhipaiList;
+    }
+
+    //全部任务查询
+    @RequestMapping("queryRenwuAll")
+    public  Map<String,Object> queryRenwuAll(int page,int rows,RenWu renwu){
+        Map<String,Object>  renwuList = WjyiService.queryRenwuAll(page,rows,renwu);
+        return renwuList;
+    }
+
+    //用户下拉树查询
+    @RequestMapping("queryComboUser")
+    public  List<User> queryComboUser(){
+        List<User> userTreelist = WjyiService.queryComboUser();
+        return userTreelist;
+    }
+
+    //发布任务
+    @RequestMapping("fabuRenwu")
+    public String fabuRenwu(RenWu renwu,ZhiPai zhiPai,HttpServletRequest reque){
+        renwu.setRenwuid(UUID.randomUUID().toString());
+        User userid = (User) reque.getSession().getAttribute("loginUser");
+        String usid = userid.getUserid();
+
+        //处理人为空时 新增到任务表
+        if(renwu.getZpr()=="" ||renwu.getZpr()==null ||renwu.getZpr()=="5"){
+            WjyiService.fabuRenwu(renwu,usid);
+        }else if(renwu.getZpr()!="" ||renwu.getZpr()!=null ){
+            //处理人不为空时 增到指派表查看
+            WjyiService.fabuZhipaiRenwu(renwu,zhiPai,usid);
+        }
+        return "1";
+    }
+
+
+
+    //修改完成状态
+    @RequestMapping("updateWanchengStatus")
+    public String updateWanchengStatus(String rwid,HttpServletRequest reque){
+        User userid = (User) reque.getSession().getAttribute("loginUser");
+        String usids = userid.getUserid();
+        WjyiService.updateWanchengStatus(rwid,usids);
+        return "1";
+    }
+
+    //未完成任务数量
+    @RequestMapping("queryWeiwanchengShu")
+    public Integer queryWeiwanchengShu(){
+        Integer weiRenwuZongshu = WjyiService.queryWeiwanchengShu();
+        return weiRenwuZongshu;
+    }
+
+    //指派任务数量
+    @RequestMapping("queryZhipaiShu")
+    public Integer queryZhipaiShu(HttpServletRequest r){
+        User userid = (User) r.getSession().getAttribute("loginUser");
+        String us = userid.getUserid();
+        Integer zhipaiZongshu = WjyiService.queryZhipaiShu(us);
+        return zhipaiZongshu;
+    }
 }

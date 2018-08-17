@@ -96,7 +96,7 @@
                             shu+=","+arr[i].userid;
                         }
                     }
-                    if(confirm("确定删除吗")){
+                    if(confirm("确定删除"+idlength+"条数据吗")){
                         $.ajax({
                             url:"<%=request.getContextPath() %>/wjyi/deleteuser?userid="+shu,
                             type:"post",
@@ -119,7 +119,6 @@
                 {field:'check',checkbox:true},
                 {field:'userid',title:'用户编号',width:100},
                 {field:'text',title:'用户名称',width:100},
-                {field:'pid',title:'pid',width:100},
                 {field:'password',title:'密码',width:100},
                 {field:'userstatus',title:'用户状态',width:100,
                     formatter:function(value,row,index){
@@ -182,7 +181,7 @@
     function fujuese(userid){
         $("#userid-hiddens").val(userid);
         $('#wjyu').dialog({
-            title: "修改",
+            title: "赋角色",
             width: 400,
             height: 200,
             href: "<%=request.getContextPath()%>/wjyiiindex/queryRoleTree",
