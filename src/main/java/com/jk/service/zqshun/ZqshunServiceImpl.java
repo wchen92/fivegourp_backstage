@@ -1,19 +1,16 @@
 package com.jk.service.zqshun;
 
 import com.jk.mapper.zqshun.IZqshunMapper;
-import com.jk.model.BanXing;
-import com.jk.model.KeCheng;
-import com.jk.model.ZhangJie;
+import com.jk.model.*;
 import com.jk.uitl.OSSClientUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @ 创建者：王晨.
@@ -25,6 +22,9 @@ import java.util.UUID;
 public class ZqshunServiceImpl implements IZqshunService{
     @Resource
     private IZqshunMapper ZqshunMapper;
+
+    /*@Autowired
+    private MongoTemplate mongoTemplate;*/
 
     //班型分页查询
     @Override
@@ -88,7 +88,13 @@ public class ZqshunServiceImpl implements IZqshunService{
 
         keCheng.setKechengid(UUID.randomUUID().toString().replaceAll("-",""));
         keCheng.setShenhestatus("2");
+        keCheng.setKeshishu("0");
         ZqshunMapper.addkecheng(keCheng);
+        Liuyan liuyan = new Liuyan();
+        liuyan.setLiulanid(UUID.randomUUID().toString());
+        liuyan.setKechengid(keCheng.getKechengid());
+        liuyan.setLiulanshuliang(0);
+        ZqshunMapper.addliulkan(liuyan);
     }
 
     //课程回显
@@ -104,38 +110,46 @@ public class ZqshunServiceImpl implements IZqshunService{
     }
 
     //上传图片
-    @Override
-    public String uploadImg(MultipartFile file) throws IOException{
-        if (file == null || file.getSize() <= 0) {
-            throw new IOException("file不能为空");
-        }
-        OSSClientUtil ossClient=new OSSClientUtil();
-        String name = ossClient.uploadImg2Oss(file);
-        String imgUrl = ossClient.getImgUrl(name);
-        String[] split = imgUrl.split("\\?");
+        @Override
+        public String uploadImg(MultipartFile file) throws IOException{
+            if (file == null || file.getSize() <= 0) {
+                throw new IOException("file不能为空");
+            }
+            OSSClientUtil ossClient=new OSSClientUtil();
+            String name = ossClient.uploadImg2Oss(file);
+            String imgUrl = ossClient.getImgUrl(name);
+            String[] split = imgUrl.split("\\?");
 
-        return split[0];
+            return split[0];
     }
 
     //查询章节管理
     @Override
     public Map<String, Object> queryzhangjie(Integer page, Integer rows, ZhangJie zhangJie) {
         HashMap<String, Object> stirngObjectHashMap = new HashMap<String, Object>();
-        int start = (page-1)*rows;
+        int start = (page-1) * rows;
         List<ZhangJie> userlist = ZqshunMapper.queryzhangjie(start,rows,zhangJie);
         stirngObjectHashMap.put("rows",userlist);
         long total = ZqshunMapper.totalzhangJie(zhangJie);
         stirngObjectHashMap.put("total",total);
         return stirngObjectHashMap;
     }
-
     //新增章节管理
     @Override
     public void addzhangjie(ZhangJie zhangJie) {
-        zhangJie.setZhangjieid(UUID.randomUUID().toString().replaceAll("-",""));
-
-
+        zhangJie.setZhangjieid(UUID.randomUUID().toString());
         ZqshunMapper.addzhangjie(zhangJie);
+        //新增课时数
+        KeCheng keCheng = new KeCheng();
+        keCheng.setKechengid(zhangJie.getKecheid());
+        ZqshunMapper.addkechengzhangjieliang(keCheng);
+            //新增课程章节
+        KechengAndZhangjie kechengAndZhangjie = new KechengAndZhangjie();
+        kechengAndZhangjie.setKeandzhangid(UUID.randomUUID().toString());
+        kechengAndZhangjie.setZhangjieid(zhangJie.getZhangjieid());
+        kechengAndZhangjie.setKechengid(zhangJie.getKecheid());
+        ZqshunMapper.savekechengandzhangjie(kechengAndZhangjie);
+
     }
 
     //上传视频
@@ -173,8 +187,26 @@ public class ZqshunServiceImpl implements IZqshunService{
 
     //课程下所属章节
     @Override
-    public List selectzhangjie(String ids) {
-        return ZqshunMapper.selectzhangjie(ids);
+    public List<ZhangJie> selectzhangjie(String idzj) {
+        return ZqshunMapper.selectzhangjie(idzj);
+    }
+
+    //过滤敏感词
+    @Override
+    public void mingan(String str) {
+
+        List<MinGanCi> array= ZqshunMapper.mingan();
+        for (MinGanCi minGanCi : array) {
+            String sttr=minGanCi.getMinganname();
+            if(str.indexOf(""+sttr+"")!=-1){
+                str=str.replace(""+sttr+"","*");
+                System.out.println("有敏感词");
+                System.out.println(str);
+            }else {
+                System.out.println("没有敏感词");
+
+            }
+        }
     }
 
 

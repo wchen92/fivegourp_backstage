@@ -73,8 +73,8 @@ public class ZqsIndexController {
 
     //返回章节新增页面
         @RequestMapping("zhangjieadd")
-        public String zhangjieadd(){
-
+        public String zhangjieadd(String kechengid,Model aa){
+            aa.addAttribute("kechengid",kechengid);
             return "zqshun/zhangjieadd";
         }
     //返回章节回显页面
@@ -84,13 +84,14 @@ public class ZqsIndexController {
         model.addAttribute("zhangJie",zhangJie);
             return "zqshun/updatezhangjie";
     }
+
   //返回课程下所属章节
     @RequestMapping("selectzhangjie")
-    public String selectzhangjie(String ids,Model model){
-        List kecheng = ZqshunService.selectzhangjie(ids);
-        model.addAttribute("zhangJie",kecheng);
+    public String selectzhangjie(String idzj,Model model){
+        List<ZhangJie> zhangjie = ZqshunService.selectzhangjie(idzj);
+        model.addAttribute("zj",zhangjie);
+
         return "zqshun/kechengandzhangjie";
     }
-
 
 }
