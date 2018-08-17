@@ -142,4 +142,16 @@ public class    LshunServiceImpl implements ILshunService{
 
         return selectkc;
     }
+
+    @Override
+    public String selectshipin(String wchenkcdi) {
+        String shipin = LshunMapper.shipinshowselect(wchenkcdi);
+        return shipin;
+    }
+
+    @Override
+    public String selectzhangjieorid(String zhanjieid) {
+
+        return LshunMapper.selectzhangjieorid(zhanjieid);
+    }
 }

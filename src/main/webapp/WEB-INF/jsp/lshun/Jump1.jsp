@@ -170,7 +170,8 @@
 
 
             <div>
-                <embed width="640" height="357" loop="true" autostart="true" src="">
+                <!--视频。。。-->
+                <span id="shipinshow"></span>
 
                 <aside class="c-attr-wrap">
                     <span id="jiadiid"/>
@@ -550,7 +551,7 @@
 
                         var spansan = "";
                         $(list.zjlist).each(function(){
-                            spansan+="<li class='lh-menu-stair'><ul class='lh-menu-ol no-parent-node'><li class='lh-menu-second'><a style='color: red' title='' onclick='javascript:location.href='' > <span class='fr'></span><em class='lh-menu-i-2 icon14 mr5'>&nbsp;</em>"+this.zhangjiename+"<span> </span></a></li></ul></li>"
+                            spansan+="<li class='lh-menu-stair'><ul class='lh-menu-ol no-parent-node'><li class='lh-menu-second'><a style='color: red' title='' onclick='qiehuanshipin(\""+this.zhangjieid+"\")' > <span class='fr'></span><em class='lh-menu-i-2 icon14 mr5'>&nbsp;</em>"+this.zhangjiename+"<span> </span></a></li></ul></li>"
                         });
                         $("#ceshiid").html(spansan);
 
@@ -563,7 +564,33 @@
 
                     },
                 });
+
+
+                $.ajax({
+                    url:"<%=request.getContextPath() %>/liushun/selectshipin",
+                    type:"post",
+                    data:{wchenkcdi:wchenkcdi},
+                    success:function(data){
+                      var shipinspan = "<embed width='640' height='357' loop='true' autostart='true'  src= '"+data+"'>";
+                        $("#shipinshow").html(shipinspan);
+                    }
+
+                })
+
             });
+
+            function qiehuanshipin(zhanjieid){
+                $.ajax({
+                    url:"<%=request.getContextPath() %>/liushun/selectzhangjieorid",
+                    type:"post",
+                    data:{zhanjieid:zhanjieid},
+                    success:function(data){
+                     var  spanshow = "<embed width='640' height='357' loop='true' autostart='true'  src= '"+data+"'> "
+                        $("#shipinshow").html(spanshow);
+                    }
+
+                })
+            }
         </script>
 
     </section>
