@@ -1,10 +1,13 @@
 package com.jk.service.lshun;
 
 import com.jk.model.GuangGaoBiao;
+import com.jk.model.KeCheng;
 import com.jk.model.User;
+import com.jk.model.ZhangJie;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 public interface ILshunService {
@@ -22,4 +25,12 @@ public interface ILshunService {
     GuangGaoBiao queryAdvertisementById(String id);
 
     void UpdateAdvertisement(GuangGaoBiao gaoBiao,HttpServletRequest request);
+    //查询课程
+    List<KeCheng> selectkechenglist();
+    //查询章节
+    List<ZhangJie> selectdaganglist();
+    //查询详情
+    List<KeCheng> selectxiangqinglist();
+
+    KeCheng selectpricelist(String wchenkcdi);
 }

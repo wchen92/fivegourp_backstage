@@ -2,7 +2,9 @@ package com.jk.controller.lshun;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.jk.model.GuangGaoBiao;
+import com.jk.model.KeCheng;
 import com.jk.model.User;
+import com.jk.model.ZhangJie;
 import com.jk.service.lshun.ILshunService;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -79,5 +83,59 @@ public class LshunController {
         return "1";
     }
 
+    @RequestMapping("selectkechenglist")
+    public List<KeCheng> selectkechenglist(){
+
+        List<KeCheng> list = LshunService.selectkechenglist();
+        List<KeCheng> keChengs = new ArrayList<>();
+        for(KeCheng ss : list ){
+             KeCheng keCheng = new KeCheng();
+             if(ss.getHuiyuanstatus().equals("1")){
+                 keCheng.setKechengid(ss.getKechengid());
+                 keCheng.setShenhestatus(ss.getShenhestatus());
+                 keCheng.setHuiyuan("会员");
+                 keCheng.setKeshishu(ss.getKeshishu());
+                 keCheng.setKechengjieshao(ss.getKechengjieshao());
+                 keCheng.setKechengname(ss.getKechengname());
+                 keCheng.setKechengphoto(ss.getKechengphoto());
+                 keCheng.setKechengprice(ss.getKechengprice());
+                 keCheng.setLiulanliang(ss.getLiulanliang());
+                 keChengs.add(keCheng);
+             }else{
+                 keCheng.setKechengid(ss.getKechengid());
+                 keCheng.setShenhestatus(ss.getShenhestatus());
+                 keCheng.setHuiyuan("非会员");
+                 keCheng.setKeshishu(ss.getKeshishu());
+                 keCheng.setKechengjieshao(ss.getKechengjieshao());
+                 keCheng.setKechengname(ss.getKechengname());
+                 keCheng.setKechengphoto(ss.getKechengphoto());
+                 keCheng.setKechengprice(ss.getKechengprice());
+                 keCheng.setLiulanliang(ss.getLiulanliang());
+                 keChengs.add(keCheng);
+             }
+
+         }
+        return  keChengs;
+    }
+
+    @RequestMapping("selectdaganglist")
+    public   List <ZhangJie> selectdaganglist(){
+
+        List <ZhangJie> list = LshunService.selectdaganglist();
+        return  list;
+    }
+    @RequestMapping("selectxiangqinglist")
+    public  List<KeCheng> selectxiangqinglist(){
+
+        List<KeCheng> list = LshunService.selectxiangqinglist();
+
+        return  list;
+    }
+
+    @RequestMapping("selectpricelist")
+    public  KeCheng selectpricelist(String wchenkcdi){
+        KeCheng list = LshunService.selectpricelist(wchenkcdi);
+        return  list;
+    }
 
 }

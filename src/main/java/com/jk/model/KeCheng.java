@@ -1,5 +1,7 @@
 package com.jk.model;
 
+import java.util.List;
+
 public class KeCheng {
     private String kechengid ;//            课程id
     private String kechengname    ;//       课程名称
@@ -9,6 +11,34 @@ public class KeCheng {
     private String kechengjieshao ;//       课程介绍
     private String huiyuanstatus   ;//      会员状态
     private String shenhestatus    ;//      审核状态
+
+
+
+    //业务字段
+    private String huiyuan;  //会员
+
+    private  String liulanliang; // 浏览量
+
+    private long ksshu;//课时数
+
+    private List<ZhangJie> zjlist;//存入章节信息集合
+
+
+    public long getKsshu() {
+        return ksshu;
+    }
+
+    public void setKsshu(long ksshu) {
+        this.ksshu = ksshu;
+    }
+
+    public String getHuiyuan() {
+        return huiyuan;
+    }
+
+    public void setHuiyuan(String huiyuan) {
+        this.huiyuan = huiyuan;
+    }
 
     public String getKechengid() {
         return kechengid;
@@ -74,6 +104,22 @@ public class KeCheng {
         this.shenhestatus = shenhestatus;
     }
 
+    public String getLiulanliang() {
+        return liulanliang;
+    }
+
+    public void setLiulanliang(String liulanliang) {
+        this.liulanliang = liulanliang;
+    }
+
+    public List<ZhangJie> getZjlist() {
+        return zjlist;
+    }
+
+    public void setZjlist(List<ZhangJie> zjlist) {
+        this.zjlist = zjlist;
+    }
+
     @Override
     public String toString() {
         return "KeCheng{" +
@@ -85,6 +131,10 @@ public class KeCheng {
                 ", kechengjieshao='" + kechengjieshao + '\'' +
                 ", huiyuanstatus='" + huiyuanstatus + '\'' +
                 ", shenhestatus='" + shenhestatus + '\'' +
+                ", huiyuan='" + huiyuan + '\'' +
+                ", liulanliang='" + liulanliang + '\'' +
+                ", ksshu='" + ksshu + '\'' +
+                ", zjlist=" + zjlist +
                 '}';
     }
 }
