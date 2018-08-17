@@ -9,9 +9,12 @@
 
 </head>
 
-
+<input class="easyui-button width_80 l-btn l-btn-small" type='button' onclick="kengcheng()" value="课程">
 <body>
 <div id="container3" style="width: 550px; height: 400px; margin: 0 auto"></div>
+
+
+
 <script language="JavaScript">
 
 
@@ -37,7 +40,7 @@
                     };
                     var yAxis = {
                         title: {
-                            text: 'Temperature (\xB0C)'
+                            text: 'Temperature (\k)'
                         },
                         plotLines: [{
                             value: 0,
@@ -48,7 +51,7 @@
 
 
                     var tooltip = {
-                        valueSuffix: '\xB0C'
+                        valueSuffix: '\k'
                     }
 
                     var legend = {
@@ -60,17 +63,10 @@
 
                     var series =  [
                         {
-                            name: 'Tokyo',
+                            name: '购买量',
                             data: result.ylist,
                         },
-                        {
-                            name: 'New York',
-                            data:result.ylist,
-                        },
-                        {
-                            name: 'London',
-                            data: result.ylist,
-                        }
+
                     ];
 
                     var json = {};
@@ -87,6 +83,13 @@
                 });
             }
         })
+    }
+    function kengcheng(){
+
+
+        location.href= "<%=request.getContextPath()%>/wychao/kengchengExcel"
+
+
     }
 </script>
 </body>

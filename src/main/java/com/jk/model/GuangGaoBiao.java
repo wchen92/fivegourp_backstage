@@ -15,6 +15,42 @@ public class GuangGaoBiao {
     private Integer  zhanshistatus;//展示状态
     private String  chuliren;//处理人
 
+    private  String xlist;
+    private  String ylist;
+    private Integer page;
+    private Integer rows;
+
+    public void setXlist(String xlist) {
+        this.xlist = xlist;
+    }
+
+    public void setYlist(String ylist) {
+        this.ylist = ylist;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public void setRows(Integer rows) {
+        this.rows = rows;
+    }
+
+    public String getXlist() {
+        return xlist;
+    }
+
+    public String getYlist() {
+        return ylist;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public Integer getRows() {
+        return rows;
+    }
 
     public String getGuanggaoid() {
         return guanggaoid;

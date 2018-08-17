@@ -11,7 +11,9 @@
 
 
 <body>
-      
+<input class="easyui-button width_80 l-btn l-btn-small" type='button' onclick="aaa()" value="点击">
+
+
       <div id="container"></div>
       
       
@@ -42,7 +44,7 @@
 			    	   var yAxis = {
 			    	      min: 0,
 			    	      title: {
-			    	         text: '月销售额 '         
+			    	         text: '月销售额 '
 			    	      }      
 			    	   };
 			    	   var tooltip = {
@@ -83,8 +85,16 @@
 			    	});
 			}
 		})
-		
-		
+
+      function aaa(){
+
+
+          location.href= "<%=request.getContextPath()%>/wychao/exportExcel"
+
+      }
+
+
+
       </script>
       
 </body>

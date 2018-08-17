@@ -1,8 +1,7 @@
 package com.jk.service.lshun;
 
 import com.jk.mapper.lshun.ILshunMapper;
-import com.jk.model.GuangGaoBiao;
-import com.jk.model.User;
+import com.jk.model.*;
 import com.jk.uitl.OSSClientUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -106,5 +105,41 @@ public class    LshunServiceImpl implements ILshunService{
         gaoBiao.setChuliren(loginUser.getText());
         gaoBiao.setZhanshistatus(2);
         LshunMapper.UpdateAdvertisement(gaoBiao);
+    }
+
+    @Override
+    public List<KeCheng> selectkechenglist() {
+
+      return   LshunMapper.selectkechenglist();
+    }
+
+    @Override
+    public List<ZhangJie> selectdaganglist() {
+        return LshunMapper.selectdaganglist();
+    }
+
+    @Override
+    public List<KeCheng> selectxiangqinglist() {
+        return LshunMapper.selectxiangqinglist();
+    }
+
+    @Override
+    public KeCheng selectpricelist(String wchenkcdi) {
+            //查询出课程表的信息
+        KeCheng selectkc = LshunMapper.selectkecheng(wchenkcdi);
+
+           //查询浏览次数
+        Liuyan selectll = LshunMapper.selectkcorcs(wchenkcdi);
+
+           //查询章节
+        List<ZhangJie> orallzj = LshunMapper.selectorzj(wchenkcdi);
+           //查询章节数（课时数）
+        long ajcount = LshunMapper.selectajcount(wchenkcdi);
+           //存入对应的值返回页面
+        selectkc.setLiulanliang(selectll.getLiulanshuliang().toString());
+        selectkc.setKsshu(ajcount);
+        selectkc.setZjlist(orallzj);
+
+        return selectkc;
     }
 }

@@ -139,4 +139,28 @@ public class WjyiIndexController {
     public String comeToShenheGuang(){
         return "wjyi/shenheGuanggao";
     }
+
+    //查看任务跳页面
+    @RequestMapping("comeToRenwu")
+    public String comeToRenwu(){
+        return "wjyi/renwuShow";
+    }
+
+    //查看任务跳页面
+    @RequestMapping("comeToZhipai")
+    public String comeToZhipai(){
+        return "wjyi/zhipaiShow";
+    }
+
+    //查看全部任务跳页面
+    @RequestMapping("comeToRenwuShow")
+    public String comeToRenwuShow(){
+        return "wjyi/renwuAllShow";
+    }
+
+    //查看全部任务跳页面
+    @RequestMapping("comeToPFabuRenwu")
+    public String comeToPFabuRenwu(){
+        return "wjyi/renwuFabu";
+    }
 }
