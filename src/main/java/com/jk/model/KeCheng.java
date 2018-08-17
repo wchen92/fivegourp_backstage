@@ -9,6 +9,24 @@ public class KeCheng {
     private String kechengjieshao ;//       课程介绍
     private String huiyuanstatus   ;//      会员状态
     private String shenhestatus    ;//      审核状态
+    private Integer page;
+    private Integer rows;
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public void setRows(Integer rows) {
+        this.rows = rows;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public Integer getRows() {
+        return rows;
+    }
 
     public String getKechengid() {
         return kechengid;

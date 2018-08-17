@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<input class="easyui-button width_80 l-btn l-btn-small" type='button' value="查询" onclick="goumai()" />
 
 <div id="container1" style="width: 550px; height: 400px; margin: 0 auto"></div>
 <div id="sliders">
@@ -87,6 +88,15 @@
                 });
             }
         })
+    }
+
+
+
+    function goumai(){
+
+
+        location.href= "<%=request.getContextPath()%>/wychao/Excel"
+
     }
 </script>
 </body>

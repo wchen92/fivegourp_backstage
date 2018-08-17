@@ -1,10 +1,42 @@
 package com.jk.model;
 
 public class Dianji {
-    private  String dianjiid;
-    private  String kechengid;
-    private  Integer kechengdianjiliang;
-    private  String kechengname;
+    private  String dianjiid;//点击id
+    private  String kechengid;//课程id
+    private  Integer kechengdianjiliang;//课程点击量
+    private  String kechengname;//课程name
+    private Integer page;//分页
+    private Integer rows;//分页
+
+    @Override
+    public String toString() {
+        return "Dianji{" +
+                "dianjiid='" + dianjiid + '\'' +
+                ", kechengid='" + kechengid + '\'' +
+                ", kechengdianjiliang=" + kechengdianjiliang +
+                ", kechengname='" + kechengname + '\'' +
+                ", page=" + page +
+                ", rows=" + rows +
+                ", xlist='" + xlist + '\'' +
+                ", ylist='" + ylist + '\'' +
+                '}';
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public void setRows(Integer rows) {
+        this.rows = rows;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public Integer getRows() {
+        return rows;
+    }
 
     public String getKechengname() {
         return kechengname;
@@ -31,15 +63,6 @@ public class Dianji {
 
     public String getYlist() {
         return ylist;
-    }
-
-    @Override
-    public String toString() {
-        return "Dianji{" +
-                "dianjiid='" + dianjiid + '\'' +
-                ", kechengid='" + kechengid + '\'' +
-                ", kechengdianjiliang=" + kechengdianjiliang +
-                '}';
     }
 
     public void setDianjiid(String dianjiid) {
