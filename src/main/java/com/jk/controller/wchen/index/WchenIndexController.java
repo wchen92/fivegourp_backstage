@@ -16,4 +16,8 @@ public class WchenIndexController {
     public String tologgo(){
         return "Wchen/Login";
     }
+    @RequestMapping("gotoshowall")
+    public String gotoshowall(){
+        return "Wchen/LogShow";
+    }
 }
