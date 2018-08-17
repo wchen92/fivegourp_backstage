@@ -46,12 +46,12 @@
                 datatype:"json",
                 success:function(reslut){
                     if(reslut==1){
-                        alert("新增成功")
+                        alert("发布成功")
                         location.href="<%=request.getContextPath()%>/wjyiiindex/comezhu";
                     }
                 },
                 error: function(){
-                    alert("新增失败");
+                    alert("发布失败");
                 }
             });
         }

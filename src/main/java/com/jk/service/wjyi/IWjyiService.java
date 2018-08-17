@@ -85,4 +85,6 @@ public interface IWjyiService {
     Integer queryWeiwanchengShu();
 
     Integer queryZhipaiShu(String us );
+
+    void updateZhiWanchengstatus(String rwid, String usid);
 }

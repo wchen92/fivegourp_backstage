@@ -303,6 +303,7 @@ public class WjyiServiceImpl implements  IWjyiService{
         for(RenWu rw : sessionorrenwulist){
             RenWu renWu = new RenWu();
             RenWu fbrname = WjyiMapper.fbridorname(rw.getFbr());
+            renWu.setRwid(rw.getRwid());
             renWu.setZpr(rw.getZpr());
             renWu.setFbr(rw.getFbr());
             renWu.setRwmc(rw.getRwmc());
@@ -415,6 +416,12 @@ public class WjyiServiceImpl implements  IWjyiService{
     @Override
     public Integer queryZhipaiShu(String us ) {
         return WjyiMapper.queryZhipaiShu(us);
+    }
+
+    @Override
+    public void updateZhiWanchengstatus(String rwid, String usid) {
+        WjyiMapper.updateZhiWanchengstatus(rwid,usid);
+
     }
 
 

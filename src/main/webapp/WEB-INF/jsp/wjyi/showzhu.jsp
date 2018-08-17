@@ -111,8 +111,8 @@
 
     function searchwjyrenwu(){
         $('#wjydialog').dialog({
-            title: "任务查看",
-            width: 800,
+            title: "未完成任务查看",
+            width: 1000,
             height: 400,
             href: "<%=request.getContextPath()%>/wjyiiindex/comeToRenwu",
             modal: true,
@@ -121,8 +121,8 @@
 
     function searchzhipai(){
         $('#wjydialog').dialog({
-            title: "任务查看",
-            width: 800,
+            title: "指派任务查看",
+            width: 1000,
             height: 400,
             href: "<%=request.getContextPath()%>/wjyiiindex/comeToZhipai",
             modal: true,
