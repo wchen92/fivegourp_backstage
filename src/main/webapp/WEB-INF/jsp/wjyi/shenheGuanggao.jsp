@@ -38,7 +38,7 @@
                     var arr = $("#wjyShenheGuanggao").datagrid('getChecked');
                     var idlength = arr.length;
                     if(idlength==0){
-                        alert("请选择要确认的数据");
+                        alert("请选择要审核的数据");
                         return false;
                     }
                     var shu="";
@@ -49,14 +49,14 @@
                             shu+=","+arr[i].guanggaoid;
                         }
                     }
-                    if(confirm("确定批量确认吗")){
+                    if(confirm("确定审核"+idlength+"条数据吗")){
                         $.ajax({
                             url:'<%=request.getContextPath() %>/wjyi/piliangQuerenGuanggao?guanggaoid='+shu,
                             type:"post",
                             dataType:"text",
                             success:function(data){
                                 if(data==1){
-                                    alert("修改成功")
+                                    alert("审核成功")
                                     $("#wjyShenheGuanggao").datagrid('load');
                                 }
                             },

@@ -58,9 +58,16 @@ public class LshunIndexController {
     }
 
     @RequestMapping("Jump1")
-    public  String Jump1(){
-
+    public  String Jump1(String kechengid,Model aa){
+        kechengid = "7743f23135f140279e486307a49c282a";
+        aa.addAttribute("kechengid",kechengid);
         return  "lshun/Jump1";
+    }
+
+    @RequestMapping("LuckDraw")
+    public  String LuckDraw(){
+
+        return  "lshun/LuckDraw";
     }
 
 }

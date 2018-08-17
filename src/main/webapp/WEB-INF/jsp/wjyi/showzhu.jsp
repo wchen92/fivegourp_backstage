@@ -18,8 +18,22 @@
           href="<%=request.getContextPath()%>/EasyUI/themes/icon.css" type="text/css"/>
 
     <link rel="stylesheet" href="<%=request.getContextPath()%>/uploadify/uploadify.css">
+    <link
+            href="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.css"
+            rel="stylesheet">
+    <link
+            href="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.css"
+            rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/js/link/bootstrap-dialog/bootstrap-dialog.min.css" >
+
+
+    <!-- bootstrap-fileinput -->
+    <link
+            rel="stylesheet" href="<%=request.getContextPath()%>/js/link/bootstrap-fileinput/fileinput.min.css" />
 </head>
 <body>
+
+        <div id="wjydialog"></div>
 
 <!-- 引入JQuery -->
 <script type="text/javascript"
@@ -39,12 +53,24 @@
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 
 
+<script
+        src="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.js"></script>
+<script  src="<%=request.getContextPath()%>/js/link/bootstrap-dialog/bootstrap-dialog.js"></script>
+<script
+        type="text/javascript" src="<%=request.getContextPath()%>/js/link/bootstrap-fileinput/fileinput.min.js"></script>
+<script
+        type="text/javascript" src="<%=request.getContextPath()%>/js/link/bootstrap-fileinput/zh.js"></script>
+<style>a{TEXT-DECORATION:none}</style>
 
 <div id="wjycc" class="easyui-layout" data-options="fit:true">
     <div data-options="region:'north',title:'蚂蚁课堂',split:true" style="height:100px;">
         <center><h1>蚂蚁课堂后台管理系统</h1></center>
+
+        <a  href="javascript:searchwjyrenwu()" class="easyui-linkbutton" size="large" data-options="iconCls:'icon-search'" style="width: 200px;height: 30px">未完成任务(<span id="weiwanchengshu"></span>)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a  href="javascript:searchzhipai()" class="easyui-linkbutton" size="large"  data-options="iconCls:'icon-search'" style="width: 200px;height: 30px">指派任务查看(<span id="zhipaishu"></span>)</a>
+
     </div>
-    <div data-options="region:'west',title:'权限',split:true" style="width:200px;">
+    <div data-options="region:'west',title:'权限',split:true" style="width:200px;"   >
         <ul id="wjytree"></ul>
     </div>
     <div data-options="region:'center',title:'展示'" >
@@ -58,19 +84,20 @@
 
 <script type="text/javascript">
     $(function(){
+        weiwanchengshusearch();
+        zhipaishusearch()
+    })
+    $(function(){
         $("#wjytree").tree({
             url:'<%=request.getContextPath()%>/wjyi/queryTree',
             parentField:'pid',
             onClick: function(node){
-                alert(node.url)
                 if(node.url != null && node.url != ''){
                     addtabs(node.text,node.url);
                 }
             }
         })
     })
-
-
 
     function addtabs(titleStr,urlStr){
         if($("#wjytt").tabs('exists',titleStr)){
@@ -82,6 +109,48 @@
                 closable:true
             })
         }
+    }
+
+    function searchwjyrenwu(){
+        $('#wjydialog').dialog({
+            title: "任务查看",
+            width: 800,
+            height: 400,
+            href: "<%=request.getContextPath()%>/wjyiiindex/comeToRenwu",
+            modal: true,
+        });
+    }
+
+    function searchzhipai(){
+        $('#wjydialog').dialog({
+            title: "任务查看",
+            width: 800,
+            height: 400,
+            href: "<%=request.getContextPath()%>/wjyiiindex/comeToZhipai",
+            modal: true,
+        });
+    }
+
+    function weiwanchengshusearch() {
+        $.ajax({
+            url:"<%=request.getContextPath()%>/wjyi/queryWeiwanchengShu",
+            type:"post",
+            datatype:"json",
+            success:function(reslut){
+                    $("#weiwanchengshu").html(reslut);
+            },
+        });
+    }
+
+    function zhipaishusearch() {
+        $.ajax({
+            url:"<%=request.getContextPath()%>/wjyi/queryZhipaiShu",
+            type:"post",
+            datatype:"json",
+            success:function(reslut){
+                $("#zhipaishu").html(reslut);
+            },
+        });
     }
 </script>
 </body>

@@ -41,7 +41,7 @@
             data:{"quanids":quanxianids,"roleids":roleids},
             success:function(result){
                 if(result==1){
-                    alert("添加成功")
+                    alert("赋权限成功")
                 }
             }
         })
