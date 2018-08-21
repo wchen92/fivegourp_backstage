@@ -303,4 +303,13 @@ public class WjyiController {
         Integer zhipaiZongshu = WjyiService.queryZhipaiShu(us);
         return zhipaiZongshu;
     }
+
+    //修改指派人完成状态
+    @RequestMapping("updateZhiWanchengstatus")
+    public String updateZhiWanchengstatus(String rwid,HttpServletRequest reque){
+        User userid = (User) reque.getSession().getAttribute("loginUser");
+        String usid = userid.getUserid();
+        WjyiService.updateZhiWanchengstatus(rwid,usid);
+        return "1";
+    }
 }

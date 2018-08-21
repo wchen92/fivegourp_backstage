@@ -137,5 +137,14 @@ public class LshunController {
         KeCheng list = LshunService.selectpricelist(wchenkcdi);
         return  list;
     }
+    @RequestMapping("selectshipin")
+    public String selectshipin(String wchenkcdi){
+        return LshunService.selectshipin(wchenkcdi);
+    }
+    @RequestMapping("selectzhangjieorid")
+    public String selectzhangjieorid(String zhanjieid ){
+
+        return LshunService.selectzhangjieorid(zhanjieid);
+    }
 
 }

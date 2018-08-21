@@ -186,13 +186,7 @@ public interface IWjyiMapper {
     List<ZhiPai> queryZhipai(@Param("start")int start, @Param("rows")int rows, @Param("zhipai")ZhiPai zhipai,@Param("uid") String uid);
 
     //指派总条数
-    @Select("select count(*)\n" +
-            "from \n" +
-            "renwu rw,zhipai zp\n" +
-            "where\n" +
-            "rw.renwuid = zp.renwuid\n" +
-            "and rw.shifouzhipai = 1\n" +
-            "and zp.chilirenid = '4'\n")
+    @Select("select count(*) from zhipai ")
     long countwjyZhipai(ZhiPai zhipai);
 
     //全部任务总数
@@ -261,7 +255,7 @@ public interface IWjyiMapper {
     List<RenWu> queryrenwuid(@Param("renwuid") String renwuid);
 
     //根据登陆 session 取出登陆id 去查询所指派给自己的所以任务
-    @Select("select zp.zhipaiid zpr,zp.faburenid fbr,rw.renwuname rwmc,rw.renwuneirong rwnr, rw.wanchengstatus wczt\n" +
+    @Select("select zp.zhipaiid zpr,rw.renwuid rwid,zp.faburenid fbr,rw.renwuname rwmc,rw.renwuneirong rwnr, rw.wanchengstatus wczt\n" +
             " from \n" +
             "renwu rw,zhipai zp \n" +
             " where \n" +
@@ -270,7 +264,8 @@ public interface IWjyiMapper {
             "and zp.chilirenid = #{uid}"+
             "limit #{start},#{rows}")
     List<RenWu> sessionorrenwu(@Param("uid") String uid,@Param("start") int start, @Param("rows")int rows);
-//根据发布人id查询出发布人名称
+
+    //根据发布人id查询出发布人名称
     @Select(" select t1.text fbr from t_user t1 where t1.userid = #{fbr}")
     RenWu fbridorname(@Param("fbr") String fbr);
 
@@ -281,4 +276,8 @@ public interface IWjyiMapper {
     //指派任务总数查询
     @Select("select count(*) from zhipai where chilirenid=#{us}")
     Integer queryZhipaiShu(@Param("us") String us );
+
+    //指派任务 状态改为 完成
+    @Update("update renwu  set wanchengstatus=1 , chulirenid=#{usid} where renwuid= #{rwid} ")
+    void updateZhiWanchengstatus(@Param("rwid") String rwid, @Param("usid")String usid);
 }

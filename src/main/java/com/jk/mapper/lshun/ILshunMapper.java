@@ -76,4 +76,17 @@ public interface ILshunMapper {
             "  and kcandzj.zhangjieid = zj.zhangjieid\n" +
             "  and kc.kechengid= #{wchenkcdi}")
     long selectajcount(@Param("wchenkcdi") String wchenkcdi);
+
+    //根据课程id查询第一章视频路径
+   @Select("select zj.shipin from\n" +
+           "zhangjie zj,kecheng kc,kecheng_zhangjie kcandzj\n" +
+           " where kcandzj.kechengid  = kc.kechengid\n" +
+           " and kcandzj.zhangjieid = zj.zhangjieid\n" +
+           "and kc.kechengid= #{wchenkcdi}\n" +
+           "LIMIT 0,1")
+    String shipinshowselect(@Param("wchenkcdi") String wchenkcdi);
+    //根据文章id查询文章路径
+    @Select(" select t1.shipin from zhangjie t1 \n" +
+            " where t1.zhangjieid = #{zhanjieid} ")
+    String selectzhangjieorid(@Param("zhanjieid") String zhanjieid);
 }

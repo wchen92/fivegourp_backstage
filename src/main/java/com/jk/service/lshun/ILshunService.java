@@ -33,4 +33,8 @@ public interface ILshunService {
     List<KeCheng> selectxiangqinglist();
 
     KeCheng selectpricelist(String wchenkcdi);
+
+    String selectshipin(String wchenkcdi);
+
+    String selectzhangjieorid(String zhanjieid);
 }
