@@ -1,6 +1,7 @@
 package com.jk.service.tysheng;
 
 import com.jk.model.JiangShi;
+import com.jk.model.WenDa;
 import com.jk.model.ZhangJie;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -122,5 +123,42 @@ public interface ITyshengService {
      *
      */
     void updatesection(ZhangJie zj);
+/**
+　　* @Description: 问答专题
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/17 20:39
+　　*/
+    List<WenDa> getTreeList(Integer id);
+/**
+　　* @Description: 问答的新增
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 15:54
+　　*/
+    void savewd(WenDa wd);
+/**
+　　* @Description: 回复之查询
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 20:16
+　　*/
+WenDa queryhuifu666(Integer id);
 
+/**
+　　* @Description: 回复
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 20:27
+　　*/
+
+    void savehuifu(WenDa wd);
 }
