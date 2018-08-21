@@ -1,22 +1,19 @@
 package com.jk.controller.tysheng;
 
 import com.jk.model.JiangShi;
+
+import com.jk.model.WenDa;
 import com.jk.model.ZhangJie;
 import com.jk.service.tysheng.ITyshengService;
-import com.mongodb.util.JSON;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 /**
@@ -159,9 +156,39 @@ public class TyshengController {
     }
 
 
+/**
+　　* @Description: 问答的新增
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 15:53
+　　*/
+    @RequestMapping("savawendaone")
+    @ResponseBody
+    public  void  savewd(WenDa wd){
+
+        TyshengService.savewd(wd);
+
+    }
 
 
+/**
+　　* @Description: 回复
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 20:26
+　　*/
+    @RequestMapping("savehuifu")
+    @ResponseBody
+    public  void  savehuifu(WenDa wd){
+
+        TyshengService.savehuifu(wd);
 
 
+        System.out.println(wd);
+    }
 
 }

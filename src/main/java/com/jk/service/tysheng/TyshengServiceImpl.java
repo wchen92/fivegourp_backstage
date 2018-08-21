@@ -2,16 +2,14 @@ package com.jk.service.tysheng;
 
 import com.jk.mapper.tysheng.ITyshengMapper;
 import com.jk.model.JiangShi;
+import com.jk.model.WenDa;
 import com.jk.model.ZhangJie;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @ 创建者：王晨.
@@ -168,7 +166,61 @@ public class TyshengServiceImpl implements ITyshengService{
     public void updatesection(ZhangJie zj) {
         TyshengMapper.updatesection(zj);
     }
+/**
+　　* @Description: 问答专题
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/17 20:41
+　　*/
+    @Override
+    public List<WenDa> getTreeList(Integer id) {
 
+
+        return TyshengMapper.getTreeList(id);
+    }
+/**
+　　* @Description:问答的新增
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 15:55
+　　*/
+    @Override
+    public void savewd(WenDa wd) {
+        wd.setWdate( new Date());
+        TyshengMapper.savewd(wd);
+    }
+/**
+　　* @Description:回复之查询
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 20:16
+　　*/
+    @Override
+    public WenDa queryhuifu666(Integer id) {
+
+        return  TyshengMapper.queryhuifu666(id);
+    }
+/**
+　　* @Description: 回复
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 20:27
+　　*/
+    @Override
+    public void savehuifu(WenDa wd) {
+
+        wd.setWdate( new Date());
+        TyshengMapper.savehuifu(wd);
+
+    }
 
 
 }
