@@ -2,9 +2,13 @@ package com.jk.service.wjyi;
 
 import com.jk.mapper.wjyi.IWjyiMapper;
 import com.jk.model.*;
+import com.jk.service.wchen.IWchenService;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -18,6 +22,10 @@ import java.util.*;
 public class WjyiServiceImpl implements  IWjyiService{
     @Resource
     private IWjyiMapper WjyiMapper;
+    @Resource
+    private SolrClient solrClient;
+    @Resource
+    private IWchenService WchenService;
 
     @Override
     public List<Power> queryTree(String userid2) {
@@ -207,6 +215,9 @@ public class WjyiServiceImpl implements  IWjyiService{
         for (int i = 0; i < split.length; i++) {
             WjyiMapper.piliangQuerenKecheng(split[i]);
         }
+        //审核课程完成后更新solr数
+        List<KeCheng> selectmysqladdgosolr = WchenService.selectmysqladdgosolr();
+        WchenService.addsolr(solrClient,selectmysqladdgosolr);
     }
 
     @Override

@@ -1,12 +1,12 @@
 package com.jk.controller.lshun;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.jk.model.GuangGaoBiao;
-import com.jk.model.KeCheng;
-import com.jk.model.User;
-import com.jk.model.ZhangJie;
+import com.jk.mapper.lshun.ILshunMapper;
+import com.jk.model.*;
 import com.jk.service.lshun.ILshunService;
+import com.jk.service.wchen.IWchenService;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.solr.client.solrj.SolrClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +34,12 @@ import java.util.Map;
 public class LshunController {
     @Resource
     private ILshunService LshunService;
+    @Resource
+    private SolrClient solrClient;
+    @Resource
+    private   IWchenService WchenService;
+    @Resource
+    private ILshunMapper LshunMapper;
     //后台登陆控制层
     @RequestMapping("login")
     public String  login(User people, HttpServletRequest request) {
@@ -85,37 +91,14 @@ public class LshunController {
 
     @RequestMapping("selectkechenglist")
     public List<KeCheng> selectkechenglist(){
+        String staus = "";
+        List<KeCheng> selectsolr = WchenService.selectsolr(solrClient, staus);
+        for(KeCheng kc : selectsolr){
+            Liuyan selectkcorcs = LshunMapper.selectkcorcs(kc.getKechengid());
+            kc.setLiulanliang(selectkcorcs.getLiulanshuliang().toString());
+        }
 
-        List<KeCheng> list = LshunService.selectkechenglist();
-        List<KeCheng> keChengs = new ArrayList<>();
-        for(KeCheng ss : list ){
-             KeCheng keCheng = new KeCheng();
-             if(ss.getHuiyuanstatus().equals("1")){
-                 keCheng.setKechengid(ss.getKechengid());
-                 keCheng.setShenhestatus(ss.getShenhestatus());
-                 keCheng.setHuiyuan("会员");
-                 keCheng.setKeshishu(ss.getKeshishu());
-                 keCheng.setKechengjieshao(ss.getKechengjieshao());
-                 keCheng.setKechengname(ss.getKechengname());
-                 keCheng.setKechengphoto(ss.getKechengphoto());
-                 keCheng.setKechengprice(ss.getKechengprice());
-                 keCheng.setLiulanliang(ss.getLiulanliang());
-                 keChengs.add(keCheng);
-             }else{
-                 keCheng.setKechengid(ss.getKechengid());
-                 keCheng.setShenhestatus(ss.getShenhestatus());
-                 keCheng.setHuiyuan("非会员");
-                 keCheng.setKeshishu(ss.getKeshishu());
-                 keCheng.setKechengjieshao(ss.getKechengjieshao());
-                 keCheng.setKechengname(ss.getKechengname());
-                 keCheng.setKechengphoto(ss.getKechengphoto());
-                 keCheng.setKechengprice(ss.getKechengprice());
-                 keCheng.setLiulanliang(ss.getLiulanliang());
-                 keChengs.add(keCheng);
-             }
-
-         }
-        return  keChengs;
+        return  selectsolr;
     }
 
     @RequestMapping("selectdaganglist")

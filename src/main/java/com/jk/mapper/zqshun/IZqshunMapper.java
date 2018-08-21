@@ -39,7 +39,7 @@ public interface IZqshunMapper {
     long totalkecheng(@Param("kecheng")KeCheng kecheng);
 
     //删除课程管理
-    @Delete(" delete from kecheng where kechengid in (#{ids}) ")
+    @Delete(" delete from kecheng where kechengid = #{ids} ")
     void deletekecheng(@Param("ids")String ids);
 
     //新增课程管理

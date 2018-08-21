@@ -61,7 +61,7 @@
 <style>a{TEXT-DECORATION:none}</style>
 
 <div id="wjycc" class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'north',title:'蚂蚁课堂',split:true" style="height:100px;">
+    <div data-options="region:'north',title:'蚂蚁课堂',split:true" style="height:200px;">
         <center><h1>蚂蚁课堂后台管理系统</h1></center>
 
         <a  href="javascript:searchwjyrenwu()" class="easyui-linkbutton" size="large" data-options="iconCls:'icon-search'" style="width: 200px;height: 30px">未完成任务(<span id="weiwanchengshu"></span>)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
