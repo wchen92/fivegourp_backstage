@@ -2,6 +2,7 @@ package com.jk.service.zqshun;
 
 import com.jk.mapper.zqshun.IZqshunMapper;
 import com.jk.model.*;
+import com.jk.uitl.MinGanUtil;
 import com.jk.uitl.OSSClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -195,18 +196,8 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public void mingan(String str) {
 
-        List<MinGanCi> array= ZqshunMapper.mingan();
-        for (MinGanCi minGanCi : array) {
-            String sttr=minGanCi.getMinganname();
-            if(str.indexOf(""+sttr+"")!=-1){
-                str=str.replace(""+sttr+"","*");
-                System.out.println("有敏感词");
-                System.out.println(str);
-            }else {
-                System.out.println("没有敏感词");
-
-            }
-        }
+        String mingan = MinGanUtil.get1ju(str,ZqshunMapper);
+        System.out.println(mingan);
     }
 
 
