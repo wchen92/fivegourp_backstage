@@ -164,9 +164,8 @@ public class ZqshunController {
     //过滤敏感词
     @RequestMapping("mingan")
     public String mingan(){
-        String str = "小明在大北傻京逼";
+        String str = "小明死了母亲，大傻逼";
         ZqshunService.mingan(str);
-
         return "1";
     }
 

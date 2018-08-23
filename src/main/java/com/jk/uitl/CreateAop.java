@@ -14,9 +14,6 @@ public class CreateAop implements Runnable {
    private String log;
 
 
-
-
-
     @Override
     public void run() {
         amqpTemplate.convertAndSend("wchenandliushun",log);

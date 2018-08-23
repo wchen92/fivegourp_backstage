@@ -208,7 +208,7 @@
             success: function(list){
                 var span = "";
                 $(list).each(function(){
-                    span+="<li><div class='cc-l-wrap'><section class='course-img'><img xsrc='"+this.kechengphoto+"' src='"+this.kechengphoto+"' class='img-responsive' alt='"+this.kechengname+"' style='height: 175px; width: 267px'><div class='cc-mask'><a href='http://www.itmayiedu.com/front/couinfo/112/0' title='开始学习' class='comm-btn c-btn-1'>开始学习</a></div></section><h3 class='hLh30 txtOf mt10'><a href='++' title='"+this.kechengname+"' class='course-title fsize18 c-333'>"+this.kechengname+"</a></h3><section class='mt10 hLh20 of'><span class='fr jgTag bg-orange'><tt class='c-fff fsize14 f-fG'>"+this.huiyuanstatus+"</tt></span><span class='fl jgAttr c-ccc f-fA'><tt class='c-999 f-fA'>56358人学习</tt></span></section></div></li>"
+                    span+="<li><div class='cc-l-wrap'><section class='course-img'><img xsrc='"+this.kechengphoto+"' src='"+this.kechengphoto+"' class='img-responsive' alt='"+this.kechengname+"' style='height: 175px; width: 267px'><div class='cc-mask'><a href='javascript:shipinshow(\""+this.kechengid+"\")' title='开始学习' class='comm-btn c-btn-1'>开始学习</a></div></section><h3 class='hLh30 txtOf mt10'><a href='++' title='"+this.kechengname+"' class='course-title fsize18 c-333'>"+this.kechengname+"</a></h3><section class='mt10 hLh20 of'><span class='fr jgTag bg-orange'><tt class='c-fff fsize14 f-fG'>"+this.huiyuanstatus+"</tt></span><span class='fl jgAttr c-ccc f-fA'><tt class='c-999 f-fA'>56358人学习</tt></span></section></div></li>"
                 });
                 $("#show_tuijian").html(span);
             },
@@ -222,14 +222,16 @@
             success: function(list){
                 var span = "";
                 $(list).each(function(){
-                    span+="<li><div class='cc-l-wrap'><section class='course-img'><img xsrc='"+this.kechengphoto+"' src='"+this.kechengphoto+"' class='img-responsive' alt='"+this.kechengname+"' style='height: 175px; width: 267px'><div class='cc-mask'><a href='http://www.itmayiedu.com/front/couinfo/112/0' title='开始学习' class='comm-btn c-btn-1'>开始学习</a></div></section><h3 class='hLh30 txtOf mt10'><a href='++' title='"+this.kechengname+"' class='course-title fsize18 c-333'>"+this.kechengname+"</a></h3><section class='mt10 hLh20 of'><span class='fr jgTag bg-orange'><tt class='c-fff fsize14 f-fG'>"+this.huiyuanstatus+"</tt></span><span class='fl jgAttr c-ccc f-fA'><tt class='c-999 f-fA'>56358人学习</tt></span></section></div></li>"
+                    span+="<li><div class='cc-l-wrap'><section class='course-img'><img xsrc='"+this.kechengphoto+"' src='"+this.kechengphoto+"' class='img-responsive' alt='"+this.kechengname+"' style='height: 175px; width: 267px'><div class='cc-mask'><a href='javascript:shipinshow(\""+this.kechengid+"\")' title='开始学习' class='comm-btn c-btn-1'>开始学习</a></div></section><h3 class='hLh30 txtOf mt10'><a href='++' title='"+this.kechengname+"' class='course-title fsize18 c-333'>"+this.kechengname+"</a></h3><section class='mt10 hLh20 of'><span class='fr jgTag bg-orange'><tt class='c-fff fsize14 f-fG'>"+this.huiyuanstatus+"</tt></span><span class='fl jgAttr c-ccc f-fA'><tt class='c-999 f-fA'>56358人学习</tt></span></section></div></li>"
                 });
                 $("#show_kecheng").html(span);
             },
         });
     })
 
-
+    function shipinshow(kechengid){
+        location.href="<%=request.getContextPath()%>/linshuiindex/Jump1?kechengid="+kechengid;
+    }
 
 </script>
 </div>

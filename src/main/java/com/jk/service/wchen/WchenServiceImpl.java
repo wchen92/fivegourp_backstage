@@ -3,6 +3,7 @@ package com.jk.service.wchen;
 import com.jk.mapper.wchen.IWchenMapper;
 import com.jk.model.KeCheng;
 import com.jk.model.Log;
+import com.jk.model.PlTokc;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -11,6 +12,7 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
@@ -145,5 +147,34 @@ public class WchenServiceImpl implements IWchenService{
              keChengs.add(keCheng);
          }
         return keChengs;
+    }
+
+    @Override
+    public void addkctopinlun(String kcid, String juzito,String userid) {
+        PlTokc plTokc = new PlTokc();
+        plTokc.setKcid(kcid);
+        plTokc.setPinlun(juzito);
+        plTokc.setUserid(userid);
+        mongoTemplate.save(plTokc);
+    }
+
+    @Override
+    public List<PlTokc> selectkctopl(String kcid) {
+        ArrayList<PlTokc> plTokcs1 = new ArrayList<>();
+
+        Query query = new Query();
+        query.addCriteria(new Criteria("kcid").is(kcid));
+        List<PlTokc> plTokcs = mongoTemplate.find(query, PlTokc.class);
+
+         for (PlTokc pl : plTokcs){
+             PlTokc plTokc = new PlTokc();
+             String username = WchenMapper.pluseridselecttomysql(pl.getUserid());
+             plTokc.setUserid(username);
+             plTokc.setPinlun(pl.getPinlun());
+             plTokc.setKcid(pl.getKcid());
+             plTokc.setId(pl.getId());
+             plTokcs1.add(plTokc);
+         }
+        return plTokcs1;
     }
 }

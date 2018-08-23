@@ -5145,7 +5145,7 @@
                             success: function(list){
                                 var span = "";
                                 $(list).each(function(){
-                                    span+="<li><div class='cc-l-wrap'><section class='course-img'><img xsrc=' " + this.kechengphoto+" ' src='"+this.kechengphoto+"' style='width: 256px; height: 169px;' class='img-responsive' alt=''><div class='cc-mask'><a href='<%=request.getContextPath()%>/linshuiindex/Jump1' title='' class='comm-btn c-btn-1'>开始学习</a></div></section><h3 class='hLh30 txtOf mt10'><a href='http://www.itmayiedu.com/front/couinfo/144/0' title='传输方案' class='course-title fsize18 c-333'>"+this.kechengname+"</a></h3><section class='mt10 hLh20 of'><span class='fr jgTag bg-orange'><tt class='c-fff fsize14 f-fG'>"+this.huiyuan+"</tt></span><span class='fl jgAttr c-ccc f-fA'> <tt class='c-999 f-fA'>"+this.liulanliang+"浏览</tt></span></section></div></li>"
+                                    span+="<li><div class='cc-l-wrap'><section class='course-img'><img xsrc=' " + this.kechengphoto+" ' src='"+this.kechengphoto+"' style='width: 256px; height: 169px;' class='img-responsive' alt=''><div class='cc-mask'><a href='javascript:shipinshow(\""+this.kechengid+"\")' title='' class='comm-btn c-btn-1'>开始学习</a></div></section><h3 class='hLh30 txtOf mt10'><a href='http://www.itmayiedu.com/front/couinfo/144/0' title='传输方案' class='course-title fsize18 c-333'>"+this.kechengname+"</a></h3><section class='mt10 hLh20 of'><span class='fr jgTag bg-orange'><tt class='c-fff fsize14 f-fG'>"+this.huiyuanstatus+"</tt></span><span class='fl jgAttr c-ccc f-fA'> <tt class='c-999 f-fA'>"+this.liulanliang+"浏览</tt></span></section></div></li>"
                                 });
                                 $("#liushunid").html(span);
                             },
@@ -5199,6 +5199,10 @@
                     })
                 }
             });
+        }
+
+        function shipinshow(kechengid){
+              location.href="<%=request.getContextPath()%>/linshuiindex/Jump1?kechengid="+kechengid;
         }
     </script>
     <!-- 公共底引入 -->

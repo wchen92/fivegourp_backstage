@@ -1,6 +1,7 @@
 package com.jk.controller.tysheng.index;
 
 import com.jk.model.JiangShi;
+import com.jk.model.WenDa;
 import com.jk.model.ZhangJie;
 import com.jk.service.tysheng.ITyshengService;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ 创建者：王晨.
@@ -56,7 +58,7 @@ public class TyshengIndexController {
 　　* @param ${tags}
 　　* @return ${return_type}
 　　* @throws
-　　* @author 谭永生
+   * @author 谭永生
 　　* @date 2018/8/10 20:40
 　　*/
     @RequestMapping("saveteacherjsp")
@@ -130,4 +132,66 @@ public class TyshengIndexController {
     }
 
 
+   /**
+   　　* @Description:问答专题
+   　　* @param ${tags}
+   　　* @return ${return_type}
+   　　* @throws
+   　　* @author 谭永生
+   　　* @date 2018/8/17 20:44
+   　　*/
+    @RequestMapping("queryTreeList")
+
+    public String queryTreeList(Model model) {
+        Integer id=0;
+        List<WenDa> treeList = getTreeList(id);
+        model.addAttribute("treeList", treeList);
+
+        return "tys/wenda";
+    }
+    public List<WenDa> getTreeList(Integer id) {
+
+        List<WenDa> list=TyshengService.getTreeList(id);
+        for (WenDa wenDa : list) {
+            Integer id2 = wenDa.getId();
+            List<WenDa> treeList = getTreeList(id2);
+
+            wenDa.setList(treeList);
+        }
+        return list;
+    }
+/**
+　　* @Description: 问答专题之提问
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 11:49
+　　*/
+    @RequestMapping("savewenda")
+    public  String savewenda(){
+
+        return "tys/saveWenDa";
+
+    }
+/**
+　　* @Description: 回复之查询
+　　* @param ${tags}
+　　* @return ${return_type}
+　　* @throws
+　　* @author 谭永生
+　　* @date 2018/8/20 20:15
+　　*/
+
+    @RequestMapping("queryhuifu666")
+    public  String queryhuifu666(Model model,Integer id){
+
+       WenDa hf=  TyshengService.queryhuifu666(id);
+
+      model.addAttribute("hf",hf);
+
+
+        return "tys/huifu";
+
+    }
 }

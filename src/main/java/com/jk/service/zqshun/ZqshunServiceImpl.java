@@ -2,9 +2,14 @@ package com.jk.service.zqshun;
 
 import com.jk.mapper.zqshun.IZqshunMapper;
 import com.jk.model.*;
+import com.jk.service.wchen.IWchenService;
+import com.jk.uitl.MinGanUtil;
 import com.jk.uitl.OSSClientUtil;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.solr.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +27,10 @@ import java.util.*;
 public class ZqshunServiceImpl implements IZqshunService{
     @Resource
     private IZqshunMapper ZqshunMapper;
+    @Resource
+    private SolrClient solrClientl;
+    @Resource
+    private IWchenService WchenService;
 
     /*@Autowired
     private MongoTemplate mongoTemplate;*/
@@ -79,7 +88,24 @@ public class ZqshunServiceImpl implements IZqshunService{
     //课程删除
     @Override
     public void deletekecheng(String ids) {
-        ZqshunMapper.deletekecheng(ids);
+        String[] split = ids.split(",");
+        for(int i   = 0 ;i < split.length; i++) {
+            ZqshunMapper.deletekecheng(split[i]);
+            try {
+                solrClientl.deleteByQuery("id:" + ids);
+            } catch (SolrServerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                solrClientl.commit();
+            } catch (SolrServerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     //课程新增
@@ -107,6 +133,8 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public void updatekecheng(KeCheng keCheng) {
         ZqshunMapper.updatekecheng(keCheng);
+        List<KeCheng> selectmysqladdgosolr = WchenService.selectmysqladdgosolr();
+        WchenService.addsolr(solrClientl,selectmysqladdgosolr);
     }
 
     //上传图片
@@ -195,18 +223,8 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public void mingan(String str) {
 
-        List<MinGanCi> array= ZqshunMapper.mingan();
-        for (MinGanCi minGanCi : array) {
-            String sttr=minGanCi.getMinganname();
-            if(str.indexOf(""+sttr+"")!=-1){
-                str=str.replace(""+sttr+"","*");
-                System.out.println("有敏感词");
-                System.out.println(str);
-            }else {
-                System.out.println("没有敏感词");
-
-            }
-        }
+        String mingan = MinGanUtil.get1ju(str,ZqshunMapper);
+        System.out.println(mingan);
     }
 
 
