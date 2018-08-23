@@ -20,6 +20,8 @@
                 课程介绍:<textarea name="kechengjieshao"></textarea><br><br>
                 会员状态:<input type="radio" name="huiyuanstatus" value="1">会员
                          <input type="radio" name="huiyuanstatus" value="2">非会员<br><br>
+                讲师：<input id="zqsjsid" name="jiangshi">  <br><br>
+                班型：<input id="zqsbanxing" name="banxing">  <br><br>
                 课程图片<input type="file" id="imgFileBTN" >
                 <input type="hidden" id="hidden-photos" name="kechengphoto">
                 <div id="showImgsDiv" style="width: 100px;height: 100px;border-style:solid;border-width:1px; border-color:black;">
@@ -64,6 +66,20 @@
                 $("#hidden-photos").val(data);  //同上
             }
         });
+        $('#zqsjsid').combobox({
+            url:'<%=request.getContextPath()%>/zqshun/selecttiche',
+            valueField:'jiangshiid',
+            textField:'jiangshiname'
+        });
+
+        $('#zqsbanxing').combobox({
+            url:'<%=request.getContextPath()%>/zqshun/selectbanxing',
+            valueField:'banxingid',
+            textField:'banxingname'
+        });
+
+
+
     })
 
 

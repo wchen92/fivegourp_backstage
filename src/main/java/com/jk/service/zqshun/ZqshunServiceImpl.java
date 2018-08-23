@@ -91,6 +91,14 @@ public class ZqshunServiceImpl implements IZqshunService{
         String[] split = ids.split(",");
         for(int i   = 0 ;i < split.length; i++) {
             ZqshunMapper.deletekecheng(split[i]);
+            //根据课程id查询出中间表的章节id
+            List<KechengAndZhangjie> byzjlist = ZqshunMapper.selectkcidbyzjid(split[i]);
+            for(KechengAndZhangjie kcandzj : byzjlist){
+                  //根据查询章节id删除章节表
+                ZqshunMapper.deleteOFzjidByZjChart(kcandzj.getZhangjieid());
+            }
+            //根据课程id删除关联表
+            ZqshunMapper.deleteOfKcidByKcAndZjChart(split[i]);
             try {
                 solrClientl.deleteByQuery("id:" + ids);
             } catch (SolrServerException e) {
@@ -121,6 +129,10 @@ public class ZqshunServiceImpl implements IZqshunService{
         liuyan.setKechengid(keCheng.getKechengid());
         liuyan.setLiulanshuliang(0);
         ZqshunMapper.addliulkan(liuyan);
+
+        ZqshunMapper.addjianshi(keCheng.getKechengid(),keCheng.getJiangshi(), UUID.randomUUID().toString());
+
+        ZqshunMapper.addtobanxing1(keCheng.getKechengid(),keCheng.getBanxing(), UUID.randomUUID().toString());
     }
 
     //课程回显
@@ -133,8 +145,20 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public void updatekecheng(KeCheng keCheng) {
         ZqshunMapper.updatekecheng(keCheng);
-        List<KeCheng> selectmysqladdgosolr = WchenService.selectmysqladdgosolr();
-        WchenService.addsolr(solrClientl,selectmysqladdgosolr);
+        try {
+            solrClientl.deleteByQuery("id:" + keCheng.getKechengid());
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            solrClientl.commit();
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //上传图片
@@ -166,6 +190,7 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public void addzhangjie(ZhangJie zhangJie) {
         zhangJie.setZhangjieid(UUID.randomUUID().toString());
+        zhangJie.setAdddate(new Date());
         ZqshunMapper.addzhangjie(zhangJie);
         //新增课时数
         KeCheng keCheng = new KeCheng();
@@ -225,6 +250,16 @@ public class ZqshunServiceImpl implements IZqshunService{
 
         String mingan = MinGanUtil.get1ju(str,ZqshunMapper);
         System.out.println(mingan);
+    }
+
+    @Override
+    public List<JiangShi> selecttiche() {
+        return ZqshunMapper.selecttiche();
+    }
+
+    @Override
+    public List<BanXing> selectkctobanxing() {
+        return ZqshunMapper.selectkctobanxing();
     }
 
 

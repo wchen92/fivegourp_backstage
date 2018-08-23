@@ -7,6 +7,11 @@ import com.jk.service.lshun.ILshunService;
 import com.jk.service.wchen.IWchenService;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,15 +95,58 @@ public class LshunController {
     }
 
     @RequestMapping("selectkechenglist")
-    public List<KeCheng> selectkechenglist(){
+    public List<KeCheng> selectkechenglist(String allsolrselect){
+        List<KeCheng> keChengs = new ArrayList<>();
         String staus = "";
+        if(!"".equals(allsolrselect)){
+            List<KeCheng> getselecsolr = new ArrayList<>();
+            SolrQuery solrQuery = new SolrQuery();
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append(" kechengname:"+allsolrselect+" OR kechengjieshao:"+allsolrselect+" OR jiangshi:"+allsolrselect+" OR banxing:"+allsolrselect+" OR huiyuanstatus:"+allsolrselect+" ");
+            solrQuery.setQuery(stringBuffer.toString());
+            QueryResponse queryResponse = null;
+            try {
+                queryResponse = solrClient.query(solrQuery);
+            } catch (SolrServerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            SolrDocumentList results = queryResponse.getResults();
+            for (SolrDocument result :results){
+                KeCheng keCheng = new KeCheng();
+                keCheng.setKechengid(result.get("id").toString());
+                keCheng.setKechengname(result.get("kechengname").toString());
+                keCheng.setKechengprice(result.get("kechengprice").toString());
+                keCheng.setKeshishu(result.get("keshishu").toString());
+                keCheng.setKechengphoto(result.get("kechengphoto").toString());
+                keCheng.setKechengjieshao(result.get("kechengjieshao").toString());
+                if("1".equals(result.get("huiyuanstatus").toString())){
+                    keCheng.setHuiyuanstatus("会员");
+                }
+                if("2".equals(result.get("huiyuanstatus").toString())){
+                    keCheng.setHuiyuanstatus("非会员");
+                }
+                keCheng.setShenhestatus(result.get("shenhestatus").toString());
+                getselecsolr.add(keCheng);
+            }
+            for(KeCheng kc : getselecsolr){
+                Liuyan selectkcorcs = LshunMapper.selectkcorcs(kc.getKechengid());
+                kc.setLiulanliang(selectkcorcs.getLiulanshuliang().toString());
+            }
+
+            keChengs = getselecsolr;
+
+        }else{
+
         List<KeCheng> selectsolr = WchenService.selectsolr(solrClient, staus);
         for(KeCheng kc : selectsolr){
             Liuyan selectkcorcs = LshunMapper.selectkcorcs(kc.getKechengid());
             kc.setLiulanliang(selectkcorcs.getLiulanshuliang().toString());
         }
-
-        return  selectsolr;
+            keChengs = selectsolr;
+        }
+        return  keChengs;
     }
 
     @RequestMapping("selectdaganglist")

@@ -62,11 +62,12 @@ public interface ILshunMapper {
             "and kc.kechengid = #{wchenkcdi}")
     Liuyan selectkcorcs(@Param("wchenkcdi")String wchenkcdi);
    //查询对应章节
-    @Select("   select * from \n" +
-            "  zhangjie zj,kecheng kc,kecheng_zhangjie kcandzj\n" +
-            "  where kcandzj.kechengid  = kc.kechengid \n" +
-            "  and kcandzj.zhangjieid = zj.zhangjieid\n" +
-            "  and kc.kechengid= #{wchenkcdi}")
+    @Select(" select zj.* from \n" +
+            " zhangjie zj,kecheng kc,kecheng_zhangjie kcandzj\n" +
+            " where kcandzj.kechengid  = kc.kechengid\n" +
+            "and kcandzj.zhangjieid = zj.zhangjieid\n" +
+            "and kc.kechengid= #{wchenkcdi}\n" +
+            "ORDER BY zj.adddate")
     List<ZhangJie> selectorzj(@Param("wchenkcdi") String wchenkcdi);
 
     //查询章节数（课时数）
@@ -78,15 +79,32 @@ public interface ILshunMapper {
     long selectajcount(@Param("wchenkcdi") String wchenkcdi);
 
     //根据课程id查询第一章视频路径
-   @Select("select zj.shipin from\n" +
+   @Select("select zj.shipin,zj.zhangjiename from\n" +
            "zhangjie zj,kecheng kc,kecheng_zhangjie kcandzj\n" +
-           " where kcandzj.kechengid  = kc.kechengid\n" +
-           " and kcandzj.zhangjieid = zj.zhangjieid\n" +
+           "where kcandzj.kechengid  = kc.kechengid\n" +
+           "and kcandzj.zhangjieid = zj.zhangjieid\n" +
            "and kc.kechengid= #{wchenkcdi}\n" +
+           "ORDER BY zj.adddate asc\n" +
            "LIMIT 0,1")
     String shipinshowselect(@Param("wchenkcdi") String wchenkcdi);
     //根据文章id查询文章路径
     @Select(" select t1.shipin from zhangjie t1 \n" +
             " where t1.zhangjieid = #{zhanjieid} ")
     String selectzhangjieorid(@Param("zhanjieid") String zhanjieid);
+
+    //根据课程id查询讲师信息
+    @Select(" select js.jiangshiname jiangshi,js.jiangshishenfen jssf from \n" +
+            " kecheng kc,kecheng_jiangshi kctojs,jiangshi js\n" +
+            "  where \n" +
+            " kctojs.kechengid = kc.kechengid and\n" +
+            " kctojs.jiangshiid = js.jiangshiid and \n" +
+            " kc.kechengid = #{wchenkcdi} ")
+    KeCheng selectjsinfo(@Param("wchenkcdi") String wchenkcdi);
+
+    @Update(" UPDATE liulan t1 set t1.liulanshuliang = t1.liulanshuliang+1 where t1.kechengid  = #{kechengid}")
+    void addliulanliang(@Param("kechengid") String kechengid);
+
+    @Select(" select t1.shifouhuiyuan from qiantaiyonghu t1\n" +
+            "  where t1.yonghuid = #{userid}")
+    String selectmemberstatus(@Param("userid") String userid);
 }

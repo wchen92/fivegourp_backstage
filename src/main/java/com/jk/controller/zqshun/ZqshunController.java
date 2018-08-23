@@ -1,9 +1,6 @@
 package com.jk.controller.zqshun;
 
-import com.jk.model.BanXing;
-import com.jk.model.KeCheng;
-import com.jk.model.MinGanCi;
-import com.jk.model.ZhangJie;
+import com.jk.model.*;
 import com.jk.service.zqshun.IZqshunService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -169,5 +166,13 @@ public class ZqshunController {
         return "1";
     }
 
+   @RequestMapping("selecttiche")
+    public List<JiangShi> selecttiche(){
+        return ZqshunService.selecttiche();
+   }
 
+   @RequestMapping("selectbanxing")
+    public List<BanXing> selectbanxing(){
+        return ZqshunService.selectkctobanxing();
+   }
 }
