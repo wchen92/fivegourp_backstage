@@ -175,5 +175,13 @@ public class ZqshunController {
         return user;
     }
 
+   @RequestMapping("selecttiche")
+    public List<JiangShi> selecttiche(){
+        return ZqshunService.selecttiche();
+   }
 
+   @RequestMapping("selectbanxing")
+    public List<BanXing> selectbanxing(){
+        return ZqshunService.selectkctobanxing();
+   }
 }

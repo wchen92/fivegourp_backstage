@@ -435,5 +435,58 @@ public class WjyiServiceImpl implements  IWjyiService{
 
     }
 
+    @Override
+    public Map<String, Object> login(QianTaiYongHu people) {
+        String flag = "0";
+        Map<String, Object> map = new HashMap<>();
+        QianTaiYongHu user2 = WjyiMapper.queryUserByName(people.getYonghuname());
+        if (user2 != null) {
+            flag = "1";
+            if (user2.getYonghumima().equals(people.getYonghumima())) {
+                flag = "2";
+                map.put("user2", user2);
+            }
+        }
+        map.put("flag", flag);
+        return map;
+    }
+
+    @Override
+    public QianTaiYongHu queryYongHuByName(String yonghuname) {
+        return WjyiMapper.queryYongHuByName(yonghuname);
+    }
+
+    @Override
+    public void saveYongHu(QianTaiYongHu yonghu) {
+        yonghu.setYonghuid(UUID.randomUUID().toString());
+        yonghu.setShifouhuiyuan(2);
+        WjyiMapper.saveYongHu(yonghu);
+    }
+
+   /* @Override
+    public QianTaiYongHu queryAllxinxi(String us) {
+        return WjyiMapper.queryAllxinxi(us);
+    }
+*/
+    @Override
+    public void updatexinxi(QianTaiYongHu qiantaiyonghu) {
+        WjyiMapper.updatexinxi(qiantaiyonghu);
+    }
+
+    @Override
+    public List<QianTaiYongHu> queryAllxinxi(String us) {
+        return WjyiMapper.queryAllxinxi(us);
+    }
+
+    @Override
+    public void updatemima(QianTaiYongHu qiantaiyonghu) {
+        WjyiMapper.updatemima(qiantaiyonghu);
+    }
+
+    @Override
+    public QianTaiYongHu wchenselectoftouser(String yonghuid) {
+        return WjyiMapper.wchenselectoftouser(yonghuid);
+    }
+
 
 }

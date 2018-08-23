@@ -32,7 +32,8 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Resource
     private IWchenService WchenService;
 
-
+    /*@Autowired
+    private MongoTemplate mongoTemplate;*/
 
     //班型分页查询
     @Override
@@ -229,6 +230,16 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public Integer selecthy(String id) {
         return ZqshunMapper.selecthy(id);
+    }
+
+    @Override
+    public List<JiangShi> selecttiche() {
+        return ZqshunMapper.selecttiche();
+    }
+
+    @Override
+    public List<BanXing> selectkctobanxing() {
+        return ZqshunMapper.selectkctobanxing();
     }
 
 

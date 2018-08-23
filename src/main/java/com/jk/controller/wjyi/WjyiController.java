@@ -2,6 +2,7 @@ package com.jk.controller.wjyi;
 
 import com.jk.model.*;
 import com.jk.service.wjyi.IWjyiService;
+import com.jk.uitl.LoginControllerLHL;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -310,6 +311,75 @@ public class WjyiController {
         User userid = (User) reque.getSession().getAttribute("loginUser");
         String usid = userid.getUserid();
         WjyiService.updateZhiWanchengstatus(rwid,usid);
+        return "1";
+    }
+
+    //前台用户登录
+    @RequestMapping("login")
+    @ResponseBody
+    public String login(QianTaiYongHu people, HttpServletRequest request) {
+        Map<String, Object> map = WjyiService.login(people);
+        QianTaiYongHu user2 = (QianTaiYongHu) map.get("user2");
+        if (user2 != null) {
+            request.getSession().setAttribute("loginYonghu", user2);
+        }
+        return map.get("flag").toString();
+    }
+
+    //用户名验重
+    @RequestMapping("queryYongHuByName")
+    @ResponseBody
+    public Integer queryYongHuByName(String yonghuname,HttpServletRequest request){
+        //1 此用户名不存在  2 此用户名存在
+        Integer flag=null;
+        QianTaiYongHu yonghu = WjyiService.queryYongHuByName(yonghuname);
+        request.getSession().setAttribute("yonghu", yonghu);
+        if(yonghu==null){
+            flag=1;
+        }else{
+            flag=2;
+        }
+        return flag;
+    }
+
+    //用户注册
+    @RequestMapping("saveYongHu")
+    @ResponseBody
+    public String saveYongHu(QianTaiYongHu yonghu){
+        WjyiService.saveYongHu(yonghu);
+        return "1";
+    }
+
+    //发短信
+   @RequestMapping("fasonngduanxin")
+    @ResponseBody
+    public String fasonngduanxin(String phoneNumber){
+        LoginControllerLHL lal = new LoginControllerLHL();
+        String code = lal.getcode(phoneNumber);
+        return code;
+    }
+
+    //前台用户修改
+    @RequestMapping("updatexinxi")
+    public String updatexinxi(QianTaiYongHu qiantaiyonghu){
+        WjyiService.updatexinxi(qiantaiyonghu);
+        return "1";
+    }
+
+    //前台信息查询
+    @RequestMapping("queryAllxinxi")
+    public   List<QianTaiYongHu> queryAllxinxi( Model model,HttpServletRequest ree) {
+        Map<String, Object> maps = (Map<String, Object>) ree.getSession().getAttribute("loginYonghu");
+        QianTaiYongHu mapsss = (QianTaiYongHu) maps.get("user2");
+        String us = mapsss.getYonghuid();
+        List<QianTaiYongHu> list = WjyiService.queryAllxinxi(us);
+        return list;
+    }
+
+    //前台用户修改
+    @RequestMapping("updatemima")
+    public String updatemima(QianTaiYongHu qiantaiyonghu){
+        WjyiService.updatemima(qiantaiyonghu);
         return "1";
     }
 }

@@ -152,12 +152,6 @@
         </div>
 
     </div>
-    <script>
-        $(function() {
-            wmNavFun(); // 手机端导航方法
-            goTopFun(); //返回顶部
-        })
-    </script>
     <!-- 公共头引入 -->
     <script>$(function(){var str = '<section style="color: #666;position:absolute;left:50%;bottom:20px;z-index:7;margin-left:-80px;">';str+='<span>Powered by</span>';str+='<a href="http://www.inxedu.com" target="_blank" title="因酷教育软件" style="margin-left: 2px;color: #666;">因酷教育软件</a>';str+='</section>';$("body").append(str); });</script>
     <div id="aCoursesList" class="bg-fa of">
@@ -248,7 +242,7 @@
                                                         </fieldset>
                                                         <p class="of mt5 tar pl10 pr10">
                                                             <span class="fl "><tt class="c-red commentContentmeg" style="display: none;"></tt></span>
-                                                            <a href="javascript:addComment();" title="回复" class="lh-reply-btn">回复</a>
+                                                            <a href="javascript:addpinlunmogo();" title="回复" class="lh-reply-btn">评论</a>
                                                         </p>
                                                     </section>
                                                 </div>
@@ -258,183 +252,16 @@
                                     <section class="">
                                         <section class="question-list lh-bj-list pr">
                                             <ul class="pr10">
-                                                <li>
-                                                    <aside class="noter-pic">
-                                                        <img width="50" height="50" class="picImg" src="http://www.itmayiedu.com/images/upload/customer/20180701/1530412386815.jpg">
-                                                    </aside>
-                                                    <div class="of">
-								<span class="fl">
-								<font class="fsize12 c-blue">
-									余胜军我大哥</font>
-								<font class="fsize12 c-999 ml5">评论：</font></span>
-                                                    </div>
-                                                    <div class="noter-txt mt5">
-                                                        <p>想看源代码</p>
-                                                    </div>
-                                                    <div class="of mt5">
-                                                        <span class="fr"><font class="fsize12 c-999 ml5">2018/08/11 10:33</font></span> <span class="fl"> <a class="noter-dy vam" title="回复" href="javascript: void(0)" onclick="queryCommentReply('1351')">
-										<em class="icon18">&nbsp;</em>(<span class="replyCount1351">0</span>)
-									</a> <tt title="赞一下" class="noter-zan vam ml10" onclick="addPraise('1351',4)">
-										<em class="icon18">&nbsp;</em>(<span class="addPraise1351_4 praiseCount">0</span>)
-									</tt>
-								</span>
-                                                    </div>
-                                                    <div class="n-reply">
-                                                        <section class="n-reply-wrap">
-                                                            <fieldset>
-                                                                <textarea name="" class="commentReplyMsgContent1351"></textarea>
-                                                            </fieldset>
-                                                            <p class="of mt5 tar pl10 pr10">
-                                                                <span class="fl"><tt class="c-red commentReplyMsg1351"></tt></span>
-                                                                <a onclick="addCommentReply('1351')" class="lh-reply-btn" title="回复" href="javascript: void(0)">回复</a>
-                                                            </p>
-                                                        </section>
-                                                        <div class="mt10 pl10 pr10 pb10 commentReply1351"></div>
-                                                    </div> <!-- /回复盒子 -->
-                                                </li>
-                                                <li>
-                                                    <aside class="noter-pic">
-                                                        <img width="50" height="50" class="picImg" src="http://www.itmayiedu.com/static/inxweb/img/avatar-boy.gif">
-                                                    </aside>
-                                                    <div class="of">
-								<span class="fl">
-								<font class="fsize12 c-blue">
-									836566689@qq.com</font>
-								<font class="fsize12 c-999 ml5">评论：</font></span>
-                                                    </div>
-                                                    <div class="noter-txt mt5">
-                                                        <p>资料下载不了</p>
-                                                    </div>
-                                                    <div class="of mt5">
-                                                        <span class="fr"><font class="fsize12 c-999 ml5">2018/08/10 10:01</font></span> <span class="fl"> <a class="noter-dy vam" title="回复" href="javascript: void(0)" onclick="queryCommentReply('1348')">
-										<em class="icon18">&nbsp;</em>(<span class="replyCount1348">0</span>)
-									</a> <tt title="赞一下" class="noter-zan vam ml10" onclick="addPraise('1348',4)">
-										<em class="icon18">&nbsp;</em>(<span class="addPraise1348_4 praiseCount">1</span>)
-									</tt>
-								</span>
-                                                    </div>
-                                                    <div class="n-reply">
-                                                        <section class="n-reply-wrap">
-                                                            <fieldset>
-                                                                <textarea name="" class="commentReplyMsgContent1348"></textarea>
-                                                            </fieldset>
-                                                            <p class="of mt5 tar pl10 pr10">
-                                                                <span class="fl"><tt class="c-red commentReplyMsg1348"></tt></span>
-                                                                <a onclick="addCommentReply('1348')" class="lh-reply-btn" title="回复" href="javascript: void(0)">回复</a>
-                                                            </p>
-                                                        </section>
-                                                        <div class="mt10 pl10 pr10 pb10 commentReply1348"></div>
-                                                    </div> <!-- /回复盒子 -->
-                                                </li>
-                                                <li>
-                                                    <aside class="noter-pic">
-                                                        <img width="50" height="50" class="picImg" src="http://www.itmayiedu.com/static/inxweb/img/avatar-boy.gif">
-                                                    </aside>
-                                                    <div class="of">
-								<span class="fl">
-								<font class="fsize12 c-blue">
-									π</font>
-								<font class="fsize12 c-999 ml5">评论：</font></span>
-                                                    </div>
-                                                    <div class="noter-txt mt5">
-                                                        <p>很骚</p>
-                                                    </div>
-                                                    <div class="of mt5">
-                                                        <span class="fr"><font class="fsize12 c-999 ml5">2018/08/09 11:02</font></span> <span class="fl"> <a class="noter-dy vam" title="回复" href="javascript: void(0)" onclick="queryCommentReply('1347')">
-										<em class="icon18">&nbsp;</em>(<span class="replyCount1347">2</span>)
-									</a> <tt title="赞一下" class="noter-zan vam ml10" onclick="addPraise('1347',4)">
-										<em class="icon18">&nbsp;</em>(<span class="addPraise1347_4 praiseCount">2</span>)
-									</tt>
-								</span>
-                                                    </div>
-                                                    <div class="n-reply">
-                                                        <section class="n-reply-wrap">
-                                                            <fieldset>
-                                                                <textarea name="" class="commentReplyMsgContent1347"></textarea>
-                                                            </fieldset>
-                                                            <p class="of mt5 tar pl10 pr10">
-                                                                <span class="fl"><tt class="c-red commentReplyMsg1347"></tt></span>
-                                                                <a onclick="addCommentReply('1347')" class="lh-reply-btn" title="回复" href="javascript: void(0)">回复</a>
-                                                            </p>
-                                                        </section>
-                                                        <div class="mt10 pl10 pr10 pb10 commentReply1347"></div>
-                                                    </div> <!-- /回复盒子 -->
-                                                </li>
-                                                <li>
-                                                    <aside class="noter-pic">
-                                                        <img width="50" height="50" class="picImg" src="http://www.itmayiedu.com/images/upload/customer/20180628/1530156002920.jpg">
-                                                    </aside>
-                                                    <div class="of">
-								<span class="fl">
-								<font class="fsize12 c-blue">
-									π</font>
-								<font class="fsize12 c-999 ml5">评论：</font></span>
-                                                    </div>
-                                                    <div class="noter-txt mt5">
-                                                        <p>很骚</p>
-                                                    </div>
-                                                    <div class="of mt5">
-                                                        <span class="fr"><font class="fsize12 c-999 ml5">2018/08/08 17:39</font></span> <span class="fl"> <a class="noter-dy vam" title="回复" href="javascript: void(0)" onclick="queryCommentReply('1344')">
-										<em class="icon18">&nbsp;</em>(<span class="replyCount1344">0</span>)
-									</a> <tt title="赞一下" class="noter-zan vam ml10" onclick="addPraise('1344',4)">
-										<em class="icon18">&nbsp;</em>(<span class="addPraise1344_4 praiseCount">3</span>)
-									</tt>
-								</span>
-                                                    </div>
-                                                    <div class="n-reply">
-                                                        <section class="n-reply-wrap">
-                                                            <fieldset>
-                                                                <textarea name="" class="commentReplyMsgContent1344"></textarea>
-                                                            </fieldset>
-                                                            <p class="of mt5 tar pl10 pr10">
-                                                                <span class="fl"><tt class="c-red commentReplyMsg1344"></tt></span>
-                                                                <a onclick="addCommentReply('1344')" class="lh-reply-btn" title="回复" href="javascript: void(0)">回复</a>
-                                                            </p>
-                                                        </section>
-                                                        <div class="mt10 pl10 pr10 pb10 commentReply1344"></div>
-                                                    </div> <!-- /回复盒子 -->
-                                                </li>
+                                                <span id="pinlunspan"></span>
                                             </ul>
                                         </section>
                                     </section>
-                                    <!-- 公共分页 开始 -->
-
-                                    <div class="paging">
-                                        <a href="javascript:goPageAjax(1);" title="">首</a>
-                                        <a id="backpage" class="undisable" href="javascript:void(0)" title="">&lt;</a>
-                                        <a href="javascript:void(0)" title="" class="current undisable">1</a><a id="nextpage" href="javascript:void(0)" title="" class="undisable">&gt;</a>
-                                        <a href="javascript:goPageAjax(1);" title="">末</a>
-                                        <div class="clear"></div>
-                                    </div>
-
-
                                 </div>
                                 </div>
                             </article>
                         </div>
                     </section>
                 </article>
-                <aside class="fl col-3">
-                    <div class="i-box">
-                        <div>
-                            <section class="c-infor-tabTitle c-tab-title">
-                                <a title=""  href="javascript:void(0)">主讲讲师</a>
-                            </section>
-                            <section class="stud-act-list">
-                            </section>
-                        </div>
-                    </div>
-                    <div class="i-box mt20">
-                        <div>
-                            <section class="c-infor-tabTitle c-tab-title">
-                                <a title="" href="javascript:void(0)">猜你想学</a>
-                            </section>
-                            <section class="no-data-wrap">
-                                <em class="icon30 no-data-ico">&nbsp;</em> <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在整理中...</span>
-                            </section>
-                        </div>
-                    </div>
-                </aside>
                 <div class="clear"></div>
             </div>
         </section>
@@ -496,7 +323,8 @@
             </div>
         </section>
     </footer>
-<input type="hidden" value="${kechengid}" id="wchenkechengid">
+    <input type="hidden" value="${kechengid}" id="wchenkechengid">
+    <input type="hidden" value="${memberstatus}" id="wchenmemberstatus">
     <section style="color: #666; position: absolute; left: 50%; bottom: 20px; z-index: 7; margin-left: -80px;">
         <span>Powered by</span><a style="margin-left: 2px; color: #666;" title="IT蚂蚁课堂">蚂蚁课堂</a>
 
@@ -525,10 +353,9 @@
                                 "                        </h2>\n" +
                                 "                        <section class=\"c-attr-jg\">\n" +
                                 "                            <span class=\"c-fff\">价格：</span><big class=\"c-yellow\">"+this.kechengprice+"</big>\n" +
-                                "                            <span class=\"c-ccc ml10\">原价：<s>￥0.00</s></span>\n" +
                                 "                        </section>\n" +
                                 "                        <section class='c-attr-mt c-attr-undis'>\n" +
-                                "                            <span class='c-fff fsize14'>主讲： </span>\n" +
+                                "                            <span class='c-fff fsize14'>主讲： "+this.jiangshi+"("+this.jssf+")</span>\n" +
                                 "                        </section>\n" +
                                 "                        <section class='c-attr-mt c-attr-time'>\n" +
                                 "                            <a href='https://jq.qq.com/?_wv=1027&amp;k=5XALLm4' title='蚂蚁课堂在线咨询' target='_blank' class='comm-btn c-btn-3'>在线咨询</a>\n" +
@@ -551,7 +378,7 @@
 
                         var spansan = "";
                         $(list.zjlist).each(function(){
-                            spansan+="<li class='lh-menu-stair'><ul class='lh-menu-ol no-parent-node'><li class='lh-menu-second'><a style='color: red' title='' onclick='qiehuanshipin(\""+this.zhangjieid+"\")' > <span class='fr'></span><em class='lh-menu-i-2 icon14 mr5'>&nbsp;</em>"+this.zhangjiename+"<span> </span></a></li></ul></li>"
+                            spansan+="<li class='lh-menu-stair'><ul class='lh-menu-ol no-parent-node'><li class='lh-menu-second'><a style='color: red' title='' onclick='qiehuanshipin(\""+this.zhangjieid+"\",\""+this.shoufeistatus+"\")' > <span class='fr'></span><em class='lh-menu-i-2 icon14 mr5'>&nbsp;</em><font color='black'>"+this.zhangjiename+"</font> "+this.shoufeistatus+"<span></span></a></li></ul></li>"
                         });
                         $("#ceshiid").html(spansan);
 
@@ -577,27 +404,88 @@
 
                 })
 
-            });
-
-            function qiehuanshipin(zhanjieid){
                 $.ajax({
-                    url:"<%=request.getContextPath() %>/liushun/selectzhangjieorid",
+                    url:"<%=request.getContextPath() %>/wchencontroller/selectkctopl",
                     type:"post",
-                    data:{zhanjieid:zhanjieid},
-                    success:function(data){
-                     var  spanshow = "<embed width='640' height='357' loop='true' autostart='true'  src= '"+data+"'> "
-                        $("#shipinshow").html(spanshow);
+                    data:{kcid:wchenkcdi},
+                    success:function(list){
+                        var pinlinspanshow = "";
+                        $(list).each(function(){
+                            pinlinspanshow+="<li><aside class='noter-pic'><img width='50' height='50' class='picImg' src='"+this.zhaopian+"'></aside><div class='of'><span class='fl'><font class='fsize12 c-blue'>"+this.userid+"</font><font class='fsize12 c-999 ml5'>评论：</font></span></div><div class='noter-txt mt5'><p>"+this.pinlun+"</p></div><div class='of mt5'><span class='fr'><font class='fsize12 c-999 ml5'>"+this.getdate+"</font></span></div></li>";
+                        });
+                        $("#pinlunspan").html(pinlinspanshow);
                     }
 
                 })
+
+            });
+
+            function qiehuanshipin(zhanjieid,zjsfzt){
+                //获取会员状态
+                var  wchenmemberstatus = $("#wchenmemberstatus").val();
+                //如果用户是会员的话可以看所有视频
+                if(wchenmemberstatus=="1"){
+                    $.ajax({
+                        url:"<%=request.getContextPath() %>/liushun/selectzhangjieorid",
+                        type:"post",
+                        data:{zhanjieid:zhanjieid},
+                        success:function(data){
+                            var  spanshow = "<embed width='640' height='357' loop='true' autostart='true'  src= '"+data+"'> "
+                            $("#shipinshow").html(spanshow);
+                        }
+                    })
+                }else if(wchenmemberstatus=="2"&&zjsfzt==""){
+                    $.ajax({
+                        url:"<%=request.getContextPath() %>/liushun/selectzhangjieorid",
+                        type:"post",
+                        data:{zhanjieid:zhanjieid},
+                        success:function(data){
+                            var  spanshow = "<embed width='640' height='357' loop='true' autostart='true'  src= '"+data+"'> "
+                            $("#shipinshow").html(spanshow);
+                        }
+                    })
+                }else{
+                    alert("该视频属于会员才能观看,请您充值会员.")
+                }
+
+
+
+
+
+            }
+            function addpinlunmogo(){
+                var wchenkcdi = $("#wchenkechengid").val();
+                var juzito = $("#commentContent").val();
+                if(juzito == ""){
+                     alert("请输入您要评论的内容")
+                }else{
+                    $.ajax({
+                        url:"<%=request.getContextPath() %>/wchencontroller/addkctopinlun",
+                        type:"post",
+                        data:{kcid:wchenkcdi,juzito:juzito},
+                        success:function(data){
+                            alert(data)
+                            $.ajax({
+                                url:"<%=request.getContextPath() %>/wchencontroller/selectkctopl",
+                                type:"post",
+                                data:{kcid:wchenkcdi},
+                                success:function(list){
+                                    var pinlinspanshow = "";
+                                    $(list).each(function(){
+                                        pinlinspanshow+="<li><aside class='noter-pic'><img width='50' height='50' class='picImg' src='"+this.zhaopian+"'></aside><div class='of'><span class='fl'><font class='fsize12 c-blue'>"+this.userid+"</font><font class='fsize12 c-999 ml5'>评论：</font></span></div><div class='noter-txt mt5'><p>"+this.pinlun+"</p></div><div class='of mt5'><span class='fr'><font class='fsize12 c-999 ml5'>"+this.getdate+"</font></span></div></li>";
+                                    });
+                                    $("#pinlunspan").html(pinlinspanshow);
+                                    $("#commentContent").val("");
+
+                                }
+
+                            })
+                        }
+
+                    })
+                }
             }
         </script>
 
     </section>
-    <!-- 公共底引入 -->
-</div><iframe name="submit" style="position: absolute;"></iframe><form action="http://log.cdn.letvcloud.com/sdk/epl" method="post" target="submit" style="display: none;"><textarea name="ver"></textarea><textarea name="uuid"></textarea><textarea name="ec"></textarea><textarea name="p3"></textarea><textarea name="cvid"></textarea><textarea name="vtyp"></textarea><textarea name="mtyp"></textarea><textarea name="cuid"></textarea><textarea name="leid"></textarea><textarea name="pver"></textarea><textarea name="type"></textarea><textarea name="logcontent"></textarea></form>
 
-<!-- 统计代码 -->
-
-
-<section style="color: #666;position:absolute;left:50%;bottom:20px;z-index:7;margin-left:-80px;"><span>Powered by</span><a href="http://www.inxedu.com" target="_blank" title="因酷教育软件" style="margin-left: 2px;color: #666;">因酷教育软件</a></section><div class="daodream-container daodream-reset" id="daodream-container"> <div class="daodream-launcher daodream-launcher-enabled daodream-launcher-active" id="daodream-launcher" style="bottom: 20px; right: 20px;"><div class="daodream-launcher-button daodream-launcher-maximized daodream-launcher-with-initials" style="background-color: rgb(56, 144, 255); background-image: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PGRlZnM+PHN0eWxlPi5jbHMtMntmaWxsOiNmZmY7ZmlsbC1ydWxlOmV2ZW5vZGQ7b3BhY2l0eTouOH08L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00NS41IDI3QzU3LjkzIDI3IDY4IDM1LjE1MiA2OCA0NS4yMDhTNTcuOTMgNjMuNDE3IDQ1LjUgNjMuNDE3YTI4LjAzMSAyOC4wMzEgMCAwIDEtMy41MS0uMjIxYy00LjgzIDQuODE0LTEwLjQxIDUuNjc3LTE1Ljk5IDUuOHYtMS4xNzhjMy4wMS0xLjQ3IDUuNDQtNC4xNDcgNS40NC03LjIwNmE4LjY2MyA4LjY2MyAwIDAgMC0uMS0xLjI1NkMyNi4yNSA1Ni4wMTcgMjMgNTAuOTE5IDIzIDQ1LjIwNCAyMyAzNS4xNTIgMzMuMDcgMjcgNDUuNSAyN3ptMjQuMTkgNDAuODEzQTcuMDE1IDcuMDE1IDAgMCAwIDc0IDczLjk5Vjc1Yy00LjgzLS4xMDktOS4yNy0uODQ5LTEzLjQ2LTQuOTc1YTI0LjUxNyAyNC41MTcgMCAwIDEtMy4wNC4xOSAyMi43IDIyLjcgMCAwIDEtMTEuODktMy4yMzYgMjguODE1IDI4LjgxNSAwIDAgMCAxOC4wNC02LjEyNiAyMS45NjggMjEuOTY4IDAgMCAwIDUuNzQtNi45MDcgMTguNzE4IDE4LjcxOCAwIDAgMCAyLjE3LTguNzM4cTAtLjczNC0uMDYtMS40NjFhMTQuMTExIDE0LjExMSAwIDAgMSA1LjUgMTAuODZjMCA0LjktMi44MiA5LjI2OS03LjIzIDEyLjEzYTcuNjIyIDcuNjIyIDAgMCAwLS4wOCAxLjA3NnoiLz48L3N2Zz4=&quot;), linear-gradient(rgba(66, 150, 255, 0.8) 0%, rgba(10, 109, 235, 0.8) 100%);"></div><div class="daodream-launcher-badge">0</div><div class="daodream-launcher-preview"><div class="daodream-launcher-preview-header"></div><div class="daodream-launcher-preview-body"></div><div class="daodream-launcher-preview-caret"></div><div class="daodream-launcher-preview-close"></div></div><div class="daodream-launcher-hovercard" style="display: none;"><div class="daodream-launcher-hovercard-welcome"><div class="daodream-launcher-hovercard-admins"></div><div class="daodream-launcher-hovercard-text"><div class="daodream-launcher-hovercard-app-name"> Team</div><div class="daodream-launcher-hovercard-welcome-text">Ask us anything. We'd love to hear what brought you to daodream!</div></div></div><div class="daodream-launcher-hovercard-textarea"><textarea placeholder="开始一个对话…"></textarea></div></div></div> <div class="daodream-messenger" id="daodream-messenger"> <div class="daodream-sheet daodream-conversation daodream-emoji-support" style="height: 100%;"> <div> <div slot="sheet-header" class="daodream-sheet-header"><a class="daodream-sheet-header-button daodream-sheet-header-conversations-button"><div class="daodream-sheet-header-button-icon"></div><div class="daodream-unread-counter">0</div></a><div class="daodream-sheet-header-title-container"><b class="daodream-sheet-header-title">每特学院</b></div><div class="daodream-sheet-header-generic-title">新消息</div><a class="daodream-sheet-header-button daodream-sheet-header-close-button"><div class="daodream-sheet-header-button-icon"></div></a></div> </div> <div slot="sheet-body" class="daodream-sheet-body"><div class="daodream-sheet-spinner"></div></div> <div slot="sheet-content" class="daodream-sheet-content" style="bottom: 80px;"><div class="daodream-sheet-content-container"><div class="daodream-conversation-parts-container"><div class="daodream-conversation-parts"></div></div></div><div></div></div> <div> <div slot="sheet-footer" class="daodream-composer-container"><form class="daodream-composer" id="daodream-composer" method="POST"><div class="daodream-composer-upload-error">最大上传文档大小：40MB</div><div class="daodream-composer-textarea-container"><input class="daodream-composer-send-button" type="submit" value="发送" style="display: none;"><div class="daodream-composer-emoji-selector-container"><div class="daodream-emoji-selector" style="display: none;"><div class="daodream-emoji-selector-panel-small"><span class="daodream-emoji-icon" title=":-)"><img class="emoji" draggable="false" alt="😄" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f604.png"></span> <span class="daodream-emoji-icon" title=":-D"><img class="emoji" draggable="false" alt="😃" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f603.png"></span> <span class="daodream-emoji-icon" title=";-)"><img class="emoji" draggable="false" alt="😉" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f609.png"></span> <span class="daodream-emoji-icon" title="}-)"><img class="emoji" draggable="false" alt="👿" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f47f.png"></span> <span class="daodream-emoji-icon" title=":-O"><img class="emoji" draggable="false" alt="😮" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f62e.png"></span> <span class="daodream-emoji-icon" title=":-\"><img class="emoji" draggable="false" alt="😕" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f615.png"></span> <span class="daodream-emoji-icon" title="X-("><img class="emoji" draggable="false" alt="😲" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f632.png"></span> <span class="daodream-emoji-icon" title=":-("><img class="emoji" draggable="false" alt="😩" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f629.png"></span> <span class="daodream-emoji-icon" title="B-)"><img class="emoji" draggable="false" alt="😎" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f60e.png"></span> <span class="daodream-emoji-icon" title=":-P"><img class="emoji" draggable="false" alt="😛" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f61b.png"></span> <span class="daodream-emoji-icon" title=":-@"><img class="emoji" draggable="false" alt="😠" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f620.png"></span> <span class="daodream-emoji-icon" title=":-|"><img class="emoji" draggable="false" alt="😐" src="https://dn-daocom-resource.qbox.me/gemoji/images/emoji/unicode/1f610.png"></span></div></div></div><div class="daodream-composer-textarea"><span class="daodream-composer-action-button daodream-composer-emoji-button" title="插入表情符号" style="display: inline;"></span> <span class="daodream-composer-action-button daodream-composer-upload-button" title="发送附件" style="display: inline;"></span><pre><span></span><br></pre><textarea placeholder="写信息 回车发送"></textarea></div></div><div class="daodream-composer-press-enter-to-send" style="height: auto; display: none;">按Enter发送</div><div class="daodream-powered-by"><a target="_blank" href="http://blog.daovoice.io/daovocie_manhua/?utm_source=每特学院&amp;utm_campaign=39_campaign&amp;utm_medium=daovoice_widget&amp;utm_term=footer_link&amp;utm_content=one_min"><i></i> <span>一分钟了解&nbsp;<u>DaoVoice</u>&nbsp;</span></a></div></form></div> </div> </div> <div class="daodream-sheet daodream-conversations-empty daodream-conversations daodream-new-message-enabled" style="height: 100%;"> <div> <div slot="sheet-header" class="daodream-sheet-header"><div class="daodream-sheet-header-title-container"><b class="daodream-sheet-header-title">每特学院</b></div><a class="daodream-sheet-header-button daodream-sheet-header-close-button"><div class="daodream-sheet-header-button-icon"></div></a></div> </div> <div slot="sheet-body" class="daodream-sheet-body"><div class="daodream-sheet-spinner"></div></div> <div slot="sheet-content" class="daodream-sheet-content daodream-conversations-content"><div class="daodream-sheet-content-container"><div class="daodream-conversations-items"></div><div class="daodream-conversations-spinner"></div></div><div class="daodream-no-conversations"><div class="daodream-no-conversations-icon"></div>无对话</div></div> <div> <div slot="sheet-footer" class="daodream-sheet-footer daodream-conversations-footer"><a class="daodream-conversations-new-conversation-button"><span class="daodream-conversations-new-conversation-button-content"><i class="daodream-conversations-new-conversation-button-icon"></i>新信息</span></a></div> </div> </div> <div class="daodream-sheet daodream-sheet-loading" id="daodream-loading"> <div class="daodream-sheet-header"> <div class="daodream-sheet-header-title-container"> <b class="daodream-sheet-header-title">加载中...</b> </div> <a class="daodream-sheet-header-button daodream-sheet-header-close-button"> <div class="daodream-sheet-header-button-icon"></div> </a> </div> <div class="daodream-sheet-body"> <div class="daodream-sheet-spinner"></div> </div> <div class="daodream-sheet-content"></div> </div> </div>  </div></body></html>

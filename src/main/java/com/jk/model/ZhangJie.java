@@ -1,5 +1,7 @@
 package com.jk.model;
 
+import java.util.Date;
+
 public class ZhangJie {
           private String  zhangjieid             ;//章节id
 
@@ -8,6 +10,8 @@ public class ZhangJie {
           private String  shipin                 ;//   视频
 
           private String  shoufeistatus          ;//    收费状态
+
+          private Date  adddate;                   //新增时间
 
           //业务字段
           private String kecheid;
@@ -51,6 +55,14 @@ public class ZhangJie {
 
     public void setKecheid(String kecheid) {
         this.kecheid = kecheid;
+    }
+
+    public Date getAdddate() {
+        return adddate;
+    }
+
+    public void setAdddate(Date adddate) {
+        this.adddate = adddate;
     }
 
     @Override

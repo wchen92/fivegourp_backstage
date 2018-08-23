@@ -41,6 +41,34 @@ public class KeCheng {
 
     private List<ZhangJie> zjlist;//存入章节信息集合
 
+    private String jiangshi;
+    private String jssf;
+
+    private String banxing;
+
+    public String getBanxing() {
+        return banxing;
+    }
+
+    public void setBanxing(String banxing) {
+        this.banxing = banxing;
+    }
+
+    public String getJiangshi() {
+        return jiangshi;
+    }
+
+    public void setJiangshi(String jiangshi) {
+        this.jiangshi = jiangshi;
+    }
+
+    public String getJssf() {
+        return jssf;
+    }
+
+    public void setJssf(String jssf) {
+        this.jssf = jssf;
+    }
 
     public long getKsshu() {
         return ksshu;
@@ -149,10 +177,15 @@ public class KeCheng {
                 ", kechengjieshao='" + kechengjieshao + '\'' +
                 ", huiyuanstatus='" + huiyuanstatus + '\'' +
                 ", shenhestatus='" + shenhestatus + '\'' +
+                ", page=" + page +
+                ", rows=" + rows +
                 ", huiyuan='" + huiyuan + '\'' +
                 ", liulanliang='" + liulanliang + '\'' +
-                ", ksshu='" + ksshu + '\'' +
+                ", ksshu=" + ksshu +
                 ", zjlist=" + zjlist +
+                ", jiangshi='" + jiangshi + '\'' +
+                ", jssf='" + jssf + '\'' +
+                ", banxing='" + banxing + '\'' +
                 '}';
     }
 }

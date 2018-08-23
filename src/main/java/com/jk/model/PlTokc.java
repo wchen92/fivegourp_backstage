@@ -1,5 +1,7 @@
 package com.jk.model;
 
+import java.util.Date;
+
 /**
  * @ 创建者：王晨.
  * @ 创建时间：2018/8/21 17:53
@@ -11,6 +13,33 @@ public class PlTokc {
     private String kcid;
     private String pinlun;
     private String userid;
+    private Date time;
+    private String zhaopian;
+    private String getdate;
+
+    public String getGetdate() {
+        return getdate;
+    }
+
+    public void setGetdate(String getdate) {
+        this.getdate = getdate;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String getZhaopian() {
+        return zhaopian;
+    }
+
+    public void setZhaopian(String zhaopian) {
+        this.zhaopian = zhaopian;
+    }
 
     public String getUserid() {
         return userid;
@@ -51,6 +80,8 @@ public class PlTokc {
                 ", kcid='" + kcid + '\'' +
                 ", pinlun='" + pinlun + '\'' +
                 ", userid='" + userid + '\'' +
+                ", time=" + time +
+                ", zhaopian='" + zhaopian + '\'' +
                 '}';
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ 创建者：王晨.
@@ -52,14 +53,19 @@ public class LshunIndexController {
     }
 
     @RequestMapping("TestYeMian")
-    public  String TestYeMian(){
-
+    public  String TestYeMian(String allsolrselect,Model aa,String banxingname,String jiangshiname){
+     aa.addAttribute("allsolrselect",allsolrselect);
+        aa.addAttribute("banxingname",banxingname);
+        aa.addAttribute("jiangshiname",jiangshiname);
         return  "lshun/test2";
     }
 
     @RequestMapping("Jump1")
-    public  String Jump1(String kechengid,Model aa){
-
+    public  String Jump1(String kechengid, Model aa, HttpServletRequest request){
+        String userid = "548d0af1-b4ab-4862-85b8-022f3dba9cee";
+        String memberstatus = LshunService.selectmemberstatus(userid);
+        aa.addAttribute("memberstatus",memberstatus);
+        LshunService.addliulanliang(kechengid);
         aa.addAttribute("kechengid",kechengid);
         return  "lshun/Jump1";
     }
