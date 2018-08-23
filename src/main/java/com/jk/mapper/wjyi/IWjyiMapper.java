@@ -280,4 +280,32 @@ public interface IWjyiMapper {
     //指派任务 状态改为 完成
     @Update("update renwu  set wanchengstatus=1 , chulirenid=#{usid} where renwuid= #{rwid} ")
     void updateZhiWanchengstatus(@Param("rwid") String rwid, @Param("usid")String usid);
+
+    //前台用户登录
+    @Select(" SELECT    *   from   qiantaiyonghu   t  where   yonghuname  =#{yonghuname}  ")
+    QianTaiYongHu queryUserByName(@Param("yonghuname") String yonghuname);
+
+    //用户名验重
+    @Select("SELECT * FROM qiantaiyonghu where yonghuname=#{yonghuname}")
+    QianTaiYongHu queryYongHuByName(@Param("yonghuname")String yonghuname);
+
+    //用户注册
+    @Insert(" insert into qiantaiyonghu values(#{yonghuid},#{yonghunicheng},#{yonghuname},#{yonghusex},#{yonghunianling},#{yonghutouxiang},#{yonghumima},#{yonghushoujihao},#{yonghuyouxiang},#{shifouhuiyuan})")
+    void saveYongHu(QianTaiYongHu yonghu);
+
+
+    //前台用户信息修改
+    @Update("update qiantaiyonghu set yonghuid=#{yonghuid},yonghunicheng=#{yonghunicheng},yonghuname=#{yonghuname},yonghusex=#{yonghusex},yonghunianling=#{yonghunianling},yonghutouxiang=#{yonghutouxiang},yonghushoujihao=#{yonghushoujihao},yonghuyouxiang=#{yonghuyouxiang} where yonghuid=#{yonghuid}")
+    void updatexinxi(QianTaiYongHu qiantaiyonghu);
+
+    //前台用户信息查询
+    @Select("SELECT * from qiantaiyonghu where yonghuid=#{us}")
+    List<QianTaiYongHu> queryAllxinxi(@Param("us")String us);
+
+    //前台用户密码修改
+    @Update("update qiantaiyonghu set yonghuid=#{yonghuid},yonghumima=#{yonghumima} where yonghuid=#{yonghuid}")
+    void updatemima(QianTaiYongHu qiantaiyonghu);
+
+    @Select(" select * from qiantaiyonghu where yonghuid = #{yonghuid}")
+    QianTaiYongHu wchenselectoftouser(@Param("yonghuid") String yonghuid);
 }

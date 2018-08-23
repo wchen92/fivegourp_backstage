@@ -1,6 +1,7 @@
 package com.jk.controller.wjyi.index;
 
 import com.jk.model.Power;
+import com.jk.model.QianTaiYongHu;
 import com.jk.model.Role;
 import com.jk.model.User;
 import com.jk.service.wjyi.IWjyiService;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @ 创建者：王晨.
@@ -22,6 +25,19 @@ public class WjyiIndexController {
 
     @Resource
     private IWjyiService WjyiService;
+
+
+    //前台用户登录
+    @RequestMapping("comeTologin")
+    public String comeTologin(){
+        return "wjyi/yonghulogin";
+    }
+
+    //前台用户注册
+    @RequestMapping("comeToZhuce")
+    public String comeToZhuce(){
+        return "wjyi/zhuce";
+    }
 
     /**
      * 进入主页面展示权限树
@@ -163,4 +179,29 @@ public class WjyiIndexController {
     public String comeToPFabuRenwu(){
         return "wjyi/renwuFabu";
     }
+
+    //查看前台跳页面
+    @RequestMapping("comeToText")
+    public String comeToText(){
+        return "wjyi/text";
+    }
+
+
+
+    //前台页面
+   @RequestMapping("queryAllxinxi")
+    public String queryAllxinxi( Model model,HttpServletRequest ree) {
+       QianTaiYongHu user = (QianTaiYongHu) ree.getSession().getAttribute("loginYonghu");
+       QianTaiYongHu qiantai = WjyiService.wchenselectoftouser(user.getYonghuid());
+      /* String userid ="548d0af1-b4ab-4862-85b8-022f3dba9cee";
+       QianTaiYongHu qiantai = WjyiService.wchenselectoftouser(userid);*/
+       model.addAttribute("qiantai",qiantai);
+       return "wjyi/text";
+   }
+
+    @RequestMapping("comeToZhu")
+    public String comeToZhu(){
+        return "wjyi/zhuce";
+    }
+
 }
