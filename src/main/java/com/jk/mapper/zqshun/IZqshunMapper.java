@@ -100,4 +100,7 @@ public interface IZqshunMapper {
     //过滤敏感词
     @Select(" select * from minganci")
     List<MinGanCi> mingan();
+
+    @Select(" select qt.shifouhuiyuan from qiantaiyonghu qt where qt.yonghuid=#{id} ")
+    Integer selecthy(@Param("id") String id);
 }

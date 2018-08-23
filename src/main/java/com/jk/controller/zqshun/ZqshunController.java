@@ -1,9 +1,6 @@
 package com.jk.controller.zqshun;
 
-import com.jk.model.BanXing;
-import com.jk.model.KeCheng;
-import com.jk.model.MinGanCi;
-import com.jk.model.ZhangJie;
+import com.jk.model.*;
 import com.jk.service.zqshun.IZqshunService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -167,6 +164,15 @@ public class ZqshunController {
         String str = "小明死了母亲，大傻逼";
         ZqshunService.mingan(str);
         return "1";
+    }
+
+    @RequestMapping("selecthy")
+    public Integer selecthy(String id){
+        Integer user=2;
+        if(id!=null&&!"".equals(id)){
+             user = ZqshunService.selecthy(id);
+        }
+        return user;
     }
 
 

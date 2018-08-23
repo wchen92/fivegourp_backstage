@@ -32,8 +32,7 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Resource
     private IWchenService WchenService;
 
-    /*@Autowired
-    private MongoTemplate mongoTemplate;*/
+
 
     //班型分页查询
     @Override
@@ -225,6 +224,11 @@ public class ZqshunServiceImpl implements IZqshunService{
 
         String mingan = MinGanUtil.get1ju(str,ZqshunMapper);
         System.out.println(mingan);
+    }
+
+    @Override
+    public Integer selecthy(String id) {
+        return ZqshunMapper.selecthy(id);
     }
 
 

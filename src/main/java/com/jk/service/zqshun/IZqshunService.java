@@ -68,4 +68,6 @@ public interface IZqshunService {
 
     //过滤敏感词
     void mingan(String str);
+
+    Integer selecthy(String id);
 }

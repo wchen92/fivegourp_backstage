@@ -94,4 +94,18 @@ public class ZqsIndexController {
         return "zqshun/kechengandzhangjie";
     }
 
+    //返回会员页面
+    @RequestMapping("huiyuan")
+    public String huiyuan(){
+
+        return "zqshun/huiyuan";
+    }
+
+    //返回充值页面
+    @RequestMapping("chongzhi")
+    public String chongzhi(){
+        return "zqshun/chongzhi";
+    }
+
+
 }
