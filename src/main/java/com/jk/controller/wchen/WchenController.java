@@ -30,8 +30,9 @@ public class WchenController {
         return WchenService.selectlog(page,rows);
     }
     @RequestMapping("addkctopinlun")
-    public String addkctopinlun(String kcid, String juzito){
-         String userid = "548d0af1-b4ab-4862-85b8-022f3dba9cee";
+    public String addkctopinlun(String kcid, String juzito,HttpServletRequest request){
+        QianTaiYongHu yh = (QianTaiYongHu) request.getSession().getAttribute("loginYonghu");
+         String userid = yh.getYonghuid();
         String ju = MinGanUtil.get1ju(juzito, ZqshunMapper);
         WchenService.addkctopinlun(kcid,ju,userid);
         return  "评论成功";
@@ -44,9 +45,8 @@ public class WchenController {
     //查询页面头部信息
     @RequestMapping("selecttitle")
     public QianTaiYongHu selecttitle(HttpServletRequest request){
-        /*request.getSession().getAttribute("");*/
-        //模拟用户登录id
-        String showuserid = "548d0af1-b4ab-4862-85b8-022f3dba9cee";
+        QianTaiYongHu yh = (QianTaiYongHu) request.getSession().getAttribute("loginYonghu");
+        String showuserid = yh.getYonghuid();
         return WchenService.selecttitle(showuserid);
     }
 

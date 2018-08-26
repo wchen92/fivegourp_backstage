@@ -1,6 +1,7 @@
 package com.jk.controller.lshun.index;
 
 import com.jk.model.GuangGaoBiao;
+import com.jk.model.QianTaiYongHu;
 import com.jk.service.lshun.ILshunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,7 +63,8 @@ public class LshunIndexController {
 
     @RequestMapping("Jump1")
     public  String Jump1(String kechengid, Model aa, HttpServletRequest request){
-        String userid = "548d0af1-b4ab-4862-85b8-022f3dba9cee";
+        QianTaiYongHu yh = (QianTaiYongHu) request.getSession().getAttribute("loginYonghu");
+        String userid = yh.getYonghuid();
         String memberstatus = LshunService.selectmemberstatus(userid);
         aa.addAttribute("memberstatus",memberstatus);
         LshunService.addliulanliang(kechengid);

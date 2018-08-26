@@ -54,32 +54,39 @@
 
 <div class="in-wrap">
     <header id="header">
-        <section class="container"><a href="http://cn.mikecrm.com/kz8uPv0" target="_blank"> </a><h1 id="logo"> <a href="http://www.itmayiedu.com/" title=""><img src="http://www.itmayiedu.com/images/upload/websiteLogo/20161107/1478524048493.png" width="100%" alt=""></a></h1><div class="h-r-nsl"> <ul class="nav">
-                <li><a href="/" title="首页">首页</a></li><li><a href="/front/showcoulist" title="课程">课程</a></li>
-                <li><a href="/lc/locaMemberRecharge" title="会员">会员</a></li><li><a href="/questions/list" title="问答">问答</a></li></ul><ul class="h-r-login">
-                <li class="undis" id="no-login"><a href="javascript:lrFun()" title="登录">
-                    <em class="icon18 login-icon">&nbsp;</em><span class="vam ml5">登录</span> </a> | <a href="javascript:lrFun(2)" title="注册"><span class="vam ml5">注册</span> </a>
-                </li>
-                <li class="mr10 undis" id="is-login-one" style="display: list-item;">
-                    <a href="http://www.itmayiedu.com/uc/letter" title="1条未读消息" id="headerMsgCountId"> <em class="icon18 news-icon">&nbsp;</em></a><q class="red-point" style="">&nbsp;</q>
-                </li>
-                <li class="h-r-user undis" id="is-login-two" style="display: list-item;">
-
-                    <a href="<%=request.getContextPath()%>/wjyiiindex/queryAllxinxi" title=""><img src="http://www.itmayiedu.com/static/inxweb/img/avatar-boy.gif" width="30" height="30" class="vam picImg" alt="" onclick="queryAllxinxi()"> </a>
-                    <a href="javascript:void(0)" title="退出" onclick="exit();" class="ml5">退出</a>
-                </li></ul>
-                <aside class="h-r-search"><form action="http://www.itmayiedu.com/front/showcoulist" method="post">
-                        <label class="h-r-s-box"><input type="text" placeholder="输入你想学的课程" name="queryCourse.courseName" value=""><button type="submit" class="s-btn"> <em class="icon18">&nbsp;</em> </button></label></form>
-                </aside></div><aside class="mw-nav-btn"><div class="mw-nav-icon"></div></aside><div class="clear"></div>
+        <section class="container"><a href="http://cn.mikecrm.com/kz8uPv0" target="_blank"> </a>
+            <h1 id="logo" class="current">
+                <a href="<%=request.getContextPath()%>/wchenindexcontroller/gotoshowall" title=""> <img src="https://save0517.oss-cn-beijing.aliyuncs.com/aliyun/jinkelong.png" width="100%" alt="">
+                </a>
+            </h1>
+            <div class="h-r-nsl">
+                  <ul class="nav">
+                      <li><a href="<%=request.getContextPath()%>/wchenindexcontroller/gotoshowall" title="首页">首页</a></li>
+                      <li><a href="<%=request.getContextPath()%>/linshuiindex/TestYeMian" title="课程">课程</a></li>
+                      <li><a href="https://save0517.oss-cn-beijing.aliyuncs.com/aliyun/kecheng.jpg" title="路线" target="_blank">路线</a></li>
+                      <li><a href="<%=request.getContextPath()%>/zqshunindex/huiyuan" title="会员">会员</a></li>
+                      <li><a href="/questions/list" title="问答">问答</a></li>
+                      <li><a href="http://cn.mikecrm.com/kz8uPv0" title="培训" target="_blank">培训</a></li>
+                  </ul>
+                   <ul class="h-r-login">
+                       <li class="h-r-user undis" id="is-login-two" style="display: list-item;">
+                           <span id="wchenindextitel"></span>
+                       </li>
+                  </ul>
+                <aside class="h-r-search">
+                    <label class="h-r-s-box">
+                        <input type="text" placeholder="输入你想学的课程" id="selectsolrgo" value="">
+                        <button type="submit" class="s-btn" onclick="selectsolr()">
+                            <em class="icon18">&nbsp;</em>
+                        </button>
+                    </label>
+                </aside>
+            </div>
+            <aside class="mw-nav-btn"><div class="mw-nav-icon"></div></aside>
+            <div class="clear"></div>
         </section>
     </header>
     <div class="h-mobile-mask"></div>
-    <div class="head-mobile" style="height: 734px;"><div class="head-mobile-box"><nav class="mw-nav"><ul class="clearfix">
-            <li><a href="http://www.itmayiedu.com/" title="首页">首页</a></li>
-            <li><a href="http://www.itmayiedu.com/front/showcoulist" title="课程">课程</a></li>
-            <li><a href="http://www.itmayiedu.com/lc/locaMemberRecharge" title="会员">会员</a></li>
-            <li><a href="http://www.itmayiedu.com/questions/list" title="问答">问答</a></li></ul></nav>
-    </div>
     </div>
 
     <div class="bg-fa of">
@@ -112,7 +119,7 @@
                                     <input type="hidden"  name="shifouhuiyuan" value="2"  readonly="readonly" disabled="disabled"
                                           <%-- <c:if test="${qiantai.shifouhuiyuan==2 }">checked</c:if>--%>
                                     >您不是会员
-                                </span>&nbsp;&nbsp;<a href="/lc/locaMemberRecharge" style="color: #12c287">点击我充值会员</a></c:if>
+                                </span>&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/zqshunindex/huiyuan" style="color: #12c287">点击我充值会员</a></c:if>
                                 </li>
                             <li>
                                 <label class="u-a-title"> <span class="fsize16 c-999">邮&nbsp;&nbsp;箱</span> </label>
@@ -209,6 +216,20 @@
                     $("#hidden-photos").val(data);  //同上
                 }
             });
+
+
+            //头部用户信息
+            $.ajax({
+                url:"<%=request.getContextPath()%>/wchencontroller/selecttitle",
+                type:"post",
+                async:true,
+                success: function(list){
+                    var spanwchenindextitel = "";
+                    spanwchenindextitel = "<a href='<%=request.getContextPath()%>/wjyiiindex/queryAllxinxi' title=''> <img src='"+list.yonghutouxiang+"' width='30' height='30' class='vam picImg' alt=''></a><a href='javascript:void(0)' title='退出' onclick='exit();' class='ml5'>退出</a>";
+                    $("#wchenindextitel").html(spanwchenindextitel);
+                },
+            });
+
         })
 
         //确认密码
@@ -258,7 +279,11 @@
 
         //图片上传
 
-
+        //头部搜索（solr）
+        function selectsolr(){
+            var getwitei = $("#selectsolrgo").val();
+            location.href="<%=request.getContextPath()%>/linshuiindex/TestYeMian?allsolrselect="+getwitei;
+        }
         </script>
 </section>
 </body>

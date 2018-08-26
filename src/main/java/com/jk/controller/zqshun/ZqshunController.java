@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 /**
  * @ 创建者：王晨.
  * @ 创建时间：2018/8/7 19:28
@@ -167,7 +169,9 @@ public class ZqshunController {
     }
 
     @RequestMapping("selecthy")
-    public Integer selecthy(String id){
+    public Integer selecthy(HttpServletRequest request){
+        QianTaiYongHu yh = (QianTaiYongHu) request.getSession().getAttribute("loginYonghu");
+        String id = yh.getYonghuid();
         Integer user=2;
         if(id!=null&&!"".equals(id)){
              user = ZqshunService.selecthy(id);

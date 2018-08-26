@@ -78,7 +78,7 @@
                 } else if (msg == '1') {
                     alert("密码错误")
                  } else if (msg == '2') {
-                    location.href = "<%=request.getContextPath()%>/wjyiiindex/queryAllxinxi"
+                    location.href = "<%=request.getContextPath()%>/wchenindexcontroller/gotoshowall"
                 }
             }
         })

@@ -44,16 +44,14 @@
                 <a href="<%=request.getContextPath()%>/wchenindexcontroller/gotoshowall" title=""> <img src="https://save0517.oss-cn-beijing.aliyuncs.com/aliyun/jinkelong.png" width="100%" alt="">
                 </a>
             </h1>
-                <ul class="nav">
-                    <li class="current"><a href="<%=request.getContextPath()%>/wchenindexcontroller/gotoshowall" title="首页">首页</a></li>
-                    <li><a href="<%=request.getContextPath()%>/linshuiindex/TestYeMian" title="课程">课程</a></li>
-                    <li><a href="https://save0517.oss-cn-beijing.aliyuncs.com/aliyun/kecheng.jpg" title="路线" target="_blank">路线</a></li>
-                    <li><a href="http://cn.mikecrm.com/kz8uPv0" title="培训" target="_blank">培训</a></li>
-                    <li><a href="/lc/locaMemberRecharge" title="会员">会员</a></li>
-                    <li><a href="/questions/list" title="问答">问答</a></li>
-                    <li><a href="http://bbs.itmayiedu.com" title="社区">社区</a></li>
-                    <li><a href="https://fir.im/mayiketang" title="APP" target="_blank">APP</a></li>
-                </ul>
+            <ul class="nav">
+                <li><a href="<%=request.getContextPath()%>/wchenindexcontroller/gotoshowall" title="首页">首页</a></li>
+                <li><a href="<%=request.getContextPath()%>/linshuiindex/TestYeMian" title="课程">课程</a></li>
+                <li><a href="https://save0517.oss-cn-beijing.aliyuncs.com/aliyun/kecheng.jpg" title="路线" target="_blank">路线</a></li>
+                <li><a href="<%=request.getContextPath()%>/zqshunindex/huiyuan" title="会员">会员</a></li>
+                <li><a href="/questions/list" title="问答">问答</a></li>
+                <li><a href="http://cn.mikecrm.com/kz8uPv0" title="培训" target="_blank">培训</a></li>
+            </ul>
                 <!-- / nav -->
                 <ul class="h-r-login">
                     <li class="h-r-user undis" id="is-login-two" style="display: list-item;">
@@ -169,7 +167,7 @@
             async:true,
             success: function(list){
                 var spanwchenindextitel = "";
-                spanwchenindextitel = "<a href='http://www.itmayiedu.com/uc/index' title=''> <img src='"+list.yonghutouxiang+"' width='30' height='30' class='vam picImg' alt=''></a><a href='javascript:void(0)' title='退出' onclick='exit();' class='ml5'>退出</a>";
+                spanwchenindextitel = "<a href='<%=request.getContextPath()%>/wjyiiindex/queryAllxinxi' title=''> <img src='"+list.yonghutouxiang+"' width='30' height='30' class='vam picImg' alt=''></a><a href='javascript:void(0)' title='退出' onclick='exit();' class='ml5'>退出</a>";
                 $("#wchenindextitel").html(spanwchenindextitel);
             },
         });

@@ -29,12 +29,23 @@
             <a href='http://cn.mikecrm.com/kz8uPv0' target="_blank">
 
             </a>
-            <h1 id="logo">
-                <a href="http://www.itmayiedu.com/" title=""> <img
-                        src="http://www.itmayiedu.com/images/upload/websiteLogo/20161107/1478524048493.png" width="100%"
-                        alt="">
+            <h1 id="logo" class="current">
+                <a href="<%=request.getContextPath()%>/wchenindexcontroller/gotoshowall" title=""> <img src="https://save0517.oss-cn-beijing.aliyuncs.com/aliyun/jinkelong.png" width="100%" alt="">
                 </a>
             </h1>
+            <ul class="nav">
+                <li class="current"><a href="<%=request.getContextPath()%>/wchenindexcontroller/gotoshowall" title="首页">首页</a></li>
+                <li><a href="<%=request.getContextPath()%>/linshuiindex/TestYeMian" title="课程">课程</a></li>
+                <li><a href="https://save0517.oss-cn-beijing.aliyuncs.com/aliyun/kecheng.jpg" title="路线" target="_blank">路线</a></li>
+                <li><a href="http://cn.mikecrm.com/kz8uPv0" title="培训" target="_blank">培训</a></li>
+                <li><a href="<%=request.getContextPath()%>/zqshunindex/huiyuan" title="会员">会员</a></li>
+                <li><a href="/questions/list" title="问答">问答</a></li>
+            </ul>
+            <ul class="h-r-login">
+                <li class="h-r-user undis" id="is-login-two" style="display: list-item;">
+                    <span id="wchenindextitel"></span>
+                </li>
+            </ul>
 
         </section>
     </header>
@@ -99,44 +110,32 @@
     </section>
 </div>
 
-<ul class="h-r-login">
-    <li class="undis" id="no-login"><a href="javascript:lrFun()"
-                                       title="登录"> <em class="icon18 login-icon">&nbsp;</em><span
-            class="vam ml5">登录</span>
-    </a> | <a href="javascript:lrFun(2)" title="注册"> </em><span
-            class="vam ml5">注册</span>
-    </a></li>
-    <li class="mr10 undis" id="is-login-one"><a
-            href="http://www.itmayiedu.com/uc/letter" title="消息" id="headerMsgCountId"> <em
-            class="icon18 news-icon">&nbsp;</em>
-    </a><q class="red-point" style="display: none">&nbsp;</q></li>
-    <li class="h-r-user undis" id="is-login-two"><a
-            href="http://www.itmayiedu.com/uc/index" title=""> <img
-            src="http://www.itmayiedu.com/static/inxweb/img/avatar-boy.gif" width="30"
-            height="30" class="vam picImg" alt=""> <!--<span
-						class="vam disIb" id="userName"></span>-->
-    </a> <a href="javascript:void(0)" title="退出" onclick="exit();"
-            class="ml5">退出</a></li>
-    <!-- /未登录显示第1 li；登录后显示第2，3 li -->
-</ul>
-
 <script type="application/javascript">
 
     $(function(){
-
-        var id ="548d0af1-b4ab-4862-85b8-022f3dba9cee";
             $.ajax({
                 url:"<%=request.getContextPath()%>/zqshun/selecthy",
                 type : "post",
-                data : {id:id},
                 success : function(data){
                         if(data==2){
                             $("#yhid").html('<font style="color: green"  size="5" onclick="denglu()" >非会员,请充值</font>');
                         }else{
-                            $("#yhid").html('<font style="color: green"  size="5">会员用户</font>');
+                            $("#yhid").html('<font style="color: green"  size="5">您已经是尊敬的会员可以尽情观看学习了</font>');
                         }
                 }
             })
+
+
+        $.ajax({
+            url:"<%=request.getContextPath()%>/wchencontroller/selecttitle",
+            type:"post",
+            async:true,
+            success: function(list){
+                var spanwchenindextitel = "";
+                spanwchenindextitel = "<a href='<%=request.getContextPath()%>/wjyiiindex/queryAllxinxi' title=''> <img src='"+list.yonghutouxiang+"' width='30' height='30' class='vam picImg' alt=''></a><a href='javascript:void(0)' title='退出' onclick='exit();' class='ml5'>退出</a>";
+                $("#wchenindextitel").html(spanwchenindextitel);
+            },
+        });
     })
 
     function denglu(){
