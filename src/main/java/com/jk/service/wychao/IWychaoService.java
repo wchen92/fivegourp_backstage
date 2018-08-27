@@ -39,4 +39,17 @@ public interface IWychaoService {
     List<KeCheng> getkeChengList(KeCheng keCheng);
 
     Integer getkechengCount();
+
+
+    List<Dianji> queryShenqing();
+
+
+
+    Integer queryReservationsCount();
+
+    List<GuangGaoBiao> queryguang();
+
+    List<KeCheng> querykeCheng();
+
+    List<GouMaiBiao> queryGouMaiBiao();
 }

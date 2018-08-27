@@ -12,7 +12,7 @@
 
 <body>
 
-<input class="easyui-button width_80 l-btn l-btn-small" type='button' onclick="goumai()" value="购买">
+<input class="easyui-button width_80 l-btn l-btn-small" type='button' onclick="kecheng()" value="导出">
 <div id="container2" style="width: 550px; height: 400px; margin: 0 auto"></div>
 <script language="JavaScript">
 
@@ -24,7 +24,7 @@
     });
     function test134(){
         $.ajax({
-            url: "<%=request.getContextPath()%>/wychao/querygoumai",
+            url: "<%=request.getContextPath()%>/wychao/queryshiji",
             type: "post",
             dataType: "json",
             success: function(result){
@@ -34,24 +34,18 @@
                         type: 'area'
                     };
                     var title = {
-                        text: 'US and USSR nuclear stockpiles'
+                        text: '时间分段课程购买表'
                     };
                     var subtitle = {
-                        text: 'Source: <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">' +
-                        'thebulletin.metapress.com</a>'
+
                     };
                     var xAxis = {
-
-                        allowDecimals: false,
-                        labels: {
-                            formatter: function () {
-                                return this.value; // clean, unformatted number for year
-                            }
-                        }
+                        categories: result.xlist,
+                        crosshair: true
                     };
                     var yAxis = {
                         title: {
-                            text: 'Nuclear weapon states'
+                            text: '购买数'
                         },
                         labels: {
                             formatter: function () {
@@ -60,15 +54,14 @@
                         }
                     };
                     var tooltip = {
-                        pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+
                     };
                     var plotOptions = {
                         area: {
-                            pointStart: 1940,
+                            pointStart: 2018,
                             marker: {
                                 enabled: false,
-                                symbol: 'circle',
-                                radius: 2,
+
                                 states: {
                                     hover: {
                                         enabled: true
@@ -78,7 +71,7 @@
                         }
                     };
                     var series= [{
-                        name: 'USA',
+
                         data: result.ylist,
                     }, ]
 
@@ -98,11 +91,22 @@
 
             }})}
 
-    function goumai(){
 
 
-        location.href= "<%=request.getContextPath()%>/wychao/Excel"
 
+
+    function kecheng() {
+        $.ajax({
+            url: "<%=request.getContextPath()%>/wychao/querykecheng",
+            type: "post",
+            datatype: "json",
+            success: function () {
+                alert("成功");
+            },
+            error: function () {
+                alert("修改失败");
+            }
+        });
     }
 </script>
 </body>

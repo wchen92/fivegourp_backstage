@@ -24,7 +24,7 @@ public class CreateExcel implements Runnable {
 	private IWychaoService WychaoServiceL;
 
 	private SXSSFWorkbook workbook;
-	
+
 	private Dianji dianji;
 
 	@Override
@@ -39,12 +39,12 @@ public class CreateExcel implements Runnable {
 			System.out.println(Thread.currentThread().getName());
 			if (userList.size() > 0) {
 				Sheet sheet = workbook.createSheet("sheet"+Thread.currentThread().getId());
-				Row row = sheet.createRow(0);  
-				Cell cell = row.createCell(0);  
+				Row row = sheet.createRow(0);
+				Cell cell = row.createCell(0);
 				cell.setCellValue("dianjiid");
-				cell = row.createCell(1);  
+				cell = row.createCell(1);
 				cell.setCellValue("kechengid");
-				cell = row.createCell(2);  
+				cell = row.createCell(2);
 				cell.setCellValue("kechengdianjiliang");
 
 				int size = userList.size();
@@ -55,8 +55,8 @@ public class CreateExcel implements Runnable {
 					row.createCell(1).setCellValue(pr.getKechengid());
 					row.createCell(2).setCellValue(pr.getKechengdianjiliang());
 
-					
-					
+
+
 				}
 			}
 		}
@@ -71,5 +71,5 @@ public class CreateExcel implements Runnable {
 		this.workbook = workbook;
 		this.dianji = dianji;
 	}
-	
+
 }

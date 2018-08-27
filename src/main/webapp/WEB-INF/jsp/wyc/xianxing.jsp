@@ -9,8 +9,10 @@
 
 </head>
 
-<input class="easyui-button width_80 l-btn l-btn-small" type='button' onclick="kengcheng()" value="课程">
+
 <body>
+
+<input class="easyui-button width_80 l-btn l-btn-small" type='button'onclick="ggggmai()" value="导出">
 <div id="container3" style="width: 550px; height: 400px; margin: 0 auto"></div>
 
 
@@ -24,19 +26,22 @@
     });
     function test14(){
         $.ajax({
-            url: "<%=request.getContextPath()%>/wychao/querydianji",
+            url: "<%=request.getContextPath()%>/wychao/queryguanggao",
             type: "post",
             dataType: "json",
             success: function(result){
                 $(document).ready(function() {
+
+
                     var title = {
-                        text: '平均购买量'
+                        text: '广告收费'
                     };
                     var subtitle = {
                         text: 'Source: jk.com'
                     };
                     var xAxis = {
-                        date:result.xlist,
+                        categories: result.xlist,
+                        crosshair: true
                     };
                     var yAxis = {
                         title: {
@@ -63,7 +68,7 @@
 
                     var series =  [
                         {
-                            name: '购买量',
+                            name: '广告费',
                             data: result.ylist,
                         },
 
@@ -84,13 +89,22 @@
             }
         })
     }
-    function kengcheng(){
 
 
-        location.href= "<%=request.getContextPath()%>/wychao/kengchengExcel"
-
-
+    function ggggmai() {
+        $.ajax({
+            url: "<%=request.getContextPath()%>/wychao/querygoumaigg",
+            type: "post",
+            datatype: "json",
+            success: function () {
+                alert("成功");
+            },
+            error: function () {
+                alert("修改失败");
+            }
+        });
     }
+
 </script>
 </body>
 </html>

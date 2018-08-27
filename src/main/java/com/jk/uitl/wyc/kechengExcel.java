@@ -60,7 +60,7 @@ public class kechengExcel implements Runnable {
 					row.createCell(4).setCellValue(pr.getKechengphoto());
 					row.createCell(5).setCellValue(pr.getKechengjieshao());
 					row.createCell(6).setCellValue(pr.getHuiyuanstatus());
-					row.createCell(6).setCellValue(pr.getShenhestatus());
+					row.createCell(7).setCellValue(pr.getShenhestatus());
 
 					
 				}

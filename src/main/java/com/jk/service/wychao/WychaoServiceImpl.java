@@ -28,6 +28,9 @@ public class WychaoServiceImpl implements IWychaoService{
     @Resource
     private IWychaoMapper WychaoMapper;
 
+    public WychaoServiceImpl() {
+    }
+
 
     @Override
     public Map<String, Object> querydianji() {
@@ -53,7 +56,7 @@ public class WychaoServiceImpl implements IWychaoService{
         List<String> xlist=new ArrayList<>();
         List<Integer> ylist=new ArrayList<>();
         for (int i = 0; i <list.size(); i++) {
-            xlist.add(list.get(i).getKechengid());
+            xlist.add(list.get(i).getKechengname());
             ylist.add(list.get(i).getGoumaishuliang());
         }
 
@@ -62,6 +65,7 @@ public class WychaoServiceImpl implements IWychaoService{
         map.put("ylist", ylist);
         return map;
     }
+
     @Override
     public Map<String, Object> queryshiji() {
 
@@ -69,7 +73,7 @@ public class WychaoServiceImpl implements IWychaoService{
         List<String> xlist=new ArrayList<>();
         List<Integer> ylist=new ArrayList<>();
         for (int i = 0; i <list.size(); i++) {
-            xlist.add(list.get(i).getGoumaidate());
+         xlist.add(list.get(i).getGoumaidate());
             ylist.add(list.get(i).getGoumaishuliang());
         }
 
@@ -83,10 +87,10 @@ public class WychaoServiceImpl implements IWychaoService{
     public Map<String, Object> queryguanggao() {
 
         List<GuangGaoBiao> list=WychaoMapper.queryguanggao();
-        List<Data> xlist=new ArrayList<>();
+        List<String> xlist=new ArrayList<>();
         List<Integer> ylist=new ArrayList<>();
         for (int i = 0; i <list.size(); i++) {
-            xlist.add((Data) list.get(i).getGuanggaodate());
+            xlist.add( list.get(i).getGuanggaoname());
             ylist.add(list.get(i).getMoney());
         }
 
@@ -151,9 +155,40 @@ public class WychaoServiceImpl implements IWychaoService{
     }
 
     @Override
-    public Integer getkechengCount() {
+    public Integer getkechengCount()
+    {
         return WychaoMapper.getkechengCount();
     }
 
+    @Override
+    public List<Dianji> queryShenqing() {
 
+        return WychaoMapper.queryShenqing();
+    }
+
+    @Override
+    public Integer queryReservationsCount() {
+
+        return WychaoMapper.queryReservationsCount();
+    }
+
+    @Override
+    public List<GuangGaoBiao> queryguang() {
+
+
+        return WychaoMapper.queryguang();
+
+    }
+
+    @Override
+    public List<KeCheng> querykeCheng() {
+
+
+        return WychaoMapper.querykeCheng();
+    }
+
+    @Override
+    public List<GouMaiBiao> queryGouMaiBiao() {
+        return WychaoMapper.queryGouMaiBiao();
+    }
 }

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<input class="easyui-button width_80 l-btn l-btn-small" type='button' value="查询" onclick="goumai()" />
+<input class="easyui-button width_80 l-btn l-btn-small" type='button' value="导出" onclick="goumai()" />
 
 <div id="container1" style="width: 550px; height: 400px; margin: 0 auto"></div>
 <div id="sliders">
@@ -16,6 +16,7 @@
         <tr><td>Beta Angle</td><td><input id="R1" type="range" min="0" max="45" value="15"/> <span id="R1-value" class="value"></span></td></tr>
     </table>
 </div>
+
 <script language="JavaScript">
 
     $(function(){
@@ -44,10 +45,10 @@
                         }
                     };
                     var title = {
-                        text: '图表旋转实例'
+                        text: '购买量'
                     };
                     var subtitle = {
-                        text: '通过拖动下面的滑块测试'
+
                     };
 
                     var plotOptions = {
@@ -55,11 +56,17 @@
                             depth: 25
                         }
                     };
+
+                    var xAxis = {
+                        categories: result.xlist,
+                        crosshair: true
+                    };
                     var series= [{
                         data: result.ylist,
                     }];
 
                     var json = {};
+                    json.xAxis = xAxis;
                     json.chart = chart;
                     json.title = title;
                     json.subtitle = subtitle;
@@ -93,11 +100,27 @@
 
 
     function goumai(){
+        $.ajax({
+            url:"<%=request.getContextPath()%>/wychao/querygoumaigg",
+            type:"post",
+            datatype:"json",
+            success:function(){
+               alert("成功");
+            },
+            error: function(){
+                alert("修改失败");
+            }
+        });
 
 
-        location.href= "<%=request.getContextPath()%>/wychao/Excel"
+
+
+
+
 
     }
+
+
 </script>
 </body>
 </html>

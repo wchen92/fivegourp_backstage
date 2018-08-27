@@ -18,7 +18,7 @@
       
       
       <script type="text/javascript">
- 
+
       $.ajax({
 			url : '<%=request.getContextPath()%>/wychao/querydianji',
 			type : 'post',
@@ -32,7 +32,7 @@
 			    	      type: 'column'
 			    	   };
 			    	   var title = {
-			    	      text: '月销售额'   
+			    	      text: '点击量'
 			    	   };
 			    	   var subtitle = {
 			    	      text: 'Source: jk.com'  
@@ -44,7 +44,7 @@
 			    	   var yAxis = {
 			    	      min: 0,
 			    	      title: {
-			    	         text: '月销售额 '
+			    	         text: '总点击数量 '
 			    	      }      
 			    	   };
 			    	   var tooltip = {
@@ -66,7 +66,7 @@
 			    	   };
 			    	   
 			    	   var series= [{
-			    	        name: '月销售额 ',
+			    	        name: ' 总点击数量',
 			    	            data: list.ylist,
 			    	        }];     
 			    	      
@@ -86,11 +86,19 @@
 			}
 		})
 
+
       function aaa(){
-
-
-          location.href= "<%=request.getContextPath()%>/wychao/exportExcel"
-
+          $.ajax({
+              url:"<%=request.getContextPath()%>/wychao/querydianjigg",
+              type:"post",
+              datatype:"json",
+              success:function(){
+                  alert("成功");
+              },
+              error: function(){
+                  alert("修改失败");
+              }
+          });
       }
 
 

@@ -6,6 +6,16 @@ public class GouMaiBiao {
     private String yonghuid;//用户id
     private Integer goumaishuliang;//购买数量
     private String goumaidate;//购买时间
+    private String kechengname;
+
+    public void setKechengname(String kechengname) {
+        this.kechengname = kechengname;
+    }
+
+    public String getKechengname() {
+        return kechengname;
+    }
+
     private  String xlist;
     private  String ylist;
     private Integer page;

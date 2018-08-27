@@ -7,8 +7,8 @@
     <title>Insert title here</title>
 </head>
 <body>
-<input class="easyui-button width_80 l-btn l-btn-small" type='button'onclick="guanggaoExcel()" value="广告购买">
-<div id="container5" style="width: 550px; height: 400px; margin: 0 auto"></div>
+<input class="easyui-button width_80 l-btn l-btn-small" type='button'onclick="guanggaoss()" value="导出">
+<div id="container5" style="width: 350px; height: 200px; margin: 0 auto"></div>
 <div id="container4" style="width: 550px; height: 400px; margin: 0 auto"></div>
 
 <script language="JavaScript">
@@ -40,13 +40,13 @@
                     plotBackgroundImage: null,
                     plotBorderWidth: 0,
                     plotShadow: false,
-                    height: 400
+                    height: 200
                 },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'The Highcharts clock'
+                    text: ''
                 },
                 pane: {
                     background: [{
@@ -179,7 +179,7 @@
 
     function test10(){
         $.ajax({
-            url: "<%=request.getContextPath()%>/wychao/queryguanggao",
+            url: "<%=request.getContextPath()%>/wychao/querygoumai",
             type: "post",
             dataType: "json",
             success: function(result) {
@@ -212,21 +212,32 @@
                     };
                     var series = [{
                         type: 'pie',
-                        name: 'Browser share',
+                        name: '占比',
                         data: [
 
-                            result.ylist,
-                            result.ylist,
+
                             {
-                                name: 'Chrome',
+                                name: 'java',
+                                y: 22.8,
+                                sliced: true,
+                                selected: true
+                            },
+                            {
+                                name: 'ajax',
                                 y: 12.8,
+                                sliced: true,
+                                selected: true
+                            },
+                            {
+                                name: 'php',
+                                y: 5.8,
                                 sliced: true,
                                 selected: true
                             },
 
                         ]
                     }];
-                    // Radialize the colors
+                  /*  // Radialize the colors
                     Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
                         return {
                             radialGradient: {cx: 0.5, cy: 0.3, r: 0.7},
@@ -235,7 +246,7 @@
                                 [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
                             ]
                         };
-                    });
+                    });*/
 
                     var json = {};
                     json.chart = chart;
@@ -247,11 +258,19 @@
                 });
             }})}
 
-    function guanggao(){
 
-
-        location.href= "<%=request.getContextPath()%>/wychao/guanggaoExcel"
-
+    function guanggaoss() {
+        $.ajax({
+            url: "<%=request.getContextPath()%>/wychao/queryguanggaogg",
+            type: "post",
+            datatype: "json",
+            success: function () {
+                alert("成功");
+            },
+            error: function () {
+                alert("修改失败");
+            }
+        });
     }
 
 </script >

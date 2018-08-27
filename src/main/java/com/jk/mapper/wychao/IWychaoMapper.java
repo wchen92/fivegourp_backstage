@@ -11,14 +11,14 @@ import java.util.List;
 
 public interface IWychaoMapper {
 
-   @Select("SELECT t1.kechengdianjiliang ,t2.kechengname FROM dianjiliang t1 ,kecheng t2 WHERE t1.kechengid=t2.kechengid GROUP by t2.kechengname")
+   @Select("SELECT t1.kechengdianjiliang, t2.kechengname FROM dianjiliang t1, kecheng t2 WHERE t1.kechengid =t2.kechengid GROUP BY t2.kechengname")
     List<Dianji> querydianji();
 
-    @Select("SELECT  t1.goumaishuliang ,t2.kechengname FROM  goumaibiao t1, kecheng t2 WHERE t1.kechengid=t2.kechengid GROUP BY t2.kechengname" )
+    @Select("select  t1.goumaishuliang ,t2.kechengname from goumaibiao t1 , kecheng t2 WHERE t1.kechengid =t2.kechengid GROUP BY t2.kechengname" )
 
     List<GouMaiBiao> querygoumai();
 
-    @Select("SELECT SUM(goumaishuliang), DATE_FORMAT(t1.goumaidate,\"%Y-%m\") FROM goumaibiao t1  GROUP BY DATE_FORMAT(t1.goumaidate,\"%Y-%m\")" )
+    @Select("SELECT  DATE_FORMAT(t1.goumaidate,\"%Y-%m\"),t1.goumaishuliang FROM goumaibiao t1  GROUP BY DATE_FORMAT(t1.goumaidate,\"%Y-%m\")" )
     List<GouMaiBiao> queryshiji();
 
 
@@ -34,11 +34,14 @@ public interface IWychaoMapper {
 
     @Select("select count(*) from goumaibiao")
     Integer getGouMaiBiaoCount();
+
     @Select(" select * from  guanggaobiao LIMIT #{page},#{rows} ")
     List<GuangGaoBiao> getguangGaoBiaoList(GuangGaoBiao guangGaoBiao);
+
     @Select("select count(*) from guanggaobiao")
     Integer getGuangGaoBiaoCount();
-@Select("SELECT  DATE_FORMAT(t1.guanggaodate,\"%Y-%m\") ,t1.money FROM guanggaobiao t1 GROUP BY DATE_FORMAT(t1.guanggaodate,\"%Y-%m\")")
+
+@Select("SELECT t1.guanggaoname ,t1.money from guanggaobiao t1 ")
     List<GuangGaoBiao> queryguanggao();
 
     @Select(" select * from  kecheng LIMIT #{page},#{rows} ")
@@ -47,4 +50,20 @@ public interface IWychaoMapper {
     @Select("select count(*) from kecheng")
     Integer getkechengCount();
 
+
+
+
+    @Select("select count(*) from dianjiliang")
+    Integer queryReservationsCount();
+    @Select(" select * from  goumaibiao LIMIT #{page},#{rows} ")
+    List<Dianji> queryReservationsList(Dianji dianji);
+
+    @Select("select * from dianjiliang")
+    List<Dianji> queryShenqing();
+    @Select("select * from guanggaobiao")
+    List<GuangGaoBiao> queryguang();
+    @Select("select * from kecheng")
+    List<KeCheng> querykeCheng();
+    @Select("select * from goumaibiao")
+    List<GouMaiBiao> queryGouMaiBiao();
 }

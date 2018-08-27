@@ -1,29 +1,24 @@
 package com.jk.controller.wychao;
-
+import java.util.ArrayList;
+import java.util.List;
 import com.alibaba.fastjson.JSON;
-
 import com.jk.model.Dianji;
 import com.jk.model.GouMaiBiao;
 import com.jk.model.GuangGaoBiao;
 import com.jk.model.KeCheng;
 import com.jk.service.wychao.IWychaoService;
 import com.jk.uitl.wyc.*;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.Date;
-import java.util.concurrent.ExecutorService;
+
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * @ 创建者：王晨.
@@ -84,6 +79,8 @@ public class WychaoController {
         String json = JSON.toJSONStringWithDateFormat(list,"yyyy-MM-dd");
         return json;
     }
+
+
     /**
      * @ 创建者：wyc.
      * @ 创建时间：2018/8/15 9:27
@@ -104,170 +101,145 @@ public class WychaoController {
 
 
 
-    //poi导表
-    @RequestMapping(value="/exportExcel")
+    @RequestMapping(value="querydianjigg")
+     @ResponseBody
+    public String DataService(HttpServletResponse  response) {
+        List<Dianji> list1 = WychaoServiceL.queryShenqing();
+        String path="E:\\dianji.xls";
+        try {
+            String title="申请表";
+            String [] rowname= {"点击id","课程id","点击量"};
+            System.err.println(list1);
+            List<Object[]> arrobj =new ArrayList<Object[]>();
+            Object[] objs =null;
+            for (int i = 0; i < list1.size(); i++) {
+                Dianji qy= new Dianji();
+                qy=list1.get(i);
+                objs=new Object[rowname.length];
+                objs[0]=qy.getDianjiid();
+                objs[1]=qy.getKechengid();
+                objs[2]=qy.getKechengdianjiliang();
 
-    public void exportExcel(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        SXSSFWorkbook workbook = new SXSSFWorkbook(5000);
-        //每页条数
-        int rows = 2;
-        int totalPage = 0;
-        //传参数
-        Dianji news = new Dianji();
-        //查询总条数
-        Integer count = WychaoServiceL.getProductCount();
-        //计算总页数
-        totalPage =  count%rows==0?count/rows:count/rows+1;
-        System.out.println("总共"+totalPage+"页");
+                arrobj.add(objs);
+            }
 
-        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-        for (int i = 1; i <= totalPage; i++) {
-            news = new Dianji();
-            news.setPage((i-1)*rows);
-            news.setRows(rows);
-            cachedThreadPool.execute(new CreateExcel(WychaoServiceL,workbook,news));
+            ExportExcel export=new ExportExcel(title,rowname,arrobj,path,response);
+            export.export();
+        } catch (Exception e) {
         }
-        cachedThreadPool.shutdown();
+        return "1";
+}
 
-        boolean loop = true;
-        do {    //等待所有任务完成
-            loop = !cachedThreadPool.awaitTermination(2, TimeUnit.SECONDS);  //阻塞，直到线程池里所有任务结束
-        } while(loop);
 
-        System.out.println(request.getRealPath("/"));
-        String filePath = request.getRealPath("/")+new Date().getTime()+".xlsx";
-        OutputStream out = new FileOutputStream(new File(filePath));
-        workbook.write(out);
-        out.flush();
-        out.close();
-        workbook.dispose();
-        FileUtil.downloadFile(request, response, filePath, "新闻信息表.xlsx");
-        new File(filePath).delete();
-    }
+    @RequestMapping(value="queryguanggaogg")
+    @ResponseBody
+    public String DataServices(HttpServletResponse  response) {
+        List<GuangGaoBiao> list1 = WychaoServiceL.queryguang();
+        String path="E:\\guanggao.xls";
+        try {
+            String title="广告表";
+            String [] rowname= {"广告id","广告费","广告人","广告时间","广告类型","广告人","广告地址"};
+            System.err.println(list1);
+            List<Object[]> arrobj =new ArrayList<Object[]>();
+            Object[] objs =null;
+            for (int i = 0; i < list1.size(); i++) {
+                GuangGaoBiao gg= new GuangGaoBiao();
+                gg=list1.get(i);
+                objs=new Object[rowname.length];
+                objs[0] =gg.getGuanggaoid();
+                objs[1]=gg.getMoney();
+                objs[2]=gg.getGuanggaoname();
+                objs[3]=gg.getGuanggaodate();
+                objs[4]=gg.getZhanshistatus();
+                objs[5]=gg.getChuliren();
+                objs[6]=gg.getGuanggaophoto();
+                arrobj.add(objs);
+            }
 
-    //poi导表
-    @RequestMapping(value="/Excel")
-
-    public void Excel(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        SXSSFWorkbook xxbook = new SXSSFWorkbook(5000);
-        //每页条数
-        int rows = 2;
-        int totalPage = 0;
-        //传参数
-        GouMaiBiao gg = new GouMaiBiao();
-        //查询总条数
-        Integer count = WychaoServiceL.getGouMaiBiaoCount();
-        //计算总页数
-        totalPage =  count%rows==0?count/rows:count/rows+1;
-        System.out.println("总共"+totalPage+"页");
-
-        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-        for (int i = 1; i <= totalPage; i++) {
-            gg = new GouMaiBiao();
-            gg.setPage((i-1)*rows);
-            gg.setRows(rows);
-            cachedThreadPool.execute(new GoumaiExcel(WychaoServiceL,xxbook,gg));
+            ExportExcel export=new ExportExcel(title,rowname,arrobj,path,response);
+            export.export();
+        } catch (Exception e) {
         }
-        cachedThreadPool.shutdown();
-
-        boolean loop = true;
-        do {    //等待所有任务完成
-            loop = !cachedThreadPool.awaitTermination(2, TimeUnit.SECONDS);  //阻塞，直到线程池里所有任务结束
-        } while(loop);
-
-        System.out.println(request.getRealPath("/"));
-        String filePath = request.getRealPath("/")+new Date().getTime()+".xlsx";
-        OutputStream out = new FileOutputStream(new File(filePath));
-        xxbook.write(out);
-        out.flush();
-        out.close();
-        xxbook.dispose();
-        FileUtil.downloadFile(request, response, filePath, "新闻信息表ss.xlsx");
-        new File(filePath).delete();
+        return "1";
     }
 
 
-    //poi导表
-    @RequestMapping(value="/guanggaoExcel")
 
-    public void guanggaoExcel(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        SXSSFWorkbook xxbook = new SXSSFWorkbook(5000);
-        //每页条数
-        int rows = 2;
-        int totalPage = 0;
-        //传参数
-        GuangGaoBiao gg = new GuangGaoBiao();
-        //查询总条数
-        Integer count = WychaoServiceL.getGuangGaoBiaoCount();
-        //计算总页数
-        totalPage =  count%rows==0?count/rows:count/rows+1;
-        System.out.println("总共"+totalPage+"页");
 
-        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-        for (int i = 1; i <= totalPage; i++) {
-            gg = new GuangGaoBiao();
-            gg.setPage((i-1)*rows);
-            gg.setRows(rows);
-            cachedThreadPool.execute(new GuanggaoiExcel(WychaoServiceL,xxbook,gg));
+
+
+
+
+
+
+    @RequestMapping(value="querykecheng")
+    @ResponseBody
+
+
+    public String DataServicess(HttpServletResponse  response) {
+        List<KeCheng> list1 = WychaoServiceL.querykeCheng();
+        String path="E:\\kengcheng.xls";
+        try {
+            String title="课程表";
+            String [] rowname= {"序号","价格","数量","地址","名字","类型","状态"};
+            System.err.println(list1);
+            List<Object[]> arrobj =new ArrayList<Object[]>();
+            Object[] objs =null;
+            for (int i = 0; i < list1.size(); i++) {
+                KeCheng kc= new KeCheng();
+                kc=list1.get(i);
+                objs=new Object[rowname.length];
+                objs[0]= kc.getKechengid();
+                objs[1]= kc.getKechengprice();
+                objs[2]= kc.getShenhestatus();
+                objs[3]=  kc.getHuiyuanstatus();
+                objs[4]= kc.getHuiyuan();
+                objs[5]= kc.getKechengphoto();
+                objs[6]= kc.getKechengjieshao();
+                objs[7]= kc.getHuiyuanstatus();
+
+
+
+                arrobj.add(objs);
+            }
+
+            ExportExcel export=new ExportExcel(title,rowname,arrobj,path,response);
+            export.export();
+        } catch (Exception e) {
         }
-        cachedThreadPool.shutdown();
-
-        boolean loop = true;
-        do {    //等待所有任务完成
-            loop = !cachedThreadPool.awaitTermination(2, TimeUnit.SECONDS);  //阻塞，直到线程池里所有任务结束
-        } while(loop);
-
-        System.out.println(request.getRealPath("/"));
-        String filePath = request.getRealPath("/")+new Date().getTime()+".xlsx";
-        OutputStream out = new FileOutputStream(new File(filePath));
-        xxbook.write(out);
-        out.flush();
-        out.close();
-        xxbook.dispose();
-        FileUtil.downloadFile(request, response, filePath, "新闻信息表sss.xlsx");
-        new File(filePath).delete();
-
+        return "1";
     }
 
 
-    @RequestMapping(value="/kechengExcel")
+    @RequestMapping(value="querygoumaigg")
+    @ResponseBody
+    public String DataServicesss(HttpServletResponse  response) {
+        List<GouMaiBiao> list1 = WychaoServiceL.queryGouMaiBiao();
+        String path="E:\\goumai.xls";
+        try {
+            String title="购买表";
+            String [] rowname= {"购买","用户","课程", "数量","时间"};
+            System.err.println(list1);
+            List<Object[]> arrobj =new ArrayList<Object[]>();
+            Object[] objs =null;
+            for (int i = 0; i < list1.size(); i++) {
+                GouMaiBiao gm= new GouMaiBiao();
+                gm=list1.get(i);
+                objs=new Object[rowname.length];
+                objs[0]=   gm.getGoumaiid();
+                objs[1]=  gm.getKechengid();
+                objs[2]=  gm.getYonghuid();
+                objs[3]= gm.getGoumaishuliang();
+                objs[4]=  gm.getGoumaidate();
 
-    public void kechengExcel(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        SXSSFWorkbook workbook = new SXSSFWorkbook(5000);
-        //每页条数
-        int rows = 2;
-        int totalPage = 0;
-        //传参数
-        KeCheng news = new KeCheng();
-        //查询总条数
-        Integer count = WychaoServiceL.getkechengCount();
-        //计算总页数
-        totalPage =  count%rows==0?count/rows:count/rows+1;
-        System.out.println("总共"+totalPage+"页");
+                arrobj.add(objs);
+            }
 
-        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-        for (int i = 1; i <= totalPage; i++) {
-            news = new KeCheng();
-            news.setPage((i-1)*rows);
-            news.setRows(rows);
-            cachedThreadPool.execute(new kechengExcel(WychaoServiceL,workbook,news));
+            ExportExcel export=new ExportExcel(title,rowname,arrobj,path,response);
+            export.export();
+        } catch (Exception e) {
         }
-        cachedThreadPool.shutdown();
-
-        boolean loop = true;
-        do {    //等待所有任务完成
-            loop = !cachedThreadPool.awaitTermination(2, TimeUnit.SECONDS);  //阻塞，直到线程池里所有任务结束
-        } while(loop);
-
-        System.out.println(request.getRealPath("/"));
-        String filePath = request.getRealPath("/")+new Date().getTime()+".xlsx";
-        OutputStream out = new FileOutputStream(new File(filePath));
-        workbook.write(out);
-        out.flush();
-        out.close();
-        workbook.dispose();
-        FileUtil.downloadFile(request, response, filePath, "新闻信息表xx.xlsx");
-        new File(filePath).delete();
+        return "1";
     }
 
 

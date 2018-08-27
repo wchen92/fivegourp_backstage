@@ -33,7 +33,7 @@ spring:
     solr:
       host: http://192.168.1.137:8080/solr/mycore
   rabbitmq:
-    host: 192.168.1.129
+    host: 192.168.1.104
     port: 5672
     username: wchen92
     password: wchen92
