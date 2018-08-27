@@ -91,6 +91,13 @@ public class ZqshunServiceImpl implements IZqshunService{
         String[] split = ids.split(",");
         for(int i   = 0 ;i < split.length; i++) {
             ZqshunMapper.deletekecheng(split[i]);
+            //删除章节表对应章节
+            List<KechengAndZhangjie> selectkcidbyzjid = ZqshunMapper.selectkcidbyzjid(split[i]);
+            for(KechengAndZhangjie kcandzj : selectkcidbyzjid){
+                ZqshunMapper.deleteOFzjidByZjChart(kcandzj.getZhangjieid());
+            }
+            //删除中间表数据
+            ZqshunMapper.deleteOfKcidByKcAndZjChart(split[i]);
             try {
                 solrClientl.deleteByQuery("id:" + ids);
             } catch (SolrServerException e) {
@@ -115,12 +122,20 @@ public class ZqshunServiceImpl implements IZqshunService{
         keCheng.setKechengid(UUID.randomUUID().toString().replaceAll("-",""));
         keCheng.setShenhestatus("2");
         keCheng.setKeshishu("0");
+        //新增课程
         ZqshunMapper.addkecheng(keCheng);
         Liuyan liuyan = new Liuyan();
         liuyan.setLiulanid(UUID.randomUUID().toString());
         liuyan.setKechengid(keCheng.getKechengid());
         liuyan.setLiulanshuliang(0);
+        //新增浏览数
         ZqshunMapper.addliulkan(liuyan);
+
+        //新增课程讲师中间表
+        ZqshunMapper.addjianshi(keCheng.getKechengid(),keCheng.getJiangshi(), UUID.randomUUID().toString());
+
+        //新增班型
+        ZqshunMapper.addtobanxing1(keCheng.getKechengid(),keCheng.getBanxing(), UUID.randomUUID().toString());
     }
 
     //课程回显
@@ -166,6 +181,7 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public void addzhangjie(ZhangJie zhangJie) {
         zhangJie.setZhangjieid(UUID.randomUUID().toString());
+        zhangJie.setAdddate(new Date());
         ZqshunMapper.addzhangjie(zhangJie);
         //新增课时数
         KeCheng keCheng = new KeCheng();
@@ -199,6 +215,7 @@ public class ZqshunServiceImpl implements IZqshunService{
     @Override
     public void deletezhangcheng(String ids) {
         ZqshunMapper.deletezhangcheng(ids);
+
     }
 
     //回显章节管理

@@ -13,10 +13,10 @@
 <body>
 <form id="tys_wenda">
 
-    内容   <textarea name="text" rows="6" ></textarea>
 
           <input type="hidden" name="pid" value="0">
 
+   问答内容： <textarea class="form-control" name="text" rows="3"></textarea>
 
 </form>
 

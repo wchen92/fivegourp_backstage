@@ -49,7 +49,7 @@
                 <li><a href="<%=request.getContextPath()%>/linshuiindex/TestYeMian" title="课程">课程</a></li>
                 <li><a href="https://save0517.oss-cn-beijing.aliyuncs.com/aliyun/kecheng.jpg" title="路线" target="_blank">路线</a></li>
                 <li><a href="<%=request.getContextPath()%>/zqshunindex/huiyuan" title="会员">会员</a></li>
-                <li><a href="/questions/list" title="问答">问答</a></li>
+                <li><a href="<%=request.getContextPath()%>/tyshengIndex/queryTreeList" title="问答">问答</a></li>
                 <li><a href="http://cn.mikecrm.com/kz8uPv0" title="培训" target="_blank">培训</a></li>
             </ul>
                 <!-- / nav -->

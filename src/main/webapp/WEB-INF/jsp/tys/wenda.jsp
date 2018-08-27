@@ -37,6 +37,13 @@
     <link href="http://www.itmayiedu.com/static/inxweb/css/mw_320_768.css?t=2018-06-19" rel="stylesheet"
           type="text/css"
           media="screen and (min-width: 320px) and (max-width: 768px)">
+    <link
+            href="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.css"
+            rel="stylesheet">
+    <link
+            href="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.css"
+            rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/js/link/bootstrap-dialog/bootstrap-dialog.min.css" >
 
 
     <!--[if lt IE 9]><script src="http://www.itmayiedu.com/static/common/html5.js"></script><![endif]-->
@@ -68,6 +75,9 @@
     <script type="text/javascript"
             src="http://www.itmayiedu.com/static/inxweb/header/header.js?t=2018-06-19"></script>
     <script type="text/javascript" src="http://www.itmayiedu.com/static/inxweb/js/common.js?t=2018-06-19"></script>
+    <script
+            src="<%=request.getContextPath()%>/js/link/bootstrap/bootstrap.min.js"></script>
+    <script  src="<%=request.getContextPath()%>/js/link/bootstrap-dialog/bootstrap-dialog.js"></script>
 
     <script>
 
@@ -223,7 +233,7 @@
                                                 </h3>
                                             </c:forEach>
                                             <div class="mt15">
-                                                <span class="c-ccc fl vam">${t.wdate}</span>
+                                                <span class="c-ccc fl vam">${t.showdate}</span>
 
 
 
@@ -254,18 +264,19 @@
         //新增弹框
 
         function submitForm(){
-           alert("新增弹框");
-            $('#tys_xin').dialog({
-                title: '添加',
-                width: 500,
-                height: 300,
-                closed: false,
-                cache: false,
-                href: '<%=request.getContextPath()%>/tyshengIndex/savewenda',
-                modal: true,
-                buttons:[{
-                    text:'保存',
-                    handler:function(){
+            BootstrapDialog.show({
+                type : BootstrapDialog.TYPE_SUCCESS,
+                title : '新增 ',
+                height:600,
+                message : $("<div></div>").load("<%=request.getContextPath()%>/tyshengIndex/savewenda"),
+                buttons : [ {// 设置关闭按钮
+                    label : '关闭',
+                    action : function(dialogItself) {
+                        dialogItself.close();
+                    },
+                },{
+                    label : '保存',
+                    action : function(dialogItself) {
                         $('#tys_wenda').form('submit', {
                             url:'<%=request.getContextPath()%>/tysheng/savawendaone',
                             onSubmit: function(){
@@ -273,12 +284,13 @@
                             },
                             success:function(){
                                 alert("保存成功");
-                              location.href="<%=request.getContextPath()%>/tyshengIndex/queryTreeList"
+                                location.href="<%=request.getContextPath()%>/tyshengIndex/queryTreeList"
 
                             }
                         });
                     }
-                }]
+                }
+                ]
             });
 
         }
