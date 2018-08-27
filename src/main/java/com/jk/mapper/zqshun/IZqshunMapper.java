@@ -63,7 +63,7 @@ public interface IZqshunMapper {
     long totalzhangJie(ZhangJie zhangJie);
 
     //新增章节管理
-    @Insert(" insert into zhangjie values(#{zhangjieid},#{zhangjiename},#{shipin},#{shoufeistatus}) ")
+    @Insert(" insert into zhangjie values(#{zhangjieid},#{zhangjiename},#{shipin},#{shoufeistatus},#{adddate}) ")
     void addzhangjie(ZhangJie zhangJie);
 
     //新增课程章节关联表
@@ -100,4 +100,28 @@ public interface IZqshunMapper {
     //过滤敏感词
     @Select(" select * from minganci")
     List<MinGanCi> mingan();
+
+    @Select(" select qt.shifouhuiyuan from qiantaiyonghu qt where qt.yonghuid=#{id} ")
+    Integer selecthy(@Param("id") String id);
+
+    @Select(" select * from jiangshi ")
+    List<JiangShi> selecttiche();
+
+    @Insert( " insert into kecheng_jiangshi values  (#{s},#{kechengid},#{jiangshi})")
+    void addjianshi(@Param("kechengid") String kechengid, @Param("jiangshi")String jiangshi, @Param("s")String s);
+
+    @Select(" select * from banxing ")
+    List<BanXing> selectkctobanxing();
+
+    @Insert(" insert into banxing_kecheng values (#{s},#{banxing},#{kechengid})")
+    void addtobanxing1(@Param("kechengid") String kechengid, @Param("banxing")String banxing, @Param("s")String s);
+
+    @Select(" select * from kecheng_zhangjie where kechengid = #{s}")
+    List<KechengAndZhangjie> selectkcidbyzjid(@Param("s") String s);
+
+    @Delete(" delete from zhangjie where zhangjieid = #{zhangjieid}")
+    void deleteOFzjidByZjChart(@Param("zhangjieid") String zhangjieid);
+
+    @Delete(" delete from kecheng_zhangjie where kechengid = #{s}")
+    void deleteOfKcidByKcAndZjChart(@Param("s") String s);
 }

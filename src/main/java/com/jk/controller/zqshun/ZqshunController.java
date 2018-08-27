@@ -1,9 +1,6 @@
 package com.jk.controller.zqshun;
 
-import com.jk.model.BanXing;
-import com.jk.model.KeCheng;
-import com.jk.model.MinGanCi;
-import com.jk.model.ZhangJie;
+import com.jk.model.*;
 import com.jk.service.zqshun.IZqshunService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +15,8 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 /**
  * @ 创建者：王晨.
@@ -169,5 +168,24 @@ public class ZqshunController {
         return "1";
     }
 
+    @RequestMapping("selecthy")
+    public Integer selecthy(HttpServletRequest request){
+        QianTaiYongHu yh = (QianTaiYongHu) request.getSession().getAttribute("loginYonghu");
+        String id = yh.getYonghuid();
+        Integer user=2;
+        if(id!=null&&!"".equals(id)){
+             user = ZqshunService.selecthy(id);
+        }
+        return user;
+    }
 
+   @RequestMapping("selecttiche")
+    public List<JiangShi> selecttiche(){
+        return ZqshunService.selecttiche();
+   }
+
+   @RequestMapping("selectbanxing")
+    public List<BanXing> selectbanxing(){
+        return ZqshunService.selectkctobanxing();
+   }
 }

@@ -68,4 +68,11 @@ public interface IZqshunService {
 
     //过滤敏感词
     void mingan(String str);
+
+    Integer selecthy(String id);
+
+    List<JiangShi> selecttiche();
+
+    //课程新增对应版型
+    List<BanXing> selectkctobanxing();
 }

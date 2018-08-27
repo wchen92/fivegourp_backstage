@@ -37,4 +37,8 @@ public interface ILshunService {
     String selectshipin(String wchenkcdi);
 
     String selectzhangjieorid(String zhanjieid);
+
+    void addliulanliang(String kechengid);
+
+    String selectmemberstatus(String userid);
 }

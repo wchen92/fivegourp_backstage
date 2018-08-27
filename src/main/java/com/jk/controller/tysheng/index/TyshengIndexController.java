@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -153,6 +155,8 @@ public class TyshengIndexController {
 
         List<WenDa> list=TyshengService.getTreeList(id);
         for (WenDa wenDa : list) {
+            DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            wenDa.setShowdate(format2.format(wenDa.getWdate()));
             Integer id2 = wenDa.getId();
             List<WenDa> treeList = getTreeList(id2);
 

@@ -87,4 +87,18 @@ public interface IWjyiService {
     Integer queryZhipaiShu(String us );
 
     void updateZhiWanchengstatus(String rwid, String usid);
+
+    Map<String,Object> login(QianTaiYongHu people);
+
+    QianTaiYongHu queryYongHuByName(String yonghuname);
+
+    void saveYongHu(QianTaiYongHu yonghu);
+
+    void updatexinxi(QianTaiYongHu qiantaiyonghu);
+
+    List<QianTaiYongHu> queryAllxinxi(String us);
+
+    void updatemima(QianTaiYongHu qiantaiyonghu);
+
+    QianTaiYongHu wchenselectoftouser(String yonghuid);
 }

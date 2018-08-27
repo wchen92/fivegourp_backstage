@@ -1,8 +1,6 @@
 package com.jk.service.wchen;
 
-import com.jk.model.KeCheng;
-import com.jk.model.Log;
-import com.jk.model.PlTokc;
+import com.jk.model.*;
 import org.apache.solr.client.solrj.SolrClient;
 
 import java.util.List;
@@ -20,4 +18,10 @@ public interface IWchenService {
     void addkctopinlun(String kcid, String juzito,String userid );
 
     List<PlTokc> selectkctopl(String kcid);
+
+    QianTaiYongHu selecttitle(String showuserid);
+
+    List<BanXing> allselectbanxing();
+
+    List<JiangShi> allselectjiaoshi();
 }

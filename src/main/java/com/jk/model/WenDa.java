@@ -21,6 +21,16 @@ public class WenDa {
     private Date     wdate;
     private List<WenDa> list;
 
+    private String showdate;
+
+    public String getShowdate() {
+        return showdate;
+    }
+
+    public void setShowdate(String showdate) {
+        this.showdate = showdate;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -125,7 +125,8 @@ public class    LshunServiceImpl implements ILshunService{
 
     @Override
     public KeCheng selectpricelist(String wchenkcdi) {
-            //查询出课程表的信息
+        ArrayList<ZhangJie> zhangJies = new ArrayList<>();
+        //查询出课程表的信息
         KeCheng selectkc = LshunMapper.selectkecheng(wchenkcdi);
 
            //查询浏览次数
@@ -133,13 +134,34 @@ public class    LshunServiceImpl implements ILshunService{
 
            //查询章节
         List<ZhangJie> orallzj = LshunMapper.selectorzj(wchenkcdi);
+        for(ZhangJie zj : orallzj ){
+            ZhangJie zhangJie = new ZhangJie();
+            if("1".equals(zj.getShoufeistatus())){
+                zhangJie.setZhangjieid(zj.getZhangjieid());
+                zhangJie.setKecheid(zj.getKecheid());
+                zhangJie.setShipin(zj.getShipin());
+                zhangJie.setShoufeistatus("会员");
+                zhangJie.setZhangjiename(zj.getZhangjiename());
+             }
+             if("2".equals(zj.getShoufeistatus())){
+                 zhangJie.setZhangjieid(zj.getZhangjieid());
+                 zhangJie.setKecheid(zj.getKecheid());
+                 zhangJie.setShipin(zj.getShipin());
+                 zhangJie.setShoufeistatus("");
+                 zhangJie.setZhangjiename(zj.getZhangjiename());
+             }
+            zhangJies.add(zhangJie);
+        }
            //查询章节数（课时数）
         long ajcount = LshunMapper.selectajcount(wchenkcdi);
+          //查询讲师
+        KeCheng selectjsinfo =  LshunMapper.selectjsinfo(wchenkcdi);
            //存入对应的值返回页面
         selectkc.setLiulanliang(selectll.getLiulanshuliang().toString());
         selectkc.setKsshu(ajcount);
-        selectkc.setZjlist(orallzj);
-
+        selectkc.setZjlist(zhangJies);
+        selectkc.setJiangshi(selectjsinfo.getJiangshi());
+        selectkc.setJssf(selectjsinfo.getJssf());
         return selectkc;
     }
 
@@ -153,5 +175,15 @@ public class    LshunServiceImpl implements ILshunService{
     public String selectzhangjieorid(String zhanjieid) {
 
         return LshunMapper.selectzhangjieorid(zhanjieid);
+    }
+
+    @Override
+    public void addliulanliang(String kechengid) {
+        LshunMapper.addliulanliang(kechengid);
+    }
+
+    @Override
+    public String selectmemberstatus(String userid) {
+        return LshunMapper.selectmemberstatus(userid);
     }
 }

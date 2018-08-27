@@ -1,9 +1,7 @@
 package com.jk.service.wchen;
 
 import com.jk.mapper.wchen.IWchenMapper;
-import com.jk.model.KeCheng;
-import com.jk.model.Log;
-import com.jk.model.PlTokc;
+import com.jk.model.*;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -18,10 +16,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @ 创建者：王晨.
@@ -80,6 +77,9 @@ public class WchenServiceImpl implements IWchenService{
             solrInputDocument.addField("kechengjieshao",kc.getKechengjieshao());
             solrInputDocument.addField("huiyuanstatus",kc.getHuiyuanstatus());
             solrInputDocument.addField("shenhestatus",kc.getShenhestatus());
+            solrInputDocument.addField("jiangshi",kc.getJiangshi());
+            solrInputDocument.addField("banxing",kc.getBanxing());
+            solrInputDocument.addField("adddate",new Date());
             try {
                 solrClient.add(solrInputDocument);
             } catch (SolrServerException e) {
@@ -155,6 +155,7 @@ public class WchenServiceImpl implements IWchenService{
         plTokc.setKcid(kcid);
         plTokc.setPinlun(juzito);
         plTokc.setUserid(userid);
+        plTokc.setTime(new Date());
         mongoTemplate.save(plTokc);
     }
 
@@ -165,16 +166,34 @@ public class WchenServiceImpl implements IWchenService{
         Query query = new Query();
         query.addCriteria(new Criteria("kcid").is(kcid));
         List<PlTokc> plTokcs = mongoTemplate.find(query, PlTokc.class);
+            for (PlTokc pl : plTokcs){
+                PlTokc plTokc = new PlTokc();
+                QianTaiYongHu user = WchenMapper.pluseridselecttomysql(pl.getUserid());
+                plTokc.setUserid(user.getYonghuname());
+                plTokc.setPinlun(pl.getPinlun());
+                plTokc.setKcid(pl.getKcid());
+                plTokc.setId(pl.getId());
+                plTokc.setZhaopian(user.getYonghutouxiang());
+                DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                plTokc.setGetdate(format2.format(pl.getTime()));
+                plTokcs1.add(plTokc);
+        }
 
-         for (PlTokc pl : plTokcs){
-             PlTokc plTokc = new PlTokc();
-             String username = WchenMapper.pluseridselecttomysql(pl.getUserid());
-             plTokc.setUserid(username);
-             plTokc.setPinlun(pl.getPinlun());
-             plTokc.setKcid(pl.getKcid());
-             plTokc.setId(pl.getId());
-             plTokcs1.add(plTokc);
-         }
         return plTokcs1;
+    }
+
+    @Override
+    public QianTaiYongHu selecttitle(String showuserid) {
+        return WchenMapper.selecttitle(showuserid);
+    }
+
+    @Override
+    public List<BanXing> allselectbanxing() {
+        return WchenMapper.allselectbanxing();
+    }
+
+    @Override
+    public List<JiangShi> allselectjiaoshi() {
+        return WchenMapper.allselectjiaoshi();
     }
 }

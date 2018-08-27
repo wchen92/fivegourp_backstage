@@ -167,7 +167,7 @@ public interface ITyshengMapper {
      * 　　* @date 2018/8/17 20:42
      *
      */
-    @Select("select * from  wenda where pid=#{id}")
+    @Select("select * from  wenda where pid=#{id} order by wdate desc")
     List<WenDa> getTreeList(Integer id);
 /**
 　　* @Description: TODO
