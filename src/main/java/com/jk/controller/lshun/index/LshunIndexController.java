@@ -77,5 +77,9 @@ public class LshunIndexController {
 
         return  "lshun/LuckDraw";
     }
+    @RequestMapping("gotopeixun")
+    public String gotopeixun(){
+        return "lshun/peixun";
+    }
 
 }

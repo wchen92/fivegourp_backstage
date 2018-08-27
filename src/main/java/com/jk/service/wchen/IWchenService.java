@@ -24,4 +24,12 @@ public interface IWchenService {
     List<BanXing> allselectbanxing();
 
     List<JiangShi> allselectjiaoshi();
+
+    void addpeixun(peixun px);
+
+    Map<String,Object> selectpeixun(Integer page, Integer rows, String userid);
+
+    void peixunok(String id,String jieguo);
+
+    Map<String,Object> selectpeixunok(Integer page, Integer rows, String userid);
 }

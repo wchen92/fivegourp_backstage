@@ -62,4 +62,29 @@ public class WchenController {
         List<JiangShi> allselectjiaoshi = WchenService.allselectjiaoshi();
         return allselectjiaoshi;
     }
+
+    //新增培训
+    @RequestMapping("addpeixun")
+    public String addpeixun(peixun px){
+        WchenService.addpeixun(px);
+         return "1";
+    }
+    //根据登录人id查询分配的培训信息
+    @RequestMapping("selectpeixun")
+    public Map<String,Object> selectpeixun(Integer page, Integer rows,HttpServletRequest request){
+        User user2 = (User) request.getSession().getAttribute("loginUser");
+        String userid = user2.getUserid();
+        return WchenService.selectpeixun(page,rows,userid);
+    }
+    @RequestMapping("peixunok")
+    public String peixunok(String id,String jieguo){
+        WchenService.peixunok(id,jieguo);
+        return "1";
+    }
+    @RequestMapping("selectpeixunok")
+    public Map<String,Object> selectpeixunok(Integer page, Integer rows,HttpServletRequest request){
+        User user2 = (User) request.getSession().getAttribute("loginUser");
+        String userid = user2.getUserid();
+        return WchenService.selectpeixunok(page,rows,userid);
+    }
 }

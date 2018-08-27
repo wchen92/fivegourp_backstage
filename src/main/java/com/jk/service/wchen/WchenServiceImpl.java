@@ -196,4 +196,70 @@ public class WchenServiceImpl implements IWchenService{
     public List<JiangShi> allselectjiaoshi() {
         return WchenMapper.allselectjiaoshi();
     }
+
+    @Override
+    public void addpeixun(peixun px) {
+          //查询拥有客服人员的角色id
+        List<String> userid = WchenMapper.selectorroletouserid();
+
+        // 初始化随机数
+        Random rand = new Random();
+        // 存放乱序结果的集合
+        List<String> result = new ArrayList<>();
+      // 取得集合的长度，for循环使用
+        int size = userid.size();
+
+        // 遍历整个items数组
+        for (int i = 0; i < size; i++) {
+            // 任意取一个0~size的整数，注意此处的items.size()是变化的，所以不能用前面的size会发生数组越界的异常
+            int myRand = rand.nextInt(userid.size());
+            //将取出的这个元素放到存放结果的集合中
+            result.add(userid.get(myRand));
+            //从原始集合中删除该元素防止重复。注意，items数组大小发生了改变
+            userid.remove(myRand);
+        }
+
+        //便利输出结果
+        for (int i = 0; i < 1; i++) {
+            px.setId(UUID.randomUUID().toString());
+            px.setZhidingchuliid(result.get(i));
+            px.setChulizhuangtai(1);
+            WchenMapper.addpeixun(px);
+        }
+    }
+
+    @Override
+    public Map<String, Object> selectpeixun(Integer page, Integer rows, String userid) {
+        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+        int start = (page-1)*rows;
+        //根据用户id查询对应分配条数
+        long tiaohus = WchenMapper.selectfenpeicount(userid);
+        stringObjectHashMap.put("total",tiaohus);
+        //查询数据
+        List<peixun> peixunlist = WchenMapper.selectpeixun(userid,start,rows);
+        stringObjectHashMap.put("rows",peixunlist);
+        return stringObjectHashMap;
+    }
+
+    @Override
+    public void peixunok(String id,String jieguo) {
+        //修改处理状态
+        WchenMapper.peixunok(id);
+        //添加结果
+        WchenMapper.addjieguo(id,jieguo);
+    }
+
+    @Override
+    public Map<String, Object> selectpeixunok(Integer page, Integer rows, String userid) {
+        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+        int start = (page-1)*rows;
+        //根据用户id查询对应分配条数
+        long tiaohus = WchenMapper.selectfenpeicountok(userid);
+        stringObjectHashMap.put("total",tiaohus);
+        //查询数据
+        List<peixun> peixunlist = WchenMapper.selectpeixunok(userid,start,rows);
+        stringObjectHashMap.put("rows",peixunlist);
+        return stringObjectHashMap;
+    }
+
 }

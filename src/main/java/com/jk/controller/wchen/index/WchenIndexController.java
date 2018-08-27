@@ -20,4 +20,17 @@ public class WchenIndexController {
     public String gotoshowall(){
         return "Wchen/LogShow";
     }
+    @RequestMapping("gotoselectpeixun")
+    public String gotoselectpeixun(){
+        return "Wchen/selectpeixun";
+    }
+
+    @RequestMapping("gotoselectpeixunok")
+    public String gotoselectpeixunok(){
+        return "Wchen/selectpeixunok";
+    }
+    @RequestMapping("updatepeixun")
+    public String updatepeixun(){
+        return "Wchen/updatepeixun";
+    }
 }
